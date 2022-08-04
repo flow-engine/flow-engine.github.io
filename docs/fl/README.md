@@ -1,3 +1,8 @@
+---
+layout: default
+title: Installation
+---
+
 ## 1.6.2 FlowEngine 设计初衷
 
 ### 如何提升AI/策略类项目或产品的开发的和落地效率？
