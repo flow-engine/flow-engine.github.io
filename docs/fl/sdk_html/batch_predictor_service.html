@@ -1,0 +1,525 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>batch_predictor_service module &mdash; FlowEngine-py-SDK release/1.5.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="engine_kernel_service module" href="engine_kernel_service.html" />
+    <link rel="prev" title="sci_batch_predictor_service module" href="sci_batch_predictor_service.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> FlowEngine-py-SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to FlowEngine-py-SDK</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="service.html">service package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="sci_solution_explore_service.html">sci_solution_explore_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci_solution_explore_regression_service.html">sci_solution_explore_regression_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci_solution_explore_binary_service.html">sci_solution_explore_binary_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci_data_process_service.html">sci_data_process_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci_batch_predictor_service.html">sci_batch_predictor_service module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">batch_predictor_service module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#executionstage-enum">ExecutionStage Enum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#executionstatus-service">ExecutionStatus Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#batchpredictorservice-service">BatchPredictorService Service</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="engine_kernel_service.html">engine_kernel_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keystone_service.html">keystone_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kubernetes_service.html">kubernetes_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manager_service.html">manager_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="market_service.html">market_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdms_service.html">pdms_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sc_instance_service.html">sc_instance_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci_self_learner_service.html">sci_self_learner_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="self_learner_service.html">self_learner_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflow_service.html">workflow_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="yarn_service.html">yarn_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crontab_service.html">crontab_service module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="client.html">client package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.html">model package</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">FlowEngine-py-SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="service.html">service package</a> &raquo;</li>
+        
+      <li>batch_predictor_service module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/batch_predictor_service.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="batch-predictor-service-module">
+<h1>batch_predictor_service module<a class="headerlink" href="#batch-predictor-service-module" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="executionstage-enum">
+<h2>ExecutionStage Enum<a class="headerlink" href="#executionstage-enum" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.service.batch_predictor_service.ExecutionStage">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.service.batch_predictor_service.</code><code class="sig-name descname">ExecutionStage</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/batch_predictor_service.html#ExecutionStage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.batch_predictor_service.ExecutionStage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>枚举类：模型批量预估的运行阶段</p>
+<dl class="py attribute">
+<dt id="flowengine.service.batch_predictor_service.ExecutionStage.CHECKING">
+<code class="sig-name descname">CHECKING</code><em class="property"> = 0</em><a class="headerlink" href="#flowengine.service.batch_predictor_service.ExecutionStage.CHECKING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flowengine.service.batch_predictor_service.ExecutionStage.REPORTING">
+<code class="sig-name descname">REPORTING</code><em class="property"> = 2</em><a class="headerlink" href="#flowengine.service.batch_predictor_service.ExecutionStage.REPORTING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flowengine.service.batch_predictor_service.ExecutionStage.RUNNING">
+<code class="sig-name descname">RUNNING</code><em class="property"> = 1</em><a class="headerlink" href="#flowengine.service.batch_predictor_service.ExecutionStage.RUNNING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="executionstatus-service">
+<h2>ExecutionStatus Service<a class="headerlink" href="#executionstatus-service" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.service.batch_predictor_service.ExecutionStatus">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.service.batch_predictor_service.</code><code class="sig-name descname">ExecutionStatus</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/batch_predictor_service.html#ExecutionStatus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.batch_predictor_service.ExecutionStatus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>枚举类：模型批量预估的运行状态</p>
+<dl class="py attribute">
+<dt id="flowengine.service.batch_predictor_service.ExecutionStatus.AWAITING">
+<code class="sig-name descname">AWAITING</code><em class="property"> = 0</em><a class="headerlink" href="#flowengine.service.batch_predictor_service.ExecutionStatus.AWAITING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flowengine.service.batch_predictor_service.ExecutionStatus.FAILURE">
+<code class="sig-name descname">FAILURE</code><em class="property"> = 4</em><a class="headerlink" href="#flowengine.service.batch_predictor_service.ExecutionStatus.FAILURE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flowengine.service.batch_predictor_service.ExecutionStatus.RUNNING">
+<code class="sig-name descname">RUNNING</code><em class="property"> = 1</em><a class="headerlink" href="#flowengine.service.batch_predictor_service.ExecutionStatus.RUNNING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flowengine.service.batch_predictor_service.ExecutionStatus.SUCCESS">
+<code class="sig-name descname">SUCCESS</code><em class="property"> = 2</em><a class="headerlink" href="#flowengine.service.batch_predictor_service.ExecutionStatus.SUCCESS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flowengine.service.batch_predictor_service.ExecutionStatus.TERMINATED">
+<code class="sig-name descname">TERMINATED</code><em class="property"> = 3</em><a class="headerlink" href="#flowengine.service.batch_predictor_service.ExecutionStatus.TERMINATED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="batchpredictorservice-service">
+<h2>BatchPredictorService Service<a class="headerlink" href="#batchpredictorservice-service" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.service.batch_predictor_service.BatchPredictorService">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.service.batch_predictor_service.</code><code class="sig-name descname">BatchPredictorService</code><a class="reference internal" href="_modules/flowengine/service/batch_predictor_service.html#BatchPredictorService"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.batch_predictor_service.BatchPredictorService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Batch-Predictor 组件相关的 service</p>
+<dl class="py method">
+<dt id="flowengine.service.batch_predictor_service.BatchPredictorService.deploy_batch_predictor">
+<code class="sig-name descname">deploy_batch_predictor</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/batch_predictor_service.html#BatchPredictorService.deploy_batch_predictor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.batch_predictor_service.BatchPredictorService.deploy_batch_predictor" title="Permalink to this definition">¶</a></dt>
+<dd><p>部署批量预估</p>
+<p>部署批量预估</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> (<em>dict</em>) – 配置信息，</p></li>
+<li><p><strong>engine_key</strong> (<em>str</em>) – 引擎 key ,</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>true 表示部署成功</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.batch_predictor_service.BatchPredictorService.deploy_batch_predictor_by_prn">
+<code class="sig-name descname">deploy_batch_predictor_by_prn</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/batch_predictor_service.html#BatchPredictorService.deploy_batch_predictor_by_prn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.batch_predictor_service.BatchPredictorService.deploy_batch_predictor_by_prn" title="Permalink to this definition">¶</a></dt>
+<dd><p>部署批量预估</p>
+<p>根据 model_prn 部署批量预估</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model_prn</strong> (<em>str</em>) – 模型 prn 地址,</p></li>
+<li><p><strong>interval_hours</strong> (<em>int</em>) – 预估运行间隔时间,</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>true 表示部署成功</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.batch_predictor_service.BatchPredictorService.get_config">
+<code class="sig-name descname">get_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/batch_predictor_service.html#BatchPredictorService.get_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.batch_predictor_service.BatchPredictorService.get_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.batch_predictor_service.BatchPredictorService.get_history">
+<code class="sig-name descname">get_history</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">solution_key</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">count</span><span class="o">=</span><span class="default_value">1000</span></em>, <em class="sig-param"><span class="n">offset</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">order_by</span><span class="o">=</span><span class="default_value">'start_time'</span></em>, <em class="sig-param"><span class="n">asc</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/batch_predictor_service.html#BatchPredictorService.get_history"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.batch_predictor_service.BatchPredictorService.get_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取 solution config</p>
+<p>获取批量预估历史列表</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>solution_key</strong> (<em>str</em>) – solution key</p></li>
+<li><p><strong>count</strong> (<em>int</em>) – 数量</p></li>
+<li><p><strong>offset</strong> (<em>int</em>) – 偏移量</p></li>
+<li><p><strong>order_by</strong> (<em>str</em>) – 排序字段</p></li>
+<li><p><strong>asc</strong> (<em>bool</em>) – 是否升序</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>批量预估历史，currentStatus 和 currentStage 请参考对应枚举类</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.batch_predictor_service.BatchPredictorService.get_solution">
+<code class="sig-name descname">get_solution</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/batch_predictor_service.html#BatchPredictorService.get_solution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.batch_predictor_service.BatchPredictorService.get_solution" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取 solution config</p>
+<p>获取当前自学习 instance 的 solution config ，包含 solution_key 等信息。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>solution config</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.batch_predictor_service.BatchPredictorService.restart_batch_predictor">
+<code class="sig-name descname">restart_batch_predictor</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/batch_predictor_service.html#BatchPredictorService.restart_batch_predictor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.batch_predictor_service.BatchPredictorService.restart_batch_predictor" title="Permalink to this definition">¶</a></dt>
+<dd><p>重新运行批量预估</p>
+<p>重新运行 execution_id 对应的批量预估</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>execution_id</strong> (<em>int</em>) – 批量预估行 ID</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>是否成功</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.batch_predictor_service.BatchPredictorService.start_once_batch_predictor">
+<code class="sig-name descname">start_once_batch_predictor</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/batch_predictor_service.html#BatchPredictorService.start_once_batch_predictor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.batch_predictor_service.BatchPredictorService.start_once_batch_predictor" title="Permalink to this definition">¶</a></dt>
+<dd><p>开启批量预估</p>
+<p>开启一次批量预估</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data_sources</strong> (<em>list</em>) – <p>批量预估动配置，格式如下：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="c1"># 行为表配置</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;prn&quot;</span><span class="p">:</span> <span class="s2">&quot;behavior.table-group&quot;</span><span class="p">,</span>
+    <span class="c1"># 全部切片</span>
+    <span class="s2">&quot;sliceType&quot;</span><span class="p">:</span> <span class="s2">&quot;ALL&quot;</span>
+  <span class="p">},</span>
+  <span class="c1"># 反馈表配置</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;prn&quot;</span><span class="p">:</span> <span class="s2">&quot;feedback.table-group&quot;</span><span class="p">,</span>
+    <span class="c1">#按数量范围调取切片</span>
+    <span class="s2">&quot;sliceType&quot;</span><span class="p">:</span> <span class="s2">&quot;PART&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sliceValue&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;from&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;to&quot;</span><span class="p">:</span> <span class="mi">1000</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>开启信息</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.batch_predictor_service.BatchPredictorService.start_once_batch_predictor_by_config">
+<code class="sig-name descname">start_once_batch_predictor_by_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/batch_predictor_service.html#BatchPredictorService.start_once_batch_predictor_by_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.batch_predictor_service.BatchPredictorService.start_once_batch_predictor_by_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>开启批量预估</p>
+<p>开启一次批量预估</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> (<em>dict</em>) – <p>开启批量预估配置信息，如下：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;dataSources&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;prn&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;isTableGroup&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+      <span class="s2">&quot;sliceType&quot;</span><span class="p">:</span> <span class="s2">&quot;ALL&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;sliceValue&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;from&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;to&quot;</span><span class="p">:</span> <span class="mi">1000</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;supportTime&quot;</span><span class="p">:</span> <span class="n">false</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;prn&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;isTableGroup&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+      <span class="s2">&quot;sliceType&quot;</span><span class="p">:</span> <span class="s2">&quot;PART&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;sliceValue&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;from&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;to&quot;</span><span class="p">:</span> <span class="mi">1000</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;supportTime&quot;</span><span class="p">:</span> <span class="n">false</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="n">null</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>开启信息</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.batch_predictor_service.BatchPredictorService.stop_batch_predictor">
+<code class="sig-name descname">stop_batch_predictor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">execution_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/batch_predictor_service.html#BatchPredictorService.stop_batch_predictor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.batch_predictor_service.BatchPredictorService.stop_batch_predictor" title="Permalink to this definition">¶</a></dt>
+<dd><p>停止批量预估</p>
+<p>停止 execution_id 对应的批量预估</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>execution_id</strong> (<em>int</em>) – 批量预估行 ID</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>是否成功</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="engine_kernel_service.html" class="btn btn-neutral float-right" title="engine_kernel_service module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sci_batch_predictor_service.html" class="btn btn-neutral float-left" title="sci_batch_predictor_service module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, meteor
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,2573 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>flowengine.service package &mdash; FlowEngine-py-SDK release/1.5.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> FlowEngine-py-SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to FlowEngine-py-SDK</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="service.html">service package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="client.html">client package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.html">model package</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">FlowEngine-py-SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>flowengine.service package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/flowengine.service.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="flowengine-service-package">
+<h1>flowengine.service package<a class="headerlink" href="#flowengine-service-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flowengine.service.engine.html">flowengine.service.engine package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="flowengine.service.engine.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flowengine.service.engine.html#module-flowengine.service.engine.engine_kernel">flowengine.service.engine.engine_kernel module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flowengine.service.engine.html#module-flowengine.service.engine">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="flowengine.service.jobs.html">flowengine.service.jobs package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="flowengine.service.jobs.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flowengine.service.jobs.html#module-flowengine.service.jobs.bash_job_template">flowengine.service.jobs.bash_job_template module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flowengine.service.jobs.html#module-flowengine.service.jobs.dag_job_template">flowengine.service.jobs.dag_job_template module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flowengine.service.jobs.html#module-flowengine.service.jobs.dummy_job_template">flowengine.service.jobs.dummy_job_template module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flowengine.service.jobs.html#module-flowengine.service.jobs.shell_job_template">flowengine.service.jobs.shell_job_template module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flowengine.service.jobs.html#module-flowengine.service.jobs.shell_sensor_template">flowengine.service.jobs.shell_sensor_template module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flowengine.service.jobs.html#module-flowengine.service.jobs">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="flowengine.service.sci.html">flowengine.service.sci package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="flowengine.service.sci.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flowengine.service.sci.html#module-flowengine.service.sci.base_sci_service">flowengine.service.sci.base_sci_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flowengine.service.sci.html#module-flowengine.service.sci.sci_batch_predictor_service">flowengine.service.sci.sci_batch_predictor_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flowengine.service.sci.html#module-flowengine.service.sci.sci_data_process_service">flowengine.service.sci.sci_data_process_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flowengine.service.sci.html#module-flowengine.service.sci.sci_self_learner_service">flowengine.service.sci.sci_self_learner_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flowengine.service.sci.html#module-flowengine.service.sci.sci_solution_explore_service">flowengine.service.sci.sci_solution_explore_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flowengine.service.sci.html#module-flowengine.service.sci">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-flowengine.service.automl_service">
+<span id="flowengine-service-automl-service-module"></span><h2>flowengine.service.automl_service module<a class="headerlink" href="#module-flowengine.service.automl_service" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.service.automl_service.AutoMLService">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.service.automl_service.</code><code class="sig-name descname">AutoMLService</code><a class="reference internal" href="_modules/flowengine/service/automl_service.html#AutoMLService"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.automl_service.AutoMLService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>AutoML 组件相关的 service</p>
+<dl class="py method">
+<dt id="flowengine.service.automl_service.AutoMLService.deploy_model_to_self_learner">
+<code class="sig-name descname">deploy_model_to_self_learner</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/automl_service.html#AutoMLService.deploy_model_to_self_learner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.automl_service.AutoMLService.deploy_model_to_self_learner" title="Permalink to this definition">¶</a></dt>
+<dd><p>部署模型</p>
+<p>将探索出的模型部署到自学习</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>engine_id</strong> (<em>int</em>) – 引擎 ID</p></li>
+<li><p><strong>model_id</strong> (<em>int</em>) – 模型 ID</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">true</span></code> 表示部署成功</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.automl_service.AutoMLService.get_report_model_map">
+<code class="sig-name descname">get_report_model_map</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_key</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/automl_service.html#AutoMLService.get_report_model_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.automl_service.AutoMLService.get_report_model_map" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.automl_service.AutoMLService.get_train_info">
+<code class="sig-name descname">get_train_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/automl_service.html#AutoMLService.get_train_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.automl_service.AutoMLService.get_train_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取自学习产出模型</p>
+<p>获取自学习产出模型</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>engine_key</strong> (<em>str</em>) – 引擎 key</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>自学习产出模型列表</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list(dict)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="flowengine.service.automl_service.automl_response_decorator">
+<code class="sig-prename descclassname">flowengine.service.automl_service.</code><code class="sig-name descname">automl_response_decorator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">func</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/automl_service.html#automl_response_decorator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.automl_service.automl_response_decorator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-flowengine.service.base_service">
+<span id="flowengine-service-base-service-module"></span><h2>flowengine.service.base_service module<a class="headerlink" href="#module-flowengine.service.base_service" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.service.base_service.BaseService">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.service.base_service.</code><code class="sig-name descname">BaseService</code><a class="reference internal" href="_modules/flowengine/service/base_service.html#BaseService"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.base_service.BaseService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-flowengine.service.batch_predictor_service">
+<span id="flowengine-service-batch-predictor-service-module"></span><h2>flowengine.service.batch_predictor_service module<a class="headerlink" href="#module-flowengine.service.batch_predictor_service" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.service.batch_predictor_service.BatchPredictorService">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.service.batch_predictor_service.</code><code class="sig-name descname">BatchPredictorService</code><a class="reference internal" href="_modules/flowengine/service/batch_predictor_service.html#BatchPredictorService"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.batch_predictor_service.BatchPredictorService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Batch-Predictor 组件相关的 service</p>
+<dl class="py method">
+<dt id="flowengine.service.batch_predictor_service.BatchPredictorService.deploy_batch_predictor">
+<code class="sig-name descname">deploy_batch_predictor</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/batch_predictor_service.html#BatchPredictorService.deploy_batch_predictor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.batch_predictor_service.BatchPredictorService.deploy_batch_predictor" title="Permalink to this definition">¶</a></dt>
+<dd><p>部署批量预估</p>
+<p>部署批量预估</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> (<em>dict</em>) – 配置信息，</p></li>
+<li><p><strong>engine_key</strong> (<em>str</em>) – 引擎 key ,</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>true 表示部署成功</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.batch_predictor_service.BatchPredictorService.deploy_batch_predictor_by_prn">
+<code class="sig-name descname">deploy_batch_predictor_by_prn</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/batch_predictor_service.html#BatchPredictorService.deploy_batch_predictor_by_prn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.batch_predictor_service.BatchPredictorService.deploy_batch_predictor_by_prn" title="Permalink to this definition">¶</a></dt>
+<dd><p>部署批量预估</p>
+<p>根据 model_prn 部署批量预估</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model_prn</strong> (<em>str</em>) – 模型 prn 地址,</p></li>
+<li><p><strong>interval_hours</strong> (<em>int</em>) – 预估运行间隔时间,</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>true 表示部署成功</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.batch_predictor_service.BatchPredictorService.get_config">
+<code class="sig-name descname">get_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/batch_predictor_service.html#BatchPredictorService.get_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.batch_predictor_service.BatchPredictorService.get_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.batch_predictor_service.BatchPredictorService.get_history">
+<code class="sig-name descname">get_history</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">solution_key</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">count</span><span class="o">=</span><span class="default_value">1000</span></em>, <em class="sig-param"><span class="n">offset</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">order_by</span><span class="o">=</span><span class="default_value">'start_time'</span></em>, <em class="sig-param"><span class="n">asc</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/batch_predictor_service.html#BatchPredictorService.get_history"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.batch_predictor_service.BatchPredictorService.get_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取 solution config</p>
+<p>获取批量预估历史列表</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>solution_key</strong> (<em>str</em>) – solution key</p></li>
+<li><p><strong>count</strong> (<em>int</em>) – 数量</p></li>
+<li><p><strong>offset</strong> (<em>int</em>) – 偏移量</p></li>
+<li><p><strong>order_by</strong> (<em>str</em>) – 排序字段</p></li>
+<li><p><strong>asc</strong> (<em>bool</em>) – 是否升序</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>批量预估历史，currentStatus 和 currentStage 请参考对应枚举类</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.batch_predictor_service.BatchPredictorService.get_solution">
+<code class="sig-name descname">get_solution</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/batch_predictor_service.html#BatchPredictorService.get_solution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.batch_predictor_service.BatchPredictorService.get_solution" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取 solution config</p>
+<p>获取当前自学习 instance 的 solution config ，包含 solution_key 等信息。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>solution config</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.batch_predictor_service.BatchPredictorService.restart_batch_predictor">
+<code class="sig-name descname">restart_batch_predictor</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/batch_predictor_service.html#BatchPredictorService.restart_batch_predictor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.batch_predictor_service.BatchPredictorService.restart_batch_predictor" title="Permalink to this definition">¶</a></dt>
+<dd><p>重新运行批量预估</p>
+<p>重新运行 execution_id 对应的批量预估</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>execution_id</strong> (<em>int</em>) – 批量预估行 ID</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>是否成功</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.batch_predictor_service.BatchPredictorService.start_once_batch_predictor">
+<code class="sig-name descname">start_once_batch_predictor</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/batch_predictor_service.html#BatchPredictorService.start_once_batch_predictor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.batch_predictor_service.BatchPredictorService.start_once_batch_predictor" title="Permalink to this definition">¶</a></dt>
+<dd><p>开启批量预估</p>
+<p>开启一次批量预估</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data_sources</strong> (<em>list</em>) – <p>批量预估动配置，格式如下：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="c1"># 行为表配置</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;prn&quot;</span><span class="p">:</span> <span class="s2">&quot;behavior.table-group&quot;</span><span class="p">,</span>
+    <span class="c1"># 全部切片</span>
+    <span class="s2">&quot;sliceType&quot;</span><span class="p">:</span> <span class="s2">&quot;ALL&quot;</span>
+  <span class="p">},</span>
+  <span class="c1"># 反馈表配置</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;prn&quot;</span><span class="p">:</span> <span class="s2">&quot;feedback.table-group&quot;</span><span class="p">,</span>
+    <span class="c1">#按数量范围调取切片</span>
+    <span class="s2">&quot;sliceType&quot;</span><span class="p">:</span> <span class="s2">&quot;PART&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sliceValue&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;from&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;to&quot;</span><span class="p">:</span> <span class="mi">1000</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>开启信息</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.batch_predictor_service.BatchPredictorService.start_once_batch_predictor_by_config">
+<code class="sig-name descname">start_once_batch_predictor_by_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/batch_predictor_service.html#BatchPredictorService.start_once_batch_predictor_by_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.batch_predictor_service.BatchPredictorService.start_once_batch_predictor_by_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>开启批量预估</p>
+<p>开启一次批量预估</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> (<em>dict</em>) – <p>开启批量预估配置信息，如下：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;dataSources&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;prn&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;isTableGroup&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+      <span class="s2">&quot;sliceType&quot;</span><span class="p">:</span> <span class="s2">&quot;ALL&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;sliceValue&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;from&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;to&quot;</span><span class="p">:</span> <span class="mi">1000</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;supportTime&quot;</span><span class="p">:</span> <span class="n">false</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;prn&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;isTableGroup&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+      <span class="s2">&quot;sliceType&quot;</span><span class="p">:</span> <span class="s2">&quot;PART&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;sliceValue&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;from&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;to&quot;</span><span class="p">:</span> <span class="mi">1000</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;supportTime&quot;</span><span class="p">:</span> <span class="n">false</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="n">null</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>开启信息</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.batch_predictor_service.BatchPredictorService.stop_batch_predictor">
+<code class="sig-name descname">stop_batch_predictor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">execution_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/batch_predictor_service.html#BatchPredictorService.stop_batch_predictor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.batch_predictor_service.BatchPredictorService.stop_batch_predictor" title="Permalink to this definition">¶</a></dt>
+<dd><p>停止批量预估</p>
+<p>停止 execution_id 对应的批量预估</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>execution_id</strong> (<em>int</em>) – 批量预估行 ID</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>是否成功</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="flowengine.service.batch_predictor_service.ExecutionStage">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.service.batch_predictor_service.</code><code class="sig-name descname">ExecutionStage</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/batch_predictor_service.html#ExecutionStage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.batch_predictor_service.ExecutionStage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>枚举类：模型批量预估的运行阶段</p>
+<dl class="py attribute">
+<dt id="flowengine.service.batch_predictor_service.ExecutionStage.CHECKING">
+<code class="sig-name descname">CHECKING</code><em class="property"> = 0</em><a class="headerlink" href="#flowengine.service.batch_predictor_service.ExecutionStage.CHECKING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flowengine.service.batch_predictor_service.ExecutionStage.REPORTING">
+<code class="sig-name descname">REPORTING</code><em class="property"> = 2</em><a class="headerlink" href="#flowengine.service.batch_predictor_service.ExecutionStage.REPORTING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flowengine.service.batch_predictor_service.ExecutionStage.RUNNING">
+<code class="sig-name descname">RUNNING</code><em class="property"> = 1</em><a class="headerlink" href="#flowengine.service.batch_predictor_service.ExecutionStage.RUNNING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="flowengine.service.batch_predictor_service.ExecutionStatus">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.service.batch_predictor_service.</code><code class="sig-name descname">ExecutionStatus</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/batch_predictor_service.html#ExecutionStatus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.batch_predictor_service.ExecutionStatus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>枚举类：模型批量预估的运行状态</p>
+<dl class="py attribute">
+<dt id="flowengine.service.batch_predictor_service.ExecutionStatus.AWAITING">
+<code class="sig-name descname">AWAITING</code><em class="property"> = 0</em><a class="headerlink" href="#flowengine.service.batch_predictor_service.ExecutionStatus.AWAITING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flowengine.service.batch_predictor_service.ExecutionStatus.FAILURE">
+<code class="sig-name descname">FAILURE</code><em class="property"> = 4</em><a class="headerlink" href="#flowengine.service.batch_predictor_service.ExecutionStatus.FAILURE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flowengine.service.batch_predictor_service.ExecutionStatus.RUNNING">
+<code class="sig-name descname">RUNNING</code><em class="property"> = 1</em><a class="headerlink" href="#flowengine.service.batch_predictor_service.ExecutionStatus.RUNNING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flowengine.service.batch_predictor_service.ExecutionStatus.SUCCESS">
+<code class="sig-name descname">SUCCESS</code><em class="property"> = 2</em><a class="headerlink" href="#flowengine.service.batch_predictor_service.ExecutionStatus.SUCCESS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flowengine.service.batch_predictor_service.ExecutionStatus.TERMINATED">
+<code class="sig-name descname">TERMINATED</code><em class="property"> = 3</em><a class="headerlink" href="#flowengine.service.batch_predictor_service.ExecutionStatus.TERMINATED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-flowengine.service.crontab_service">
+<span id="flowengine-service-crontab-service-module"></span><h2>flowengine.service.crontab_service module<a class="headerlink" href="#module-flowengine.service.crontab_service" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.service.crontab_service.CronTabService">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.service.crontab_service.</code><code class="sig-name descname">CronTabService</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/crontab_service.html#CronTabService"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.crontab_service.CronTabService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">crontab.CronTab</span></code></p>
+<p>任务定时服务类，原理是直接操作系统的 crontab -e 。</p>
+<dl class="py method">
+<dt id="flowengine.service.crontab_service.CronTabService.add">
+<code class="sig-name descname">add</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trigger_time</span></em>, <em class="sig-param"><span class="n">cmd</span></em>, <em class="sig-param"><span class="n">comment</span><span class="o">=</span><span class="default_value">'flowengine sdk crontab'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/crontab_service.html#CronTabService.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.crontab_service.CronTabService.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>添加定时任务</p>
+<p>添加定时任务到系统的 crontab 中，相当于操作 ‘crontab -e’</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>trigger_time</strong> (<em>str</em>) – 任务触发时机，语法和 crontab -e 时间部分一致</p></li>
+<li><p><strong>cmd</strong> (<em>str</em>) – 任务命令，和 crontab -e 的命令部分一致</p></li>
+<li><p><strong>comment</strong> (<em>str</em>) – 注释</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.crontab_service.CronTabService.add_function">
+<code class="sig-name descname">add_function</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trigger_time</span></em>, <em class="sig-param"><span class="n">func</span></em>, <em class="sig-param"><span class="n">comment</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/crontab_service.html#CronTabService.add_function"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.crontab_service.CronTabService.add_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>添加定时任务</p>
+<p>类似于 add 方法，但能根据传入的函数自动生成相关命令。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>trigger_time</strong> (<em>str</em>) – 任务触发时机，语法和 crontab -e 时间部分一致</p></li>
+<li><p><strong>func</strong> (<em>lambda</em>) – 能通过 module 直接 import 的函数（除 lambda 和类中定义的函数）</p></li>
+<li><p><strong>comment</strong> (<em>str</em>) – 注释</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.crontab_service.CronTabService.remove">
+<code class="sig-name descname">remove</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">job</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/crontab_service.html#CronTabService.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.crontab_service.CronTabService.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>移除定时任务</p>
+<p>从 crontab 中移除选中的 cron。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>job</strong> (<a class="reference internal" href="#flowengine.service.crontab_service.CronTabService" title="flowengine.service.crontab_service.CronTabService"><em>CronTabService</em></a>) – 待删除的定时任务</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-flowengine.service.dashboard_service">
+<span id="flowengine-service-dashboard-service-module"></span><h2>flowengine.service.dashboard_service module<a class="headerlink" href="#module-flowengine.service.dashboard_service" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.service.dashboard_service.DashBoardService">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.service.dashboard_service.</code><code class="sig-name descname">DashBoardService</code><a class="reference internal" href="_modules/flowengine/service/dashboard_service.html#DashBoardService"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.dashboard_service.DashBoardService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#flowengine.service.base_service.BaseService" title="flowengine.service.base_service.BaseService"><code class="xref py py-class docutils literal notranslate"><span class="pre">flowengine.service.base_service.BaseService</span></code></a></p>
+<p>DashBoard 相关的 service</p>
+<dl class="py method">
+<dt id="flowengine.service.dashboard_service.DashBoardService.get_containers">
+<code class="sig-name descname">get_containers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name_space</span></em>, <em class="sig-param"><span class="n">pod_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/dashboard_service.html#DashBoardService.get_containers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.dashboard_service.DashBoardService.get_containers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.dashboard_service.DashBoardService.get_log_file">
+<code class="sig-name descname">get_log_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name_space</span></em>, <em class="sig-param"><span class="n">pod_name</span></em>, <em class="sig-param"><span class="n">container_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/dashboard_service.html#DashBoardService.get_log_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.dashboard_service.DashBoardService.get_log_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="flowengine.service.dashboard_service.dashbaord_response_decorator">
+<code class="sig-prename descclassname">flowengine.service.dashboard_service.</code><code class="sig-name descname">dashbaord_response_decorator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">func</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/dashboard_service.html#dashbaord_response_decorator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.dashboard_service.dashbaord_response_decorator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-flowengine.service.docker_service">
+<span id="flowengine-service-docker-service-module"></span><h2>flowengine.service.docker_service module<a class="headerlink" href="#module-flowengine.service.docker_service" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.service.docker_service.DockerService">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.service.docker_service.</code><code class="sig-name descname">DockerService</code><a class="reference internal" href="_modules/flowengine/service/docker_service.html#DockerService"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.docker_service.DockerService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="flowengine.service.docker_service.DockerService.docker_tag">
+<code class="sig-name descname">docker_tag</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">image_url</span></em>, <em class="sig-param"><span class="n">remote_url</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/docker_service.html#DockerService.docker_tag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.docker_service.DockerService.docker_tag" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.docker_service.DockerService.load_image">
+<code class="sig-name descname">load_image</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_content</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/docker_service.html#DockerService.load_image"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.docker_service.DockerService.load_image" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.docker_service.DockerService.push_image">
+<code class="sig-name descname">push_image</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">images_url</span></em>, <em class="sig-param"><span class="n">stream</span></em>, <em class="sig-param"><span class="n">decode</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/docker_service.html#DockerService.push_image"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.docker_service.DockerService.push_image" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.docker_service.DockerService.push_sc_image">
+<code class="sig-name descname">push_sc_image</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">image_url</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/docker_service.html#DockerService.push_sc_image"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.docker_service.DockerService.push_sc_image" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.docker_service.DockerService.save_image">
+<code class="sig-name descname">save_image</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sc_key</span></em>, <em class="sig-param"><span class="n">image_url</span></em>, <em class="sig-param"><span class="n">root</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/docker_service.html#DockerService.save_image"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.docker_service.DockerService.save_image" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.docker_service.DockerService.tag_sc_image">
+<code class="sig-name descname">tag_sc_image</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">image_url</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/docker_service.html#DockerService.tag_sc_image"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.docker_service.DockerService.tag_sc_image" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-flowengine.service.gitlab_service">
+<span id="flowengine-service-gitlab-service-module"></span><h2>flowengine.service.gitlab_service module<a class="headerlink" href="#module-flowengine.service.gitlab_service" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.service.gitlab_service.GitlabService">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.service.gitlab_service.</code><code class="sig-name descname">GitlabService</code><a class="reference internal" href="_modules/flowengine/service/gitlab_service.html#GitlabService"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.gitlab_service.GitlabService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="flowengine.service.gitlab_service.GitlabService.add_changes">
+<code class="sig-name descname">add_changes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/gitlab_service.html#GitlabService.add_changes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.gitlab_service.GitlabService.add_changes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.gitlab_service.GitlabService.clone_project">
+<code class="sig-name descname">clone_project</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">git_url</span></em>, <em class="sig-param"><span class="n">target_dir</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/gitlab_service.html#GitlabService.clone_project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.gitlab_service.GitlabService.clone_project" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.gitlab_service.GitlabService.create_sc_project">
+<code class="sig-name descname">create_sc_project</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/gitlab_service.html#GitlabService.create_sc_project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.gitlab_service.GitlabService.create_sc_project" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.gitlab_service.GitlabService.get_project_info">
+<code class="sig-name descname">get_project_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/gitlab_service.html#GitlabService.get_project_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.gitlab_service.GitlabService.get_project_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.gitlab_service.GitlabService.judge_project_status">
+<code class="sig-name descname">judge_project_status</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/gitlab_service.html#GitlabService.judge_project_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.gitlab_service.GitlabService.judge_project_status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.gitlab_service.GitlabService.update_dir">
+<code class="sig-name descname">update_dir</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">target_dir</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/gitlab_service.html#GitlabService.update_dir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.gitlab_service.GitlabService.update_dir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-flowengine.service.hyperx_service">
+<span id="flowengine-service-hyperx-service-module"></span><h2>flowengine.service.hyperx_service module<a class="headerlink" href="#module-flowengine.service.hyperx_service" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.service.hyperx_service.HyperXService">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.service.hyperx_service.</code><code class="sig-name descname">HyperXService</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">solution_explore_instance</span></em>, <em class="sig-param"><span class="n">self_learner_instance</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/hyperx_service.html#HyperXService"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.hyperx_service.HyperXService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>HyperX Service，跨组件抽象 Service</p>
+<dl class="py method">
+<dt id="flowengine.service.hyperx_service.HyperXService.get_self_learner_model_reports">
+<code class="sig-name descname">get_self_learner_model_reports</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model_prn</span></em>, <em class="sig-param"><span class="n">engine_key</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/hyperx_service.html#HyperXService.get_self_learner_model_reports"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.hyperx_service.HyperXService.get_self_learner_model_reports" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取自学习模型的模型报告</p>
+<p>获取 model_prn 对应模型的模型分析报告</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model_prn</strong> (<em>str</em>) – 模型 prn ，来自 <a class="reference internal" href="#flowengine.service.hyperx_service.HyperXService.list_self_learning_model" title="flowengine.service.hyperx_service.HyperXService.list_self_learning_model"><code class="xref py py-class docutils literal notranslate"><span class="pre">HyperXService.list_self_learning_model</span></code></a> 的 modelApplication</p></li>
+<li><p><strong>engine_key</strong> (<em>str</em>) – 引擎 key</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>内容数据, ret[‘list’][x][‘content’][‘aucMetrics’][‘globalAuc’] 为测试集 auc</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.hyperx_service.HyperXService.list_self_learning_model">
+<code class="sig-name descname">list_self_learning_model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_key</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/hyperx_service.html#HyperXService.list_self_learning_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.hyperx_service.HyperXService.list_self_learning_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取自学习模型列表</p>
+<p>获取所有自学习模型</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>engine_key</strong> (<em>str</em>) – 引擎 key,</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>内容数据, 如果 <code class="docutils literal notranslate"><span class="pre">&quot;currentStatus&quot;</span> <span class="pre">==</span> <span class="pre">&quot;SUCCESS&quot;</span></code> 并且 <code class="docutils literal notranslate"><span class="pre">&quot;currentStage&quot;</span> <span class="pre">==</span> <span class="pre">&quot;REPORTING&quot;</span></code> 表示成功</p>
+<p>枚举值参见 <a class="reference internal" href="self_learner_service.html#flowengine.service.self_learner_service.ExecutionStage" title="flowengine.service.self_learner_service.ExecutionStage"><code class="xref py py-class docutils literal notranslate"><span class="pre">flowengine.service.self_learner_service.ExecutionStage</span></code></a> 和  <a class="reference internal" href="self_learner_service.html#flowengine.service.self_learner_service.ExecutionStatus" title="flowengine.service.self_learner_service.ExecutionStatus"><code class="xref py py-class docutils literal notranslate"><span class="pre">flowengine.service.self_learner_service.ExecutionStatus</span></code></a></p>
+<p>modelApplication 表示用于上线（在线预估、批量预估）的 model prn</p>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list(dict)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-flowengine.service.keystone_service">
+<span id="flowengine-service-keystone-service-module"></span><h2>flowengine.service.keystone_service module<a class="headerlink" href="#module-flowengine.service.keystone_service" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.service.keystone_service.KeystoneService">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.service.keystone_service.</code><code class="sig-name descname">KeystoneService</code><a class="reference internal" href="_modules/flowengine/service/keystone_service.html#KeystoneService"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.keystone_service.KeystoneService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#flowengine.service.base_service.BaseService" title="flowengine.service.base_service.BaseService"><code class="xref py py-class docutils literal notranslate"><span class="pre">flowengine.service.base_service.BaseService</span></code></a></p>
+<p>keystone 服务类</p>
+<dl class="py method">
+<dt id="flowengine.service.keystone_service.KeystoneService.get_users">
+<code class="sig-name descname">get_users</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">workspace_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/keystone_service.html#KeystoneService.get_users"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.keystone_service.KeystoneService.get_users" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取 user 列表</p>
+<p>获取 keystone 的某个 workspace 下的 user 列表</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>workspace_id</strong> (<em>int</em>) – workspace id</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>user 列表</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.keystone_service.KeystoneService.get_workspace_by_workspace_name">
+<code class="sig-name descname">get_workspace_by_workspace_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">workspace_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/keystone_service.html#KeystoneService.get_workspace_by_workspace_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.keystone_service.KeystoneService.get_workspace_by_workspace_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取 workpsace 详情</p>
+<p>根据 name 获取 workspace 的详情</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>workspace_name</strong> (<em>str</em>) – workspace name</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>workspace 详情</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.keystone_service.KeystoneService.get_workspace_id">
+<code class="sig-name descname">get_workspace_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">workspace_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/keystone_service.html#KeystoneService.get_workspace_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.keystone_service.KeystoneService.get_workspace_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取 workpsace id</p>
+<p>根据 name 获取 workspace 的 id</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>workspace_name</strong> (<em>str</em>) – workspace name</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>workspace id</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.keystone_service.KeystoneService.get_workspaces">
+<code class="sig-name descname">get_workspaces</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/keystone_service.html#KeystoneService.get_workspaces"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.keystone_service.KeystoneService.get_workspaces" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取 workspace 列表</p>
+<p>获取 keystone 的 workspace 列表</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>workspace 列表</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-flowengine.service.kubernetes_service">
+<span id="flowengine-service-kubernetes-service-module"></span><h2>flowengine.service.kubernetes_service module<a class="headerlink" href="#module-flowengine.service.kubernetes_service" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.service.kubernetes_service.KubernetesService">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.service.kubernetes_service.</code><code class="sig-name descname">KubernetesService</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/kubernetes_service.html#KubernetesService"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.kubernetes_service.KubernetesService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#flowengine.service.base_service.BaseService" title="flowengine.service.base_service.BaseService"><code class="xref py py-class docutils literal notranslate"><span class="pre">flowengine.service.base_service.BaseService</span></code></a></p>
+<dl class="py method">
+<dt id="flowengine.service.kubernetes_service.KubernetesService.exec">
+<code class="sig-name descname">exec</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pod</span></em>, <em class="sig-param"><span class="n">name_space</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/kubernetes_service.html#KubernetesService.exec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.kubernetes_service.KubernetesService.exec" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.kubernetes_service.KubernetesService.exec_cmd">
+<code class="sig-name descname">exec_cmd</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span></em>, <em class="sig-param"><span class="n">pod</span></em>, <em class="sig-param"><span class="n">name_space</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/kubernetes_service.html#KubernetesService.exec_cmd"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.kubernetes_service.KubernetesService.exec_cmd" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.kubernetes_service.KubernetesService.list_pods">
+<code class="sig-name descname">list_pods</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/kubernetes_service.html#KubernetesService.list_pods"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.kubernetes_service.KubernetesService.list_pods" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.kubernetes_service.KubernetesService.logs">
+<code class="sig-name descname">logs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pod</span></em>, <em class="sig-param"><span class="n">name_space</span></em>, <em class="sig-param"><span class="n">follow</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/kubernetes_service.html#KubernetesService.logs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.kubernetes_service.KubernetesService.logs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-flowengine.service.manager_service">
+<span id="flowengine-service-manager-service-module"></span><h2>flowengine.service.manager_service module<a class="headerlink" href="#module-flowengine.service.manager_service" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.service.manager_service.ManagerService">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.service.manager_service.</code><code class="sig-name descname">ManagerService</code><a class="reference internal" href="_modules/flowengine/service/manager_service.html#ManagerService"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.manager_service.ManagerService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#flowengine.service.base_service.BaseService" title="flowengine.service.base_service.BaseService"><code class="xref py py-class docutils literal notranslate"><span class="pre">flowengine.service.base_service.BaseService</span></code></a></p>
+<p>manager 服务类</p>
+<dl class="py method">
+<dt id="flowengine.service.manager_service.ManagerService.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/manager_service.html#ManagerService.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.manager_service.ManagerService.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>创建引擎</p>
+<p>创建引擎实例</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app_name</strong> (<em>str</em>) – 引擎名称，</p></li>
+<li><p><strong>engine_key</strong> (<em>str</em>) – 引擎 key</p></li>
+<li><p><strong>template_id</strong> (<em>int</em>) – 方案 id</p></li>
+<li><p><strong>workspace_id</strong> (<em>int</em>) – workspace id</p></li>
+<li><p><strong>user_name</strong> (<em>str</em>) – name of the user</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>引擎信息</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.manager_service.ManagerService.delete">
+<code class="sig-name descname">delete</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">instance_id</span></em>, <em class="sig-param"><span class="n">delete_DB</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/manager_service.html#ManagerService.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.manager_service.ManagerService.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>删除引擎</p>
+<p>删除指定引擎</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instance_id</strong> (<em>int</em>) – instance id</p></li>
+<li><p><strong>delete_DB</strong> (<em>bool</em>) – 是否删除数据库</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>是否成功</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.manager_service.ManagerService.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/manager_service.html#ManagerService.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.manager_service.ManagerService.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取引擎详情</p>
+<p>获取指定引擎的详细信息</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>instance_id</strong> (<em>int</em>) – 引擎 id</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>引擎详细信息</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.manager_service.ManagerService.get_engine_id_by_engine_key">
+<code class="sig-name descname">get_engine_id_by_engine_key</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">workspace_name</span></em>, <em class="sig-param"><span class="n">engine_key</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/manager_service.html#ManagerService.get_engine_id_by_engine_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.manager_service.ManagerService.get_engine_id_by_engine_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取引擎 id</p>
+<p>根据 engine key 获取对应的 engine id</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>workspace_name</strong> (<em>str</em>) – workspace 名称</p></li>
+<li><p><strong>engine_key</strong> (<em>str</em>) – 引擎 key</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>引擎 id</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.manager_service.ManagerService.get_physical_engine_id">
+<em class="property">static </em><code class="sig-name descname">get_physical_engine_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">url</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/manager_service.html#ManagerService.get_physical_engine_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.manager_service.ManagerService.get_physical_engine_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取物理引擎 id</p>
+<p>根据 url 获取引擎对应的物理引擎 id</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>url</strong> (<em>str</em>) – 引擎访问 url</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>物理引擎 id</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.manager_service.ManagerService.get_sci">
+<code class="sig-name descname">get_sci</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/manager_service.html#ManagerService.get_sci"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.manager_service.ManagerService.get_sci" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取组件实例详情</p>
+<p>获取指定组件的详情</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sci_id</strong> (<em>int</em>) – sci id</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>组件实例详情</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.manager_service.ManagerService.list_active_apps">
+<code class="sig-name descname">list_active_apps</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">workspace_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/manager_service.html#ManagerService.list_active_apps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.manager_service.ManagerService.list_active_apps" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取运行中的引擎列表</p>
+<p>根据 workspace_id 获取运行中的引擎</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>workspace_id</strong> (<em>int</em>) – workspace id</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>引擎列表</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.manager_service.ManagerService.list_apps">
+<code class="sig-name descname">list_apps</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">workspace_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/manager_service.html#ManagerService.list_apps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.manager_service.ManagerService.list_apps" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取引擎列表</p>
+<p>根据 workspace_id 获取所有的引擎</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>workspace_id</strong> (<em>int</em>) – workspace id</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>引擎列表</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.manager_service.ManagerService.list_deactive_apps">
+<code class="sig-name descname">list_deactive_apps</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">workspace_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/manager_service.html#ManagerService.list_deactive_apps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.manager_service.ManagerService.list_deactive_apps" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取停止状态的引擎列表</p>
+<p>根据 workspace_id 获取已停止的引擎</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>workspace_id</strong> (<em>int</em>) – workspace id</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>引擎列表</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.manager_service.ManagerService.list_sci">
+<code class="sig-name descname">list_sci</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/manager_service.html#ManagerService.list_sci"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.manager_service.ManagerService.list_sci" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取组件实例列表</p>
+<p>根据引擎 id 获取所有组件实例</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>instance_id</strong> (<em>int</em>) – instance id</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>组件实例列表</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.manager_service.ManagerService.offline">
+<code class="sig-name descname">offline</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">instance_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/manager_service.html#ManagerService.offline"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.manager_service.ManagerService.offline" title="Permalink to this definition">¶</a></dt>
+<dd><p>停止引擎</p>
+<p>下线指定引擎</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>instance_id</strong> (<em>int</em>) – 引擎实例 id</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>是否成功</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.manager_service.ManagerService.online">
+<code class="sig-name descname">online</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/manager_service.html#ManagerService.online"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.manager_service.ManagerService.online" title="Permalink to this definition">¶</a></dt>
+<dd><p>启动引擎</p>
+<p>下线指定引擎</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>instance_id</strong> (<em>int</em>) – 引擎实例 id</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>是否成功</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.manager_service.ManagerService.update_sci">
+<code class="sig-name descname">update_sci</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/manager_service.html#ManagerService.update_sci"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.manager_service.ManagerService.update_sci" title="Permalink to this definition">¶</a></dt>
+<dd><p>更新组件实例</p>
+<p>更新指定组件实例</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sci_config</strong> (<em>dict</em>) – 配置信息</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>组件实例详情</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-flowengine.service.market_service">
+<span id="flowengine-service-market-service-module"></span><h2>flowengine.service.market_service module<a class="headerlink" href="#module-flowengine.service.market_service" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.service.market_service.MarketService">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.service.market_service.</code><code class="sig-name descname">MarketService</code><a class="reference internal" href="_modules/flowengine/service/market_service.html#MarketService"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.market_service.MarketService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#flowengine.service.base_service.BaseService" title="flowengine.service.base_service.BaseService"><code class="xref py py-class docutils literal notranslate"><span class="pre">flowengine.service.base_service.BaseService</span></code></a></p>
+<p>Solution Market 服务类</p>
+<dl class="py method">
+<dt id="flowengine.service.market_service.MarketService.clone_asol">
+<code class="sig-name descname">clone_asol</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/market_service.html#MarketService.clone_asol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.market_service.MarketService.clone_asol" title="Permalink to this definition">¶</a></dt>
+<dd><p>克隆 asol</p>
+<p>克隆一个已存在的 asol</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>asol_id</strong> (<em>int</em>) – asol id</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>asol 详情</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.market_service.MarketService.create_sc">
+<code class="sig-name descname">create_sc</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/market_service.html#MarketService.create_sc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.market_service.MarketService.create_sc" title="Permalink to this definition">¶</a></dt>
+<dd><p>创建 sc</p>
+<p>创建 sc</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<em>str</em>) – sc 的 key</p></li>
+<li><p><strong>version</strong> (<em>str</em>) – sc 的 version</p></li>
+<li><p><strong>stage</strong> (<em>int</em>) – sc 的 stage id ，具体查看 <a class="reference internal" href="market_service.html#flowengine.service.market_service.MarketService.list_stage" title="flowengine.service.market_service.MarketService.list_stage"><code class="xref py py-class docutils literal notranslate"><span class="pre">MarketService.list_stage</span></code></a></p></li>
+<li><p><strong>sc_type</strong> (<em>str</em>) – sc 类型，目前支持 <code class="docutils literal notranslate"><span class="pre">yaml</span></code></p></li>
+<li><p><strong>sc_yaml</strong> (<em>str</em>) – sc yaml 内容</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>sc 详情</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.market_service.MarketService.delete_sc">
+<code class="sig-name descname">delete_sc</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/market_service.html#MarketService.delete_sc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.market_service.MarketService.delete_sc" title="Permalink to this definition">¶</a></dt>
+<dd><p>删除 sc</p>
+<p>删除指定的 sc</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sc_id</strong> (<em>int</em>) – sc id</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>sc 详情</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.market_service.MarketService.export_asol">
+<code class="sig-name descname">export_asol</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">asol_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/market_service.html#MarketService.export_asol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.market_service.MarketService.export_asol" title="Permalink to this definition">¶</a></dt>
+<dd><p>导出 asol</p>
+<p>导出指定id的asol。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>asol_id</strong> – asol id</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>asol 压缩包</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.market_service.MarketService.get_asol">
+<code class="sig-name descname">get_asol</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/market_service.html#MarketService.get_asol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.market_service.MarketService.get_asol" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取 asol 详情</p>
+<p>获取指定 asol 的详情</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>asol_id</strong> (<em>int</em>) – asol id</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>asol 详情</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.market_service.MarketService.get_dict_value">
+<code class="sig-name descname">get_dict_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/market_service.html#MarketService.get_dict_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.market_service.MarketService.get_dict_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取字典值</p>
+<p>获取 code 对应的字典表中的值</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dict_code</strong> (<em>str</em>) – dict code</p></li>
+<li><p><strong>value_code</strong> (<em>str</em>) – value code</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>字典值</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.market_service.MarketService.get_image_from_config_center">
+<code class="sig-name descname">get_image_from_config_center</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">image_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/market_service.html#MarketService.get_image_from_config_center"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.market_service.MarketService.get_image_from_config_center" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.market_service.MarketService.get_sc">
+<code class="sig-name descname">get_sc</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/market_service.html#MarketService.get_sc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.market_service.MarketService.get_sc" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取 sc 详情</p>
+<p>根据 sc 的 key 和 version 获取 sc 详情</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<em>str</em>) – sc 的 key</p></li>
+<li><p><strong>version</strong> (<em>str</em>) – sc 的 version</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>sc 详情</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.market_service.MarketService.get_template_markets">
+<code class="sig-name descname">get_template_markets</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/market_service.html#MarketService.get_template_markets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.market_service.MarketService.get_template_markets" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取方案列表</p>
+<p>获取所有方案</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>方案列表</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.market_service.MarketService.import_asol">
+<code class="sig-name descname">import_asol</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">asol_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/market_service.html#MarketService.import_asol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.market_service.MarketService.import_asol" title="Permalink to this definition">¶</a></dt>
+<dd><p>导入 asol</p>
+<p>导入指定路径的asol。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>asol_path</strong> – asol path</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>导入成功与否</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.market_service.MarketService.list_asol">
+<code class="sig-name descname">list_asol</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/market_service.html#MarketService.list_asol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.market_service.MarketService.list_asol" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取 asol 列表</p>
+<p>获取所有 asol
+:return: asol 列表
+:rtype: list</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.market_service.MarketService.list_sc">
+<code class="sig-name descname">list_sc</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/market_service.html#MarketService.list_sc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.market_service.MarketService.list_sc" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取 sc 列表</p>
+<p>获取所有 sc
+:return: sc 列表
+:rtype: list</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.market_service.MarketService.list_stage">
+<code class="sig-name descname">list_stage</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/market_service.html#MarketService.list_stage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.market_service.MarketService.list_stage" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取 stage 列表</p>
+<p>获取所有 stage
+:return: stage 列表
+:rtype: list</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.market_service.MarketService.prepare_sc">
+<code class="sig-name descname">prepare_sc</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/market_service.html#MarketService.prepare_sc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.market_service.MarketService.prepare_sc" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取 sc 配置模板</p>
+<p>根据配置自动生成 sc yaml</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sc_config</strong> (<em>dict</em>) – sc 配置</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>sc yaml</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.market_service.MarketService.save_dir_as_asol">
+<code class="sig-name descname">save_dir_as_asol</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">asol_dir</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/market_service.html#MarketService.save_dir_as_asol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.market_service.MarketService.save_dir_as_asol" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.market_service.MarketService.update_asol">
+<code class="sig-name descname">update_asol</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/market_service.html#MarketService.update_asol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.market_service.MarketService.update_asol" title="Permalink to this definition">¶</a></dt>
+<dd><p>更新 asol</p>
+<p>更新指定 asol</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>asol_id</strong> (<em>int</em>) – asol id</p></li>
+<li><p><strong>asol_content</strong> (<em>str</em>) – asol yaml 内容</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>asol 详情</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.market_service.MarketService.upload_solution_ui">
+<code class="sig-name descname">upload_solution_ui</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/market_service.html#MarketService.upload_solution_ui"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.market_service.MarketService.upload_solution_ui" title="Permalink to this definition">¶</a></dt>
+<dd><p>上传 solution ui 包</p>
+<p>上传 solution ui 包</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<em>str</em>) – sc 的 key</p></li>
+<li><p><strong>version</strong> (<em>str</em>) – sc 的 version</p></li>
+<li><p><strong>group</strong> (<em>str</em>) – sc 的 group</p></li>
+<li><p><strong>file_path</strong> (<em>str</em>) – solution ui 的本地路径</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>上传信息</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-flowengine.service.pdms_service">
+<span id="flowengine-service-pdms-service-module"></span><h2>flowengine.service.pdms_service module<a class="headerlink" href="#module-flowengine.service.pdms_service" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.service.pdms_service.PdmsService">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.service.pdms_service.</code><code class="sig-name descname">PdmsService</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">url</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pdms_service.html#PdmsService"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pdms_service.PdmsService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#flowengine.service.base_service.BaseService" title="flowengine.service.base_service.BaseService"><code class="xref py py-class docutils literal notranslate"><span class="pre">flowengine.service.base_service.BaseService</span></code></a></p>
+<p>PDMS 的 service 类，能够进行数据管理，详情参见 PDMS 产品介绍相关文档。</p>
+<dl class="py method">
+<dt id="flowengine.service.pdms_service.PdmsService.check_hive">
+<code class="sig-name descname">check_hive</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hive</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pdms_service.html#PdmsService.check_hive"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pdms_service.PdmsService.check_hive" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pdms_service.PdmsService.check_schemas">
+<code class="sig-name descname">check_schemas</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">schemas</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pdms_service.html#PdmsService.check_schemas"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pdms_service.PdmsService.check_schemas" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pdms_service.PdmsService.create_instance">
+<code class="sig-name descname">create_instance</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">instance</span></em>, <em class="sig-param"><span class="n">force_to_create</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pdms_service.html#PdmsService.create_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pdms_service.PdmsService.create_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>创建样本表</p>
+<p>创建样本表</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instance</strong> (<a class="reference internal" href="model.html#flowengine.model.pdms_models.Instance" title="flowengine.model.pdms_models.Instance"><em>Instance</em></a>) – 样本表实例</p></li>
+<li><p><strong>force_to_create</strong> (<em>bool</em>) – 如果已存在，是否强制覆盖</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>创建成功后的样本表实例</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="model.html#flowengine.model.pdms_models.Instance" title="flowengine.model.pdms_models.Instance">pdms_models.Instance</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pdms_service.PdmsService.create_model">
+<code class="sig-name descname">create_model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span></em>, <em class="sig-param"><span class="n">force_to_create</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pdms_service.html#PdmsService.create_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pdms_service.PdmsService.create_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>创建 Model</p>
+<p>创建模型</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<a class="reference internal" href="model.html#flowengine.model.pdms_models.Model" title="flowengine.model.pdms_models.Model"><em>Model</em></a>) – 模型实例</p></li>
+<li><p><strong>force_to_create</strong> (<em>bool</em>) – 如果已存在，是否强制覆盖</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>创建成功后的模型实例</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="model.html#flowengine.model.pdms_models.Model" title="flowengine.model.pdms_models.Model">pdms_models.Model</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pdms_service.PdmsService.create_report">
+<code class="sig-name descname">create_report</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">report</span></em>, <em class="sig-param"><span class="n">force_to_create</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pdms_service.html#PdmsService.create_report"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pdms_service.PdmsService.create_report" title="Permalink to this definition">¶</a></dt>
+<dd><p>创建 Report</p>
+<p>创建报告</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>report</strong> (<a class="reference internal" href="model.html#flowengine.model.pdms_models.Report" title="flowengine.model.pdms_models.Report"><em>Report</em></a>) – 报告实例</p></li>
+<li><p><strong>force_to_create</strong> (<em>bool</em>) – 如果已存在，是否强制覆盖</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>创建成功后的报告实例</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="model.html#flowengine.model.pdms_models.Report" title="flowengine.model.pdms_models.Report">pdms_models.Report</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pdms_service.PdmsService.create_table">
+<code class="sig-name descname">create_table</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">table</span></em>, <em class="sig-param"><span class="n">force_to_create</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pdms_service.html#PdmsService.create_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pdms_service.PdmsService.create_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>创建数据表</p>
+<p>创建数据表</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>table</strong> (<a class="reference internal" href="model.html#flowengine.model.pdms_models.Table" title="flowengine.model.pdms_models.Table"><em>Table</em></a>) – 数据表实例</p></li>
+<li><p><strong>force_to_create</strong> (<em>bool</em>) – 如果已存在，是否强制覆盖</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>创建成功后的数据表实例</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="model.html#flowengine.model.pdms_models.Table" title="flowengine.model.pdms_models.Table">pdms_models.Table</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pdms_service.PdmsService.create_table_group">
+<code class="sig-name descname">create_table_group</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">table_group</span></em>, <em class="sig-param"><span class="n">force_to_create</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pdms_service.html#PdmsService.create_table_group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pdms_service.PdmsService.create_table_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>创建 TableGroup</p>
+<p>创建数据组</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>table_group</strong> (<a class="reference internal" href="model.html#flowengine.model.pdms_models.TableGroup" title="flowengine.model.pdms_models.TableGroup"><em>TableGroup</em></a>) – 数据组实例</p></li>
+<li><p><strong>force_to_create</strong> (<em>bool</em>) – 如果已存在，是否强制覆盖</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>创建成功后的数据组实例</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="model.html#flowengine.model.pdms_models.TableGroup" title="flowengine.model.pdms_models.TableGroup">pdms_models.TableGroup</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pdms_service.PdmsService.get_instance">
+<code class="sig-name descname">get_instance</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">instance_prn</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pdms_service.html#PdmsService.get_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pdms_service.PdmsService.get_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取样本表信息</p>
+<p>按照 prn 获取对应的 instance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>instance_prn</strong> (<em>str</em>) – instance 的 prn,</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Instance 的实例</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>pdms_models.Instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pdms_service.PdmsService.get_model">
+<code class="sig-name descname">get_model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model_prn</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pdms_service.html#PdmsService.get_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pdms_service.PdmsService.get_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取模型信息</p>
+<p>按照 prn 获取对应的 Model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>model_prn</strong> (<em>str</em>) – Model 的 prn,</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Model 的实例</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="model.html#flowengine.model.pdms_models.Model" title="flowengine.model.pdms_models.Model">pdms_models.Model</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pdms_service.PdmsService.get_related_model_reports">
+<code class="sig-name descname">get_related_model_reports</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pdms_service.html#PdmsService.get_related_model_reports"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pdms_service.PdmsService.get_related_model_reports" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取模型报告</p>
+<p>根据模型地址获取其相应的模型报告</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>related_model</strong> (<em>str</em>) – model 的 prn,</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>模型报告</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pdms_service.PdmsService.get_report">
+<code class="sig-name descname">get_report</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">report_prn</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pdms_service.html#PdmsService.get_report"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pdms_service.PdmsService.get_report" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取报告信息</p>
+<p>按照 prn 获取对应的 Report</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>report_prn</strong> (<em>str</em>) – Report 的 prn,</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Report 的实例</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="model.html#flowengine.model.pdms_models.Report" title="flowengine.model.pdms_models.Report">pdms_models.Report</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pdms_service.PdmsService.get_table">
+<code class="sig-name descname">get_table</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">table_prn</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pdms_service.html#PdmsService.get_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pdms_service.PdmsService.get_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取数据表信息</p>
+<p>按照 prn 获取对应的 Table</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>table_prn</strong> (<em>str</em>) – Table 的 prn,</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Table 的实例</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="model.html#flowengine.model.pdms_models.Table" title="flowengine.model.pdms_models.Table">pdms_models.Table</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pdms_service.PdmsService.get_table_group">
+<code class="sig-name descname">get_table_group</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">table_group_prn</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pdms_service.html#PdmsService.get_table_group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pdms_service.PdmsService.get_table_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取 table_group</p>
+<p>按照 prn 获取对应的 table_group</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>table_group_prn</strong> (<em>str</em>) – table_group 的 prn,</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>TableGroup 的 instance</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="model.html#flowengine.model.pdms_models.TableGroup" title="flowengine.model.pdms_models.TableGroup">pdms_models.TableGroup</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pdms_service.PdmsService.get_tables_by_table_group">
+<code class="sig-name descname">get_tables_by_table_group</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">table_group_prn</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pdms_service.html#PdmsService.get_tables_by_table_group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pdms_service.PdmsService.get_tables_by_table_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取所有数据表</p>
+<p>根据 table_group 的 prn 来获取组中的所有数据表</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>table_group_prn</strong> (<em>str</em>) – table_group 的 prn,</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>数据表列表</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pdms_service.PdmsService.import_and_wait">
+<code class="sig-name descname">import_and_wait</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">body</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pdms_service.html#PdmsService.import_and_wait"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pdms_service.PdmsService.import_and_wait" title="Permalink to this definition">¶</a></dt>
+<dd><p>导入数据并等待</p>
+<p>导入数据并一直阻塞等待，直到完成或者出错。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Param</dt>
+<dd class="field-odd"><p>参见 <a class="reference internal" href="pdms_service.html#flowengine.service.pdms_service.PdmsService.import_data" title="flowengine.service.pdms_service.PdmsService.import_data"><code class="xref py py-class docutils literal notranslate"><span class="pre">PdmsService.import_data</span></code></a></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>参见 <a class="reference internal" href="pdms_service.html#flowengine.service.pdms_service.PdmsService.import_data" title="flowengine.service.pdms_service.PdmsService.import_data"><code class="xref py py-class docutils literal notranslate"><span class="pre">PdmsService.import_data</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pdms_service.PdmsService.import_data">
+<code class="sig-name descname">import_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">body</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pdms_service.html#PdmsService.import_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pdms_service.PdmsService.import_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>数据引入</p>
+<p>引入数据到 pdms 上</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">body (dict)</dt>
+<dd class="field-odd"><p>详细请参见【pdms:数据引入部分】,例如：”{‘dataSource’: {‘protocol’: ‘LOCAL’, ‘encoding’: ‘UTF-8’, ‘fileType’: ‘text’, ‘lineSpliter’: ‘;’, ‘columnSpliter’: ‘,’, ‘isFirstLineSchema’: True, ‘url’: ‘hdfs:///feedback.csv’}, ‘dataTarget’: {‘format’: ‘parquet’, ‘typeError’: ‘SKIP’, ‘columnError’: ‘SKIP’, ‘jsonError’: ‘SKIP’, ‘prn’: ‘flowengine/hdfs_table_154528706848320182420021277.table’, ‘schema’: [{‘name’: ‘col_1’, ‘type’: ‘Int’}, {‘name’: ‘automl_id’, ‘type’: ‘Int’}]}}”.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>dict:包含 Table 的 json 和 其他信息。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pdms_service.PdmsService.import_hive_to_pdms">
+<code class="sig-name descname">import_hive_to_pdms</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hive</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pdms_service.html#PdmsService.import_hive_to_pdms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pdms_service.PdmsService.import_hive_to_pdms" title="Permalink to this definition">¶</a></dt>
+<dd><p>hive数据引入到pdms</p>
+<p>hive数据引入到pdms</p>
+<p>:param dict body : 详细请参见【pdms:HiveRequest】,例如：</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;dataSource&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;hive&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;dbname&quot;</span><span class="p">:</span> <span class="s2">&quot;pdms_test&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;host&quot;</span><span class="p">:</span> <span class="s2">&quot;m7-common-cdh07&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;port&quot;</span><span class="p">:</span> <span class="s2">&quot;10000&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;hive&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;hive&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;encoding&quot;</span><span class="p">:</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;table&quot;</span><span class="p">:</span> <span class="s2">&quot;student_orc&quot;</span>
+     <span class="p">},</span>
+     <span class="s2">&quot;dataTarget&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">[</span>
+             <span class="p">{</span>
+                 <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span>
+                 <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Int&quot;</span>
+             <span class="p">},</span>
+             <span class="p">{</span>
+                 <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+                 <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;String&quot;</span>
+             <span class="p">},</span>
+             <span class="p">{</span>
+                 <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;score&quot;</span><span class="p">,</span>
+                 <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Double&quot;</span>
+             <span class="p">},</span>
+             <span class="p">{</span>
+                 <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;age&quot;</span><span class="p">,</span>
+                 <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Int&quot;</span>
+             <span class="p">},</span>
+             <span class="p">{</span>
+                 <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;grade&quot;</span><span class="p">,</span>
+                 <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Int&quot;</span>
+             <span class="p">}</span>
+         <span class="p">],</span>
+         <span class="s2">&quot;prn&quot;</span><span class="p">:</span> <span class="s2">&quot;cb/test2.table&quot;</span><span class="p">,</span>
+     <span class="p">},</span>
+     <span class="s2">&quot;splitPartitionedTable&quot;</span><span class="p">:</span> <span class="n">false</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>包含 Table 的 json 和 其他信息。</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pdms_service.PdmsService.import_rtidb_from_kafka">
+<code class="sig-name descname">import_rtidb_from_kafka</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">body</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pdms_service.html#PdmsService.import_rtidb_from_kafka"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pdms_service.PdmsService.import_rtidb_from_kafka" title="Permalink to this definition">¶</a></dt>
+<dd><p>kafka数据引入到rtidb</p>
+<p>kafka数据引入到rtidb上</p>
+<p>:param dict body : 详细请参见【pdms:streamJob引入部分】,例如：</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;dataSource&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;protocol&quot;</span><span class="p">:</span> <span class="s2">&quot;LOCAL&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;encoding&quot;</span><span class="p">:</span> <span class="s2">&quot;UTF-8&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fileType&quot;</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;lineSpliter&quot;</span><span class="p">:</span> <span class="s2">&quot;;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;columnSpliter&quot;</span><span class="p">:</span> <span class="s2">&quot;,&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;isFirstLineSchema&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+    <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;hdfs:///feedback.csv&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;dataTarget&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;parquet&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;typeError&quot;</span><span class="p">:</span> <span class="s2">&quot;SKIP&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;columnError&quot;</span><span class="p">:</span> <span class="s2">&quot;SKIP&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;jsonError&quot;</span><span class="p">:</span> <span class="s2">&quot;SKIP&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;prn&quot;</span><span class="p">:</span> <span class="s2">&quot;flowengine/hdfs_table_154528706848320182420021277.table&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;col_1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Int&quot;</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;automl_id&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Int&quot;</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>包含 Table 的 json 和 其他信息。</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pdms_service.PdmsService.import_rtidb_from_pdms">
+<code class="sig-name descname">import_rtidb_from_pdms</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">body</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pdms_service.html#PdmsService.import_rtidb_from_pdms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pdms_service.PdmsService.import_rtidb_from_pdms" title="Permalink to this definition">¶</a></dt>
+<dd><p>pdms数据引入到rtidb</p>
+<p>pdms数据引入到rtidb上</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>body</strong> (<em>dict</em>) – <p>详细请参见【pdms:streamJob引入部分】,例如：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;dataSource&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;protocol&quot;</span><span class="p">:</span> <span class="s2">&quot;LOCAL&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;encoding&quot;</span><span class="p">:</span> <span class="s2">&quot;UTF-8&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fileType&quot;</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;lineSpliter&quot;</span><span class="p">:</span> <span class="s2">&quot;;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;columnSpliter&quot;</span><span class="p">:</span> <span class="s2">&quot;,&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;isFirstLineSchema&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+    <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;hdfs:///feedback.csv&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;dataTarget&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;parquet&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;typeError&quot;</span><span class="p">:</span> <span class="s2">&quot;SKIP&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;columnError&quot;</span><span class="p">:</span> <span class="s2">&quot;SKIP&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;jsonError&quot;</span><span class="p">:</span> <span class="s2">&quot;SKIP&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;prn&quot;</span><span class="p">:</span> <span class="s2">&quot;flowengine/hdfs_table_154528706848320182420021277.table&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;col_1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Int&quot;</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;automl_id&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Int&quot;</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>包含 Table 的 json 和 其他信息。</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pdms_service.PdmsService.preview_hive">
+<code class="sig-name descname">preview_hive</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hive</span></em>, <em class="sig-param"><span class="n">limit</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">random</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pdms_service.html#PdmsService.preview_hive"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pdms_service.PdmsService.preview_hive" title="Permalink to this definition">¶</a></dt>
+<dd><p>table 预览</p>
+<p>数据预览，按需获取不同的 table 数据</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>prn</strong> (<em>str</em>) – table 的 prn,</p></li>
+<li><p><strong>limit</strong> (<em>int</em>) – 数据最大数量,</p></li>
+<li><p><strong>random</strong> (<em>bool</em>) – 是否随机,</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>数据内容</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pdms_service.PdmsService.preview_table">
+<code class="sig-name descname">preview_table</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">prn</span></em>, <em class="sig-param"><span class="n">limit</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">random</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pdms_service.html#PdmsService.preview_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pdms_service.PdmsService.preview_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>table 预览</p>
+<p>数据预览，按需获取不同的 table 数据</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>prn</strong> (<em>str</em>) – table 的 prn,</p></li>
+<li><p><strong>limit</strong> (<em>int</em>) – 数据最大数量,</p></li>
+<li><p><strong>random</strong> (<em>bool</em>) – 是否随机,</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>数据内容</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="flowengine.service.pdms_service.ResourceStatus">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.service.pdms_service.</code><code class="sig-name descname">ResourceStatus</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pdms_service.html#ResourceStatus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pdms_service.ResourceStatus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt id="flowengine.service.pdms_service.ResourceStatus.AVAILABLE">
+<code class="sig-name descname">AVAILABLE</code><em class="property"> = (7,)</em><a class="headerlink" href="#flowengine.service.pdms_service.ResourceStatus.AVAILABLE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flowengine.service.pdms_service.ResourceStatus.DEPLOYING">
+<code class="sig-name descname">DEPLOYING</code><em class="property"> = (9,)</em><a class="headerlink" href="#flowengine.service.pdms_service.ResourceStatus.DEPLOYING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flowengine.service.pdms_service.ResourceStatus.FAIL">
+<code class="sig-name descname">FAIL</code><em class="property"> = (3,)</em><a class="headerlink" href="#flowengine.service.pdms_service.ResourceStatus.FAIL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flowengine.service.pdms_service.ResourceStatus.IMPORTING">
+<code class="sig-name descname">IMPORTING</code><em class="property"> = (6,)</em><a class="headerlink" href="#flowengine.service.pdms_service.ResourceStatus.IMPORTING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flowengine.service.pdms_service.ResourceStatus.NOTIMPORT">
+<code class="sig-name descname">NOTIMPORT</code><em class="property"> = (5,)</em><a class="headerlink" href="#flowengine.service.pdms_service.ResourceStatus.NOTIMPORT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flowengine.service.pdms_service.ResourceStatus.OFFLINE">
+<code class="sig-name descname">OFFLINE</code><em class="property"> = (8,)</em><a class="headerlink" href="#flowengine.service.pdms_service.ResourceStatus.OFFLINE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flowengine.service.pdms_service.ResourceStatus.ONLINE">
+<code class="sig-name descname">ONLINE</code><em class="property"> = 10</em><a class="headerlink" href="#flowengine.service.pdms_service.ResourceStatus.ONLINE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flowengine.service.pdms_service.ResourceStatus.PENDING">
+<code class="sig-name descname">PENDING</code><em class="property"> = (0,)</em><a class="headerlink" href="#flowengine.service.pdms_service.ResourceStatus.PENDING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flowengine.service.pdms_service.ResourceStatus.RUNNING">
+<code class="sig-name descname">RUNNING</code><em class="property"> = (1,)</em><a class="headerlink" href="#flowengine.service.pdms_service.ResourceStatus.RUNNING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flowengine.service.pdms_service.ResourceStatus.SUCCESS">
+<code class="sig-name descname">SUCCESS</code><em class="property"> = (2,)</em><a class="headerlink" href="#flowengine.service.pdms_service.ResourceStatus.SUCCESS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flowengine.service.pdms_service.ResourceStatus.UNAVAILABLE">
+<code class="sig-name descname">UNAVAILABLE</code><em class="property"> = (4,)</em><a class="headerlink" href="#flowengine.service.pdms_service.ResourceStatus.UNAVAILABLE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-flowengine.service.pms_service">
+<span id="flowengine-service-pms-service-module"></span><h2>flowengine.service.pms_service module<a class="headerlink" href="#module-flowengine.service.pms_service" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.service.pms_service.PmsService">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.service.pms_service.</code><code class="sig-name descname">PmsService</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">url</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pms_service.html#PmsService"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pms_service.PmsService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#flowengine.service.base_service.BaseService" title="flowengine.service.base_service.BaseService"><code class="xref py py-class docutils literal notranslate"><span class="pre">flowengine.service.base_service.BaseService</span></code></a></p>
+<p>PMS 的 service 类，能够进行告警管理。详情参见 PMS 产品介绍相关文档。</p>
+<dl class="py method">
+<dt id="flowengine.service.pms_service.PmsService.create_alert">
+<code class="sig-name descname">create_alert</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pms_service.html#PmsService.create_alert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pms_service.PmsService.create_alert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pms_service.PmsService.create_alert_policy">
+<code class="sig-name descname">create_alert_policy</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pms_service.html#PmsService.create_alert_policy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pms_service.PmsService.create_alert_policy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pms_service.PmsService.create_alert_rule">
+<code class="sig-name descname">create_alert_rule</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pms_service.html#PmsService.create_alert_rule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pms_service.PmsService.create_alert_rule" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pms_service.PmsService.create_monitor_target">
+<code class="sig-name descname">create_monitor_target</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pms_service.html#PmsService.create_monitor_target"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pms_service.PmsService.create_monitor_target" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pms_service.PmsService.create_silence">
+<code class="sig-name descname">create_silence</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pms_service.html#PmsService.create_silence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pms_service.PmsService.create_silence" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pms_service.PmsService.delete_alert_policy">
+<code class="sig-name descname">delete_alert_policy</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pms_service.html#PmsService.delete_alert_policy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pms_service.PmsService.delete_alert_policy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pms_service.PmsService.delete_alert_rule">
+<code class="sig-name descname">delete_alert_rule</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pms_service.html#PmsService.delete_alert_rule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pms_service.PmsService.delete_alert_rule" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pms_service.PmsService.delete_monitor_target">
+<code class="sig-name descname">delete_monitor_target</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pms_service.html#PmsService.delete_monitor_target"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pms_service.PmsService.delete_monitor_target" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pms_service.PmsService.delete_silence">
+<code class="sig-name descname">delete_silence</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pms_service.html#PmsService.delete_silence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pms_service.PmsService.delete_silence" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pms_service.PmsService.get_alert">
+<code class="sig-name descname">get_alert</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pms_service.html#PmsService.get_alert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pms_service.PmsService.get_alert" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取告警信息</p>
+<p>按照 告警名字 获取对应的 告警</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>alert_name</strong> (<em>str</em>) – 告警名字,</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>告警 的实例</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pms_service.PmsService.get_alert_policy">
+<code class="sig-name descname">get_alert_policy</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pms_service.html#PmsService.get_alert_policy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pms_service.PmsService.get_alert_policy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pms_service.PmsService.get_alert_rule">
+<code class="sig-name descname">get_alert_rule</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pms_service.html#PmsService.get_alert_rule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pms_service.PmsService.get_alert_rule" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pms_service.PmsService.get_monitor_target">
+<code class="sig-name descname">get_monitor_target</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pms_service.html#PmsService.get_monitor_target"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pms_service.PmsService.get_monitor_target" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.pms_service.PmsService.get_silence">
+<code class="sig-name descname">get_silence</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pms_service.html#PmsService.get_silence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pms_service.PmsService.get_silence" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="flowengine.service.pms_service.pms_response_decorator">
+<code class="sig-prename descclassname">flowengine.service.pms_service.</code><code class="sig-name descname">pms_response_decorator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">func</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/pms_service.html#pms_response_decorator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.pms_service.pms_response_decorator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-flowengine.service.sc_instance_service">
+<span id="flowengine-service-sc-instance-service-module"></span><h2>flowengine.service.sc_instance_service module<a class="headerlink" href="#module-flowengine.service.sc_instance_service" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.service.sc_instance_service.ScInstanceService">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.service.sc_instance_service.</code><code class="sig-name descname">ScInstanceService</code><a class="reference internal" href="_modules/flowengine/service/sc_instance_service.html#ScInstanceService"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.sc_instance_service.ScInstanceService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#flowengine.service.base_service.BaseService" title="flowengine.service.base_service.BaseService"><code class="xref py py-class docutils literal notranslate"><span class="pre">flowengine.service.base_service.BaseService</span></code></a></p>
+<p>ServiceComponent Instance 相关的 基础类 Service ，用于用户自定义开发相关服务。</p>
+<dl class="py method">
+<dt id="flowengine.service.sc_instance_service.ScInstanceService.get_info">
+<code class="sig-name descname">get_info</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/sc_instance_service.html#ScInstanceService.get_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.sc_instance_service.ScInstanceService.get_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-flowengine.service.self_learner_service">
+<span id="flowengine-service-self-learner-service-module"></span><h2>flowengine.service.self_learner_service module<a class="headerlink" href="#module-flowengine.service.self_learner_service" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.service.self_learner_service.ExecutionStage">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.service.self_learner_service.</code><code class="sig-name descname">ExecutionStage</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/self_learner_service.html#ExecutionStage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.self_learner_service.ExecutionStage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>枚举类：模型自学习的运行阶段</p>
+<dl class="py attribute">
+<dt id="flowengine.service.self_learner_service.ExecutionStage.CHECKING">
+<code class="sig-name descname">CHECKING</code><em class="property"> = 0</em><a class="headerlink" href="#flowengine.service.self_learner_service.ExecutionStage.CHECKING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flowengine.service.self_learner_service.ExecutionStage.REPORTING">
+<code class="sig-name descname">REPORTING</code><em class="property"> = 2</em><a class="headerlink" href="#flowengine.service.self_learner_service.ExecutionStage.REPORTING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flowengine.service.self_learner_service.ExecutionStage.RUNNING">
+<code class="sig-name descname">RUNNING</code><em class="property"> = 1</em><a class="headerlink" href="#flowengine.service.self_learner_service.ExecutionStage.RUNNING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="flowengine.service.self_learner_service.ExecutionStatus">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.service.self_learner_service.</code><code class="sig-name descname">ExecutionStatus</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/self_learner_service.html#ExecutionStatus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.self_learner_service.ExecutionStatus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>枚举类：模型自学习的运行状态</p>
+<dl class="py attribute">
+<dt id="flowengine.service.self_learner_service.ExecutionStatus.AWAITING">
+<code class="sig-name descname">AWAITING</code><em class="property"> = 0</em><a class="headerlink" href="#flowengine.service.self_learner_service.ExecutionStatus.AWAITING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flowengine.service.self_learner_service.ExecutionStatus.FAILURE">
+<code class="sig-name descname">FAILURE</code><em class="property"> = 4</em><a class="headerlink" href="#flowengine.service.self_learner_service.ExecutionStatus.FAILURE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flowengine.service.self_learner_service.ExecutionStatus.RUNNING">
+<code class="sig-name descname">RUNNING</code><em class="property"> = 1</em><a class="headerlink" href="#flowengine.service.self_learner_service.ExecutionStatus.RUNNING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flowengine.service.self_learner_service.ExecutionStatus.SUCCESS">
+<code class="sig-name descname">SUCCESS</code><em class="property"> = 2</em><a class="headerlink" href="#flowengine.service.self_learner_service.ExecutionStatus.SUCCESS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flowengine.service.self_learner_service.ExecutionStatus.TERMINATED">
+<code class="sig-name descname">TERMINATED</code><em class="property"> = 3</em><a class="headerlink" href="#flowengine.service.self_learner_service.ExecutionStatus.TERMINATED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="flowengine.service.self_learner_service.SelfLearnerService">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.service.self_learner_service.</code><code class="sig-name descname">SelfLearnerService</code><a class="reference internal" href="_modules/flowengine/service/self_learner_service.html#SelfLearnerService"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.self_learner_service.SelfLearnerService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Self-Learner 组件相关的 service</p>
+<dl class="py method">
+<dt id="flowengine.service.self_learner_service.SelfLearnerService.deploy_solution">
+<code class="sig-name descname">deploy_solution</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/self_learner_service.html#SelfLearnerService.deploy_solution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.self_learner_service.SelfLearnerService.deploy_solution" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.self_learner_service.SelfLearnerService.get_history">
+<code class="sig-name descname">get_history</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">solution_key</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">count</span><span class="o">=</span><span class="default_value">1000</span></em>, <em class="sig-param"><span class="n">offset</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">order_by</span><span class="o">=</span><span class="default_value">'start_time'</span></em>, <em class="sig-param"><span class="n">asc</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/self_learner_service.html#SelfLearnerService.get_history"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.self_learner_service.SelfLearnerService.get_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取 solution config</p>
+<p>获取自学习历史列表</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>solution_key</strong> (<em>str</em>) – solution key</p></li>
+<li><p><strong>count</strong> (<em>int</em>) – 数量</p></li>
+<li><p><strong>offset</strong> (<em>int</em>) – 偏移量</p></li>
+<li><p><strong>order_by</strong> (<em>str</em>) – 排序字段</p></li>
+<li><p><strong>asc</strong> (<em>bool</em>) – 是否升序</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>自学习历史，currentStatus 和 currentStage 请参考对应枚举类</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.self_learner_service.SelfLearnerService.get_solution">
+<code class="sig-name descname">get_solution</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/self_learner_service.html#SelfLearnerService.get_solution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.self_learner_service.SelfLearnerService.get_solution" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取 solution config</p>
+<p>获取当前自学习 instance 的 solution config ，包含 solution_key 等信息。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>solution config</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.self_learner_service.SelfLearnerService.list_solution">
+<code class="sig-name descname">list_solution</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/self_learner_service.html#SelfLearnerService.list_solution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.self_learner_service.SelfLearnerService.list_solution" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.self_learner_service.SelfLearnerService.restart_self_learner">
+<code class="sig-name descname">restart_self_learner</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/self_learner_service.html#SelfLearnerService.restart_self_learner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.self_learner_service.SelfLearnerService.restart_self_learner" title="Permalink to this definition">¶</a></dt>
+<dd><p>重新运行自学习</p>
+<p>重新运行 execution_id 对应的自学习</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>execution_id</strong> (<em>int</em>) – 自学习运行 ID ，来自 <a class="reference internal" href="#flowengine.service.hyperx_service.HyperXService.list_self_learning_model" title="flowengine.service.hyperx_service.HyperXService.list_self_learning_model"><code class="xref py py-class docutils literal notranslate"><span class="pre">flowengine.service.hyperx_service.HyperXService.list_self_learning_model</span></code></a> 的返回值</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>是否成功</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.self_learner_service.SelfLearnerService.start_once_self_learner">
+<code class="sig-name descname">start_once_self_learner</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/self_learner_service.html#SelfLearnerService.start_once_self_learner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.self_learner_service.SelfLearnerService.start_once_self_learner" title="Permalink to this definition">¶</a></dt>
+<dd><p>开启自学习</p>
+<p>开启一次自学习</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data_sources</strong> (<em>list</em>) – <p>自学习启动配置，格式如下：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="c1"># 行为表配置</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;prn&quot;</span><span class="p">:</span> <span class="s2">&quot;behavior.table-group&quot;</span><span class="p">,</span>
+    <span class="c1"># 全部切片</span>
+    <span class="s2">&quot;sliceType&quot;</span><span class="p">:</span> <span class="s2">&quot;ALL&quot;</span>
+  <span class="p">},</span>
+  <span class="c1"># 反馈表配置</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;prn&quot;</span><span class="p">:</span> <span class="s2">&quot;feedback.table-group&quot;</span><span class="p">,</span>
+    <span class="c1">#按数量范围调取切片</span>
+    <span class="s2">&quot;sliceType&quot;</span><span class="p">:</span> <span class="s2">&quot;PART&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sliceValue&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;from&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;to&quot;</span><span class="p">:</span> <span class="mi">1000</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>开启信息</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.self_learner_service.SelfLearnerService.start_once_self_learner_by_config">
+<code class="sig-name descname">start_once_self_learner_by_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/self_learner_service.html#SelfLearnerService.start_once_self_learner_by_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.self_learner_service.SelfLearnerService.start_once_self_learner_by_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>开启自学习</p>
+<p>开启一次自学习</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> (<em>dict</em>) – <p>开启自学习的配置信息，如下：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;dataSources&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;prn&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;isTableGroup&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+      <span class="s2">&quot;sliceType&quot;</span><span class="p">:</span> <span class="s2">&quot;ALL&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;sliceValue&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;from&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;to&quot;</span><span class="p">:</span> <span class="mi">1000</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;supportTime&quot;</span><span class="p">:</span> <span class="n">false</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;prn&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;isTableGroup&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+      <span class="s2">&quot;sliceType&quot;</span><span class="p">:</span> <span class="s2">&quot;PART&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;sliceValue&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;from&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;to&quot;</span><span class="p">:</span> <span class="mi">1000</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;supportTime&quot;</span><span class="p">:</span> <span class="n">false</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="n">null</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>开启信息</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.self_learner_service.SelfLearnerService.stop_self_learning">
+<code class="sig-name descname">stop_self_learning</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/self_learner_service.html#SelfLearnerService.stop_self_learning"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.self_learner_service.SelfLearnerService.stop_self_learning" title="Permalink to this definition">¶</a></dt>
+<dd><p>停止自学习</p>
+<p>停止 execution_id 对应的自学习</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>execution_id</strong> (<em>int</em>) – 自学习运行 ID ，来自 <a class="reference internal" href="#flowengine.service.hyperx_service.HyperXService.list_self_learning_model" title="flowengine.service.hyperx_service.HyperXService.list_self_learning_model"><code class="xref py py-class docutils literal notranslate"><span class="pre">flowengine.service.hyperx_service.HyperXService.list_self_learning_model</span></code></a> 的返回值</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>是否成功</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="flowengine.service.self_learner_service.self_learner_response_decorator">
+<code class="sig-prename descclassname">flowengine.service.self_learner_service.</code><code class="sig-name descname">self_learner_response_decorator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">func</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/self_learner_service.html#self_learner_response_decorator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.self_learner_service.self_learner_response_decorator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-flowengine.service.workflow_service">
+<span id="flowengine-service-workflow-service-module"></span><h2>flowengine.service.workflow_service module<a class="headerlink" href="#module-flowengine.service.workflow_service" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.service.workflow_service.WorkFlowService">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.service.workflow_service.</code><code class="sig-name descname">WorkFlowService</code><a class="reference internal" href="_modules/flowengine/service/workflow_service.html#WorkFlowService"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.workflow_service.WorkFlowService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#flowengine.service.base_service.BaseService" title="flowengine.service.base_service.BaseService"><code class="xref py py-class docutils literal notranslate"><span class="pre">flowengine.service.base_service.BaseService</span></code></a></p>
+<p>WorkFlow (or pwd) 的 service 类, 能够运行、查看 DAG 等。</p>
+<dl class="py method">
+<dt id="flowengine.service.workflow_service.WorkFlowService.get_log">
+<code class="sig-name descname">get_log</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dag_id</span></em>, <em class="sig-param"><span class="n">run_id</span></em>, <em class="sig-param"><span class="n">node_id</span></em>, <em class="sig-param"><span class="n">log_key</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/workflow_service.html#WorkFlowService.get_log"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.workflow_service.WorkFlowService.get_log" title="Permalink to this definition">¶</a></dt>
+<dd><p>查看 node 运行的日志</p>
+<p>查看 dag 的某个 node 的日志</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dag_id</strong> (<em>str</em>) – dag 的 dag_id</p></li>
+<li><p><strong>run_id</strong> (<em>int</em>) – dag 的 run_id</p></li>
+<li><p><strong>node_id</strong> (<em>str</em>) – 需要查看的 node 的 id</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>日志内容</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.workflow_service.WorkFlowService.get_node_info">
+<code class="sig-name descname">get_node_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/workflow_service.html#WorkFlowService.get_node_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.workflow_service.WorkFlowService.get_node_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>查看 node 信息</p>
+<p>查看 node 的详细信息</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dag_id</strong> (<em>str</em>) – node 所在 dag 的 dag_id</p></li>
+<li><p><strong>run_id</strong> (<em>int</em>) – dag 的 run_id</p></li>
+<li><p><strong>node_id</strong> (<em>int</em>) – node 的 node_id</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>node 的详细信息，可参考 DAG class 或者 pws 相关文档。</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.workflow_service.WorkFlowService.get_workflow_info">
+<code class="sig-name descname">get_workflow_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/workflow_service.html#WorkFlowService.get_workflow_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.workflow_service.WorkFlowService.get_workflow_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>查看 dag 信息</p>
+<p>查看 dag 的详细信息</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dag_id</strong> (<em>str</em>) – dag 的 dag_id</p></li>
+<li><p><strong>run_id</strong> (<em>int</em>) – dag 的 run_id</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dag 的详细信息，可参考 DAG class 或者 pws 相关文档。</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.workflow_service.WorkFlowService.submit_and_wait_for">
+<code class="sig-name descname">submit_and_wait_for</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dag_json</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/workflow_service.html#WorkFlowService.submit_and_wait_for"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.workflow_service.WorkFlowService.submit_and_wait_for" title="Permalink to this definition">¶</a></dt>
+<dd><p>提交 Dag 并等待起结束</p>
+<p>提交 Dag 并等待起结束</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dag_json</strong> (<em>str</em>) – 同 <a class="reference internal" href="workflow_service.html#flowengine.service.workflow_service.WorkFlowService.submit_dag" title="flowengine.service.workflow_service.WorkFlowService.submit_dag"><code class="xref py py-class docutils literal notranslate"><span class="pre">WorkFlowService.submit_dag</span></code></a> 方法</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dag 的详细信息，可参考 <a class="reference internal" href="workflow_service.html#flowengine.service.workflow_service.WorkFlowService.get_workflow_info" title="flowengine.service.workflow_service.WorkFlowService.get_workflow_info"><code class="xref py py-class docutils literal notranslate"><span class="pre">WorkFlowService.get_workflow_info</span></code></a> 返回值</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.workflow_service.WorkFlowService.submit_dag">
+<code class="sig-name descname">submit_dag</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dag_json</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/workflow_service.html#WorkFlowService.submit_dag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.workflow_service.WorkFlowService.submit_dag" title="Permalink to this definition">¶</a></dt>
+<dd><p>提交 dag</p>
+<p>提交 dag 到 pws 上运行</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dag_json</strong> (<em>str</em>) – dag 的描述信息</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dag 的详细信息，可参考 <a class="reference internal" href="workflow_service.html#flowengine.service.workflow_service.WorkFlowService.get_workflow_info" title="flowengine.service.workflow_service.WorkFlowService.get_workflow_info"><code class="xref py py-class docutils literal notranslate"><span class="pre">WorkFlowService.get_workflow_info</span></code></a> 返回值</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.workflow_service.WorkFlowService.terminate">
+<code class="sig-name descname">terminate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dag_id</span></em>, <em class="sig-param"><span class="n">run_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/workflow_service.html#WorkFlowService.terminate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.workflow_service.WorkFlowService.terminate" title="Permalink to this definition">¶</a></dt>
+<dd><p>终止 dag 的运行</p>
+<p>终止 dag 的运行</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dag_id</strong> (<em>str</em>) – dag 的 dag_id</p></li>
+<li><p><strong>run_id</strong> (<em>int</em>) – dag 的 run_id</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.workflow_service.WorkFlowService.wait_for">
+<code class="sig-name descname">wait_for</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dag_id</span></em>, <em class="sig-param"><span class="n">run_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/workflow_service.html#WorkFlowService.wait_for"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.workflow_service.WorkFlowService.wait_for" title="Permalink to this definition">¶</a></dt>
+<dd><p>等待 dag 完成</p>
+<p>循环查看 dag 是否完成，并一直等待其完成</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dag_id</strong> (<em>str</em>) – dag 的 dag_id</p></li>
+<li><p><strong>run_id</strong> (<em>int</em>) – dag 的 run_id</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dag 的详细信息，可参考 <a class="reference internal" href="workflow_service.html#flowengine.service.workflow_service.WorkFlowService.get_workflow_info" title="flowengine.service.workflow_service.WorkFlowService.get_workflow_info"><code class="xref py py-class docutils literal notranslate"><span class="pre">WorkFlowService.get_workflow_info</span></code></a> 返回值</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-flowengine.service.yarn_service">
+<span id="flowengine-service-yarn-service-module"></span><h2>flowengine.service.yarn_service module<a class="headerlink" href="#module-flowengine.service.yarn_service" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.service.yarn_service.YarnService">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.service.yarn_service.</code><code class="sig-name descname">YarnService</code><a class="reference internal" href="_modules/flowengine/service/yarn_service.html#YarnService"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.yarn_service.YarnService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Yarn 的 service 类，监控集群信息和杀死任务。</p>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>添加 Yarn 的提交任务功能，目前可用 shell 命令代替。</p>
+</div>
+<dl class="py method">
+<dt id="flowengine.service.yarn_service.YarnService.get_app">
+<code class="sig-name descname">get_app</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/yarn_service.html#YarnService.get_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.yarn_service.YarnService.get_app" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取 app 的详细信息</p>
+<p>获取 app_id 的 app 信息</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>app_id</strong> (<em>str</em>) – yarn 的 app id,</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>app 信息，类似：{‘app’: {‘id’:xx}}</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.yarn_service.YarnService.get_appstatistics">
+<code class="sig-name descname">get_appstatistics</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/yarn_service.html#YarnService.get_appstatistics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.yarn_service.YarnService.get_appstatistics" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取 app 的统计信息</p>
+<p>获取 app 的统计信息</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>app_id</strong> (<em>str</em>) – yarn 的 app id,</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>app 的统计信息</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.yarn_service.YarnService.get_stat">
+<code class="sig-name descname">get_stat</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/yarn_service.html#YarnService.get_stat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.yarn_service.YarnService.get_stat" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取 app 的状态</p>
+<p>获取 app 的状态，包含：“NEW”, “NEW_SAVING”, “SUBMITTED”, “ACCEPTED”, “RUNNING”, “FINISHED”, “FAILED”, “KILLED”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>app_id</strong> (<em>str</em>) – yarn 的 app id,</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>app 的状态，类似：{‘state’: ‘FINISHED’}</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.yarn_service.YarnService.kill_app">
+<code class="sig-name descname">kill_app</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/yarn_service.html#YarnService.kill_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.yarn_service.YarnService.kill_app" title="Permalink to this definition">¶</a></dt>
+<dd><p>杀死 app</p>
+<p>根据 app_id 杀死 app</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>app_id</strong> (<em>str</em>) – yarn 的 app id,</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>同 <a class="reference internal" href="yarn_service.html#flowengine.service.yarn_service.YarnService.get_stat" title="flowengine.service.yarn_service.YarnService.get_stat"><code class="xref py py-class docutils literal notranslate"><span class="pre">YarnService.get_stat</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-flowengine.service">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-flowengine.service" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, meteor
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

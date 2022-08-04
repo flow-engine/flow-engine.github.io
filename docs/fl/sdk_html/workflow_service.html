@@ -1,0 +1,393 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>workflow_service module &mdash; FlowEngine-py-SDK release/1.5.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="yarn_service module" href="yarn_service.html" />
+    <link rel="prev" title="self_learner_service module" href="self_learner_service.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> FlowEngine-py-SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to FlowEngine-py-SDK</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="service.html">service package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="sci_solution_explore_service.html">sci_solution_explore_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci_solution_explore_regression_service.html">sci_solution_explore_regression_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci_solution_explore_binary_service.html">sci_solution_explore_binary_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci_data_process_service.html">sci_data_process_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci_batch_predictor_service.html">sci_batch_predictor_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batch_predictor_service.html">batch_predictor_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="engine_kernel_service.html">engine_kernel_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keystone_service.html">keystone_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kubernetes_service.html">kubernetes_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manager_service.html">manager_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="market_service.html">market_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdms_service.html">pdms_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sc_instance_service.html">sc_instance_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci_self_learner_service.html">sci_self_learner_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="self_learner_service.html">self_learner_service module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">workflow_service module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#workflowservice-service">WorkFlowService Service</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="yarn_service.html">yarn_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crontab_service.html">crontab_service module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="client.html">client package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.html">model package</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">FlowEngine-py-SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="service.html">service package</a> &raquo;</li>
+        
+      <li>workflow_service module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/workflow_service.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="workflow-service-module">
+<h1>workflow_service module<a class="headerlink" href="#workflow-service-module" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="workflowservice-service">
+<h2>WorkFlowService Service<a class="headerlink" href="#workflowservice-service" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.service.workflow_service.WorkFlowService">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.service.workflow_service.</code><code class="sig-name descname">WorkFlowService</code><a class="reference internal" href="_modules/flowengine/service/workflow_service.html#WorkFlowService"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.workflow_service.WorkFlowService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="flowengine.service.html#flowengine.service.base_service.BaseService" title="flowengine.service.base_service.BaseService"><code class="xref py py-class docutils literal notranslate"><span class="pre">flowengine.service.base_service.BaseService</span></code></a></p>
+<p>WorkFlow (or pwd) 的 service 类, 能够运行、查看 DAG 等。</p>
+<dl class="py method">
+<dt id="flowengine.service.workflow_service.WorkFlowService.get_log">
+<code class="sig-name descname">get_log</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dag_id</span></em>, <em class="sig-param"><span class="n">run_id</span></em>, <em class="sig-param"><span class="n">node_id</span></em>, <em class="sig-param"><span class="n">log_key</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/workflow_service.html#WorkFlowService.get_log"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.workflow_service.WorkFlowService.get_log" title="Permalink to this definition">¶</a></dt>
+<dd><p>查看 node 运行的日志</p>
+<p>查看 dag 的某个 node 的日志</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dag_id</strong> (<em>str</em>) – dag 的 dag_id</p></li>
+<li><p><strong>run_id</strong> (<em>int</em>) – dag 的 run_id</p></li>
+<li><p><strong>node_id</strong> (<em>str</em>) – 需要查看的 node 的 id</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>日志内容</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.workflow_service.WorkFlowService.get_node_info">
+<code class="sig-name descname">get_node_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/workflow_service.html#WorkFlowService.get_node_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.workflow_service.WorkFlowService.get_node_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>查看 node 信息</p>
+<p>查看 node 的详细信息</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dag_id</strong> (<em>str</em>) – node 所在 dag 的 dag_id</p></li>
+<li><p><strong>run_id</strong> (<em>int</em>) – dag 的 run_id</p></li>
+<li><p><strong>node_id</strong> (<em>int</em>) – node 的 node_id</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>node 的详细信息，可参考 DAG class 或者 pws 相关文档。</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.workflow_service.WorkFlowService.get_workflow_info">
+<code class="sig-name descname">get_workflow_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/workflow_service.html#WorkFlowService.get_workflow_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.workflow_service.WorkFlowService.get_workflow_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>查看 dag 信息</p>
+<p>查看 dag 的详细信息</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dag_id</strong> (<em>str</em>) – dag 的 dag_id</p></li>
+<li><p><strong>run_id</strong> (<em>int</em>) – dag 的 run_id</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dag 的详细信息，可参考 DAG class 或者 pws 相关文档。</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.workflow_service.WorkFlowService.submit_and_wait_for">
+<code class="sig-name descname">submit_and_wait_for</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dag_json</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/workflow_service.html#WorkFlowService.submit_and_wait_for"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.workflow_service.WorkFlowService.submit_and_wait_for" title="Permalink to this definition">¶</a></dt>
+<dd><p>提交 Dag 并等待起结束</p>
+<p>提交 Dag 并等待起结束</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dag_json</strong> (<em>str</em>) – 同 <a class="reference internal" href="#flowengine.service.workflow_service.WorkFlowService.submit_dag" title="flowengine.service.workflow_service.WorkFlowService.submit_dag"><code class="xref py py-class docutils literal notranslate"><span class="pre">WorkFlowService.submit_dag</span></code></a> 方法</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dag 的详细信息，可参考 <a class="reference internal" href="#flowengine.service.workflow_service.WorkFlowService.get_workflow_info" title="flowengine.service.workflow_service.WorkFlowService.get_workflow_info"><code class="xref py py-class docutils literal notranslate"><span class="pre">WorkFlowService.get_workflow_info</span></code></a> 返回值</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.workflow_service.WorkFlowService.submit_dag">
+<code class="sig-name descname">submit_dag</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dag_json</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/workflow_service.html#WorkFlowService.submit_dag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.workflow_service.WorkFlowService.submit_dag" title="Permalink to this definition">¶</a></dt>
+<dd><p>提交 dag</p>
+<p>提交 dag 到 pws 上运行</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dag_json</strong> (<em>str</em>) – dag 的描述信息</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dag 的详细信息，可参考 <a class="reference internal" href="#flowengine.service.workflow_service.WorkFlowService.get_workflow_info" title="flowengine.service.workflow_service.WorkFlowService.get_workflow_info"><code class="xref py py-class docutils literal notranslate"><span class="pre">WorkFlowService.get_workflow_info</span></code></a> 返回值</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.workflow_service.WorkFlowService.terminate">
+<code class="sig-name descname">terminate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dag_id</span></em>, <em class="sig-param"><span class="n">run_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/workflow_service.html#WorkFlowService.terminate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.workflow_service.WorkFlowService.terminate" title="Permalink to this definition">¶</a></dt>
+<dd><p>终止 dag 的运行</p>
+<p>终止 dag 的运行</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dag_id</strong> (<em>str</em>) – dag 的 dag_id</p></li>
+<li><p><strong>run_id</strong> (<em>int</em>) – dag 的 run_id</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.workflow_service.WorkFlowService.wait_for">
+<code class="sig-name descname">wait_for</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dag_id</span></em>, <em class="sig-param"><span class="n">run_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/workflow_service.html#WorkFlowService.wait_for"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.workflow_service.WorkFlowService.wait_for" title="Permalink to this definition">¶</a></dt>
+<dd><p>等待 dag 完成</p>
+<p>循环查看 dag 是否完成，并一直等待其完成</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dag_id</strong> (<em>str</em>) – dag 的 dag_id</p></li>
+<li><p><strong>run_id</strong> (<em>int</em>) – dag 的 run_id</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dag 的详细信息，可参考 <a class="reference internal" href="#flowengine.service.workflow_service.WorkFlowService.get_workflow_info" title="flowengine.service.workflow_service.WorkFlowService.get_workflow_info"><code class="xref py py-class docutils literal notranslate"><span class="pre">WorkFlowService.get_workflow_info</span></code></a> 返回值</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="yarn_service.html" class="btn btn-neutral float-right" title="yarn_service module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="self_learner_service.html" class="btn btn-neutral float-left" title="self_learner_service module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, meteor
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

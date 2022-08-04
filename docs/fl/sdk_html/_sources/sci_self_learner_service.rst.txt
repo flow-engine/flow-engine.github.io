@@ -1,0 +1,10 @@
+sci_self\_learner\_service module
+===========================================
+
+SCISelfLearnerService Service
+-----------------------------------------
+
+.. autoclass:: flowengine.service.sci.sci_self_learner_service.SCISelfLearnerService
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,0 +1,425 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sci_data_process_service module &mdash; FlowEngine-py-SDK release/1.5.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="sci_batch_predictor_service module" href="sci_batch_predictor_service.html" />
+    <link rel="prev" title="sci_solution_explore_binary_service module" href="sci_solution_explore_binary_service.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> FlowEngine-py-SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to FlowEngine-py-SDK</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="service.html">service package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="sci_solution_explore_service.html">sci_solution_explore_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci_solution_explore_regression_service.html">sci_solution_explore_regression_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci_solution_explore_binary_service.html">sci_solution_explore_binary_service module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">sci_data_process_service module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#scidataprocessservice-service">SCIDataProcessService Service</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sci_batch_predictor_service.html">sci_batch_predictor_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batch_predictor_service.html">batch_predictor_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="engine_kernel_service.html">engine_kernel_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keystone_service.html">keystone_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kubernetes_service.html">kubernetes_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manager_service.html">manager_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="market_service.html">market_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdms_service.html">pdms_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sc_instance_service.html">sc_instance_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci_self_learner_service.html">sci_self_learner_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="self_learner_service.html">self_learner_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflow_service.html">workflow_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="yarn_service.html">yarn_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crontab_service.html">crontab_service module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="client.html">client package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.html">model package</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">FlowEngine-py-SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="service.html">service package</a> &raquo;</li>
+        
+      <li>sci_data_process_service module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/sci_data_process_service.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sci-data-process-service-module">
+<h1>sci_data_process_service module<a class="headerlink" href="#sci-data-process-service-module" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="scidataprocessservice-service">
+<h2>SCIDataProcessService Service<a class="headerlink" href="#scidataprocessservice-service" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.service.sci.sci_data_process_service.SCIDataProcessService">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.service.sci.sci_data_process_service.</code><code class="sig-name descname">SCIDataProcessService</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">url</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">engine_key</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">headers</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">instance_id</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/sci/sci_data_process_service.html#SCIDataProcessService"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.sci.sci_data_process_service.SCIDataProcessService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="flowengine.service.sci.html#flowengine.service.sci.base_sci_service.BaseSCIService" title="flowengine.service.sci.base_sci_service.BaseSCIService"><code class="xref py py-class docutils literal notranslate"><span class="pre">flowengine.service.sci.base_sci_service.BaseSCIService</span></code></a></p>
+<dl class="py attribute">
+<dt id="flowengine.service.sci.sci_data_process_service.SCIDataProcessService.SC_KEY">
+<code class="sig-name descname">SC_KEY</code><em class="property"> = 'data-process'</em><a class="headerlink" href="#flowengine.service.sci.sci_data_process_service.SCIDataProcessService.SC_KEY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.sci.sci_data_process_service.SCIDataProcessService.check_hdfs">
+<code class="sig-name descname">check_hdfs</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/sci/sci_data_process_service.html#SCIDataProcessService.check_hdfs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.sci.sci_data_process_service.SCIDataProcessService.check_hdfs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.sci.sci_data_process_service.SCIDataProcessService.check_schema">
+<code class="sig-name descname">check_schema</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/sci/sci_data_process_service.html#SCIDataProcessService.check_schema"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.sci.sci_data_process_service.SCIDataProcessService.check_schema" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.sci.sci_data_process_service.SCIDataProcessService.get_logic_engine_id">
+<code class="sig-name descname">get_logic_engine_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_key</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/sci/sci_data_process_service.html#SCIDataProcessService.get_logic_engine_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.sci.sci_data_process_service.SCIDataProcessService.get_logic_engine_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.sci.sci_data_process_service.SCIDataProcessService.import_hdfs">
+<code class="sig-name descname">import_hdfs</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/sci/sci_data_process_service.html#SCIDataProcessService.import_hdfs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.sci.sci_data_process_service.SCIDataProcessService.import_hdfs" title="Permalink to this definition">¶</a></dt>
+<dd><p>导入 hdfs 数据</p>
+<p>将 hdfs 地址的数据导入 automl 中，注意该接口只支持导入一个数据文件</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>engine_key</strong> (<em>str</em>) – 引擎 key</p></li>
+<li><p><strong>upload_config</strong> (<em>dict</em>) – <p>导入文件的相关配置，下面配置可直接使用，其他无注释说明则无需修改</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>   <span class="c1"># 列异常行的处理方式，SKIP(抛弃异常行），TERMINATE(引入失败）</span>
+    <span class="s2">&quot;columnError&quot;</span><span class="p">:</span> <span class="s2">&quot;SKIP&quot;</span><span class="p">,</span>
+    <span class="c1"># 类型异常行的处理方式，SKIP(抛弃异常行），NULL(设置为Null)， TERMINATE(引入失败）</span>
+    <span class="s2">&quot;typeError&quot;</span><span class="p">:</span> <span class="s2">&quot;SKIP&quot;</span><span class="p">,</span>
+    <span class="c1"># 高级参数，可自定义，advanced_config = json.dumps({&#39;-m&#39;:&#39;4&#39;, &#39;mapreduce.job.reduces&#39;:&#39;3&#39;})</span>
+    <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># 高级参数默认值</span>
+        <span class="s2">&quot;advanced_config&quot;</span><span class="p">:</span> <span class="s2">&quot;{&quot;</span><span class="o">-</span><span class="n">m</span><span class="s2">&quot;: &quot;</span><span class="mi">4</span><span class="s2">&quot;,&quot;</span><span class="n">mapreduce</span><span class="o">.</span><span class="n">job</span><span class="o">.</span><span class="n">reduces</span><span class="s2">&quot;:&quot;</span><span class="mi">3</span><span class="s2">&quot;, &quot;</span><span class="n">mapreduce</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">memory</span><span class="o">.</span><span class="n">mb</span><span class="s2">&quot;: &quot;</span><span class="mi">4096</span><span class="s2">&quot;, &quot;</span><span class="n">mapreduce</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">java</span><span class="o">.</span><span class="n">opts</span><span class="s2">&quot;: &quot;</span><span class="o">-</span><span class="n">Xmx3072M</span><span class="s2">&quot;, &quot;</span><span class="n">mapreduce</span><span class="o">.</span><span class="n">reduce</span><span class="o">.</span><span class="n">memory</span><span class="o">.</span><span class="n">mb</span><span class="s2">&quot;: &quot;</span><span class="mi">4096</span><span class="s2">&quot;, &quot;</span><span class="n">mapreduce</span><span class="o">.</span><span class="n">reduce</span><span class="o">.</span><span class="n">java</span><span class="o">.</span><span class="n">opts</span><span class="s2">&quot;: &quot;</span><span class="o">-</span><span class="n">Xmx3072M</span><span class="s2">&quot;}&quot;</span>
+    <span class="p">},</span>
+    <span class="c1"># 文件类型：parquet（压缩文件），text（文本文件）</span>
+    <span class="s2">&quot;fileType&quot;</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+    <span class="c1"># 数据类型，behaviour（行为表），feedback（反馈表）</span>
+    <span class="s2">&quot;dataType&quot;</span><span class="p">:</span> <span class="s2">&quot;behaviour&quot;</span><span class="p">,</span>
+    <span class="c1"># 编码格式：utf-8，gbk，gb2312</span>
+    <span class="s2">&quot;encoding&quot;</span><span class="p">:</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;timing&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">&quot;partitionField&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;granularity&quot;</span><span class="p">:</span> <span class="s2">&quot;DAY&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;dateFormat&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s2">&quot;dateTimeFormat&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="c1"># label 字段，行为表可置 None</span>
+    <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="c1"># 主键字段</span>
+    <span class="s2">&quot;primaryKey&quot;</span><span class="p">:</span> <span class="s2">&quot;devDid&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;colDelimiter&quot;</span><span class="p">:</span> <span class="s2">&quot;0x2C&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;conf&quot;</span><span class="p">:</span> <span class="p">{},</span>
+    <span class="c1"># 行为表/反馈表的数据组 prn，可从 self.get_sys_params 返回值获取</span>
+    <span class="c1"># 从返回值获取行为表数据组 prn:list(ret[&#39;engineDataInfo&#39;][&#39;behaviourDataGroupMap&#39;].values())[0][&#39;groupPrn&#39;]</span>
+    <span class="c1"># 从返回值获取反馈表数据组 prn:list(ret[&#39;engineDataInfo&#39;][&#39;feedbackDataGroupMap&#39;].values())[0][&#39;groupPrn&#39;]</span>
+    <span class="s2">&quot;tableGroupPrn&quot;</span><span class="p">:</span> <span class="s2">&quot;automl/qsczmt_behaviourTable_20194921060620.table-group&quot;</span><span class="p">,</span>
+    <span class="c1"># 文件首行是否为字段名（schema）</span>
+    <span class="s2">&quot;firstLineSchema&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="c1"># 存储名称</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;hdfs_table_1561433501265&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;rowDelimiter&quot;</span><span class="p">:</span> <span class="s2">&quot;0x0A&quot;</span><span class="p">,</span>
+    <span class="c1"># 数据 schema ，通过 self.preview_data 获取，如不设置则使用 self.preview_data 的 schema</span>
+    <span class="s2">&quot;schemas&quot;</span><span class="p">:[</span>
+                <span class="p">{</span>
+                  <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;col_1&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Int&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;validateType&quot;</span><span class="p">:</span> <span class="p">[],</span>
+                  <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+                  <span class="s2">&quot;valueType&quot;</span><span class="p">:</span> <span class="s2">&quot;DiscreteNum&quot;</span>
+                <span class="p">},</span>
+    <span class="p">]</span>
+    <span class="s2">&quot;storageFormat&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="c1"># 可设置为存储名称（name）</span>
+    <span class="s2">&quot;ttable&quot;</span><span class="p">:</span> <span class="s2">&quot;hdfs_table_1561433501265&quot;</span><span class="p">,</span>
+    <span class="c1"># 待导入的文件的 hdfs 地址</span>
+    <span class="s2">&quot;urls&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;hdfs:///automl/sample-imp-pro-13-19-20190506-20190519.csv&quot;</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;importType&quot;</span><span class="p">:</span> <span class="s2">&quot;hdfs&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">ret['tableId']</span></code> 对应着 <code class="xref py py-class docutils literal notranslate"><span class="pre">AutoMLService.list_job</span></code> 返回值的 <code class="docutils literal notranslate"><span class="pre">ret['jobList']</span></code> 中的 <code class="docutils literal notranslate"><span class="pre">jobPrn</span></code></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.sci.sci_data_process_service.SCIDataProcessService.list_job">
+<code class="sig-name descname">list_job</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/sci/sci_data_process_service.html#SCIDataProcessService.list_job"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.sci.sci_data_process_service.SCIDataProcessService.list_job" title="Permalink to this definition">¶</a></dt>
+<dd><p>查看 job 任务</p>
+<p>查看数据导入的 job 任务</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>engine_key</strong> (<em>str</em>) – 引擎 key</p></li>
+<li><p><strong>data_type</strong> (<em>str</em>) – 参见  <code class="xref py py-class docutils literal notranslate"><span class="pre">AutoMLService.import_hdfs</span></code></p></li>
+<li><p><strong>group_prn</strong> (<em>str</em>) – 参见 <code class="xref py py-class docutils literal notranslate"><span class="pre">AutoMLService.import_hdfs</span></code></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">ret['uploadStatus']</span></code> 表示 <code class="docutils literal notranslate"><span class="pre">job</span></code> 状态 <code class="docutils literal notranslate"><span class="pre">{'INITIALIZED','RUNNING',</span> <span class="pre">'SUCCEEDED'}</span></code> ,
+<code class="docutils literal notranslate"><span class="pre">ret['progress']</span></code> 表示数据导入进度，
+<code class="docutils literal notranslate"><span class="pre">ret['jobPrn']</span></code> 表示 <code class="docutils literal notranslate"><span class="pre">job</span> <span class="pre">prn</span></code> ，对应 <code class="xref py py-class docutils literal notranslate"><span class="pre">flowengine.service.automl_service.import_hdfs</span></code> 的 <code class="docutils literal notranslate"><span class="pre">ret['tableId']</span></code></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.sci.sci_data_process_service.SCIDataProcessService.list_table">
+<code class="sig-name descname">list_table</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/sci/sci_data_process_service.html#SCIDataProcessService.list_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.sci.sci_data_process_service.SCIDataProcessService.list_table" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.sci.sci_data_process_service.SCIDataProcessService.preview_data">
+<code class="sig-name descname">preview_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwgs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/sci/sci_data_process_service.html#SCIDataProcessService.preview_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.sci.sci_data_process_service.SCIDataProcessService.preview_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>导入数据预览</p>
+<p>预览导入的数据</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>engine_key</strong> (<em>str</em>) – 引擎 key</p></li>
+<li><p><strong>table_file_path</strong> (<em>str</em>) – 导入文件的路径</p></li>
+<li><p><strong>data_type</strong> (<em>str</em>) – 参见 <code class="xref py py-class docutils literal notranslate"><span class="pre">AutoMLService.import_hdfs</span></code></p></li>
+<li><p><strong>file_type</strong> (<em>str</em>) – 参见 <code class="xref py py-class docutils literal notranslate"><span class="pre">AutoMLService.import_hdfs</span></code></p></li>
+<li><p><strong>encoding</strong> (<em>str</em>) – 参见 <code class="xref py py-class docutils literal notranslate"><span class="pre">AutoMLService.import_hdfs</span></code></p></li>
+<li><p><strong>is_first_line_schema</strong> (<em>bool</em>) – 参见 <code class="xref py py-class docutils literal notranslate"><span class="pre">AutoMLService.import_hdfs</span></code></p></li>
+<li><p><strong>group_prn</strong> (<em>str</em>) – 参见 <code class="xref py py-class docutils literal notranslate"><span class="pre">AutoMLService.import_hdfs</span></code></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>其中 <code class="docutils literal notranslate"><span class="pre">ret['schema']</span></code> 表示数据 <code class="docutils literal notranslate"><span class="pre">schema</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="c1"># 列名</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;col_1&quot;</span><span class="p">,</span>
+    <span class="c1"># 类型</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Int&quot;</span><span class="p">,</span>
+    <span class="c1"># 验证类型</span>
+    <span class="s2">&quot;validateType&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="c1"># 是否使用</span>
+    <span class="s2">&quot;use&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+    <span class="c1"># 值类型</span>
+    <span class="s2">&quot;valueType&quot;</span><span class="p">:</span> <span class="s2">&quot;DiscreteNum&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.service.sci.sci_data_process_service.SCIDataProcessService.set_table_relation">
+<code class="sig-name descname">set_table_relation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_id</span></em>, <em class="sig-param"><span class="n">primary_key</span></em>, <em class="sig-param"><span class="n">label</span></em>, <em class="sig-param"><span class="n">data_type</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/service/sci/sci_data_process_service.html#SCIDataProcessService.set_table_relation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.service.sci.sci_data_process_service.SCIDataProcessService.set_table_relation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sci_batch_predictor_service.html" class="btn btn-neutral float-right" title="sci_batch_predictor_service module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sci_solution_explore_binary_service.html" class="btn btn-neutral float-left" title="sci_solution_explore_binary_service module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, meteor
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

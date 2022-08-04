@@ -1,0 +1,168 @@
+flowengine.service package
+==========================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   flowengine.service.engine
+   flowengine.service.jobs
+   flowengine.service.sci
+
+Submodules
+----------
+
+flowengine.service.automl\_service module
+-----------------------------------------
+
+.. automodule:: flowengine.service.automl_service
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+flowengine.service.base\_service module
+---------------------------------------
+
+.. automodule:: flowengine.service.base_service
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+flowengine.service.batch\_predictor\_service module
+---------------------------------------------------
+
+.. automodule:: flowengine.service.batch_predictor_service
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+flowengine.service.crontab\_service module
+------------------------------------------
+
+.. automodule:: flowengine.service.crontab_service
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+flowengine.service.dashboard\_service module
+--------------------------------------------
+
+.. automodule:: flowengine.service.dashboard_service
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+flowengine.service.docker\_service module
+-----------------------------------------
+
+.. automodule:: flowengine.service.docker_service
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+flowengine.service.gitlab\_service module
+-----------------------------------------
+
+.. automodule:: flowengine.service.gitlab_service
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+flowengine.service.hyperx\_service module
+-----------------------------------------
+
+.. automodule:: flowengine.service.hyperx_service
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+flowengine.service.keystone\_service module
+-------------------------------------------
+
+.. automodule:: flowengine.service.keystone_service
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+flowengine.service.kubernetes\_service module
+---------------------------------------------
+
+.. automodule:: flowengine.service.kubernetes_service
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+flowengine.service.manager\_service module
+------------------------------------------
+
+.. automodule:: flowengine.service.manager_service
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+flowengine.service.market\_service module
+-----------------------------------------
+
+.. automodule:: flowengine.service.market_service
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+flowengine.service.pdms\_service module
+---------------------------------------
+
+.. automodule:: flowengine.service.pdms_service
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+flowengine.service.pms\_service module
+--------------------------------------
+
+.. automodule:: flowengine.service.pms_service
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+flowengine.service.sc\_instance\_service module
+-----------------------------------------------
+
+.. automodule:: flowengine.service.sc_instance_service
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+flowengine.service.self\_learner\_service module
+------------------------------------------------
+
+.. automodule:: flowengine.service.self_learner_service
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+flowengine.service.workflow\_service module
+-------------------------------------------
+
+.. automodule:: flowengine.service.workflow_service
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+flowengine.service.yarn\_service module
+---------------------------------------
+
+.. automodule:: flowengine.service.yarn_service
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: flowengine.service
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,293 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>flowengine.client.engine_client &mdash; FlowEngine-py-SDK release/1.5.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> FlowEngine-py-SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Welcome to FlowEngine-py-SDK</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../service.html">service package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../client.html">client package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../model.html">model package</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">FlowEngine-py-SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>flowengine.client.engine_client</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for flowengine.client.engine_client</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="kn">import</span> <span class="nn">requests</span>
+
+
+<div class="viewcode-block" id="EngineClient"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.engine_client.EngineClient">[docs]</a><span class="k">class</span> <span class="nc">EngineClient</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">headers</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">headers</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server_url</span> <span class="o">=</span> <span class="n">url</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">manager_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">server_url</span> <span class="o">+</span> <span class="s1">&#39;/automl-manager/v1&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">keystone_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">server_url</span> <span class="o">+</span> <span class="s1">&#39;/keystone/v1&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">market_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">server_url</span> <span class="o">+</span> <span class="s1">&#39;/template-market/v1&#39;</span>
+
+<div class="viewcode-block" id="EngineClient.list_active_apps"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.engine_client.EngineClient.list_active_apps">[docs]</a>    <span class="k">def</span> <span class="nf">list_active_apps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">workspace_id</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{manager_url}</span><span class="s1">/appList?workspaceId=</span><span class="si">{workspaceId}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">manager_url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">manager_url</span><span class="p">,</span>
+                                                                       <span class="n">workspaceId</span><span class="o">=</span><span class="n">workspace_id</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EngineClient.list_deactive_apps"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.engine_client.EngineClient.list_deactive_apps">[docs]</a>    <span class="k">def</span> <span class="nf">list_deactive_apps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">workspace_id</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{manager_url}</span><span class="s1">/appList?workspaceId=</span><span class="si">{workspaceId}</span><span class="s1">&amp;status=STOPPED&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">manager_url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">manager_url</span><span class="p">,</span>
+                                                                                      <span class="n">workspaceId</span><span class="o">=</span><span class="n">workspace_id</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EngineClient.get_workspaces"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.engine_client.EngineClient.get_workspaces">[docs]</a>    <span class="k">def</span> <span class="nf">get_workspaces</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{keystone_url}</span><span class="s1">/workspaces?page=1&amp;size=-1&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">keystone_url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">keystone_url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EngineClient.get_users"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.engine_client.EngineClient.get_users">[docs]</a>    <span class="k">def</span> <span class="nf">get_users</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">workspace_id</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{keystone_url}</span><span class="s1">/workspace-user/</span><span class="si">{workspaceId}</span><span class="s1">?size=15&amp;page=1&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">keystone_url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">keystone_url</span><span class="p">,</span>
+                                                                                  <span class="n">workspaceId</span><span class="o">=</span><span class="n">workspace_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EngineClient.get_template_markets"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.engine_client.EngineClient.get_template_markets">[docs]</a>    <span class="k">def</span> <span class="nf">get_template_markets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;pageSize&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="s2">&quot;pageNum&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;condition&quot;</span><span class="p">:</span> <span class="p">{}}</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{market_url}</span><span class="s1">/template/list&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">market_url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">market_url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">))</span></div>
+
+    <span class="c1"># {</span>
+    <span class="c1">#     &quot;appName&quot;: &quot;string&quot;,</span>
+    <span class="c1">#     &quot;applyUser&quot;: 0,</span>
+    <span class="c1">#     &quot;engineKey&quot;: &quot;string&quot;,</span>
+    <span class="c1">#     &quot;logicAutoml&quot;: true,</span>
+    <span class="c1">#     &quot;relatedEngineId&quot;: 0,</span>
+    <span class="c1">#     &quot;templateId&quot;: 0,</span>
+    <span class="c1">#     &quot;versionId&quot;: 0,</span>
+    <span class="c1">#     &quot;workspaceId&quot;: 0</span>
+    <span class="c1"># }</span>
+
+<div class="viewcode-block" id="EngineClient.create"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.engine_client.EngineClient.create">[docs]</a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_name</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">,</span> <span class="n">template_id</span><span class="p">,</span> <span class="n">workspace_id</span><span class="p">,</span> <span class="n">user_name</span><span class="p">,</span> <span class="n">logic_automl</span><span class="p">,</span> <span class="n">component_config_map</span><span class="p">):</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;engineKey&quot;</span><span class="p">:</span> <span class="n">engine_key</span><span class="p">,</span> <span class="s2">&quot;appName&quot;</span><span class="p">:</span> <span class="n">app_name</span><span class="p">,</span> <span class="s2">&quot;workspaceId&quot;</span><span class="p">:</span> <span class="n">workspace_id</span><span class="p">,</span> <span class="s2">&quot;templateId&quot;</span><span class="p">:</span> <span class="n">template_id</span><span class="p">,</span>
+                   <span class="s2">&quot;logicAutoml&quot;</span><span class="p">:</span> <span class="n">logic_automl</span><span class="p">,</span> <span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="n">user_name</span><span class="p">,</span> <span class="s1">&#39;componentConfigMap&#39;</span><span class="p">:</span> <span class="n">component_config_map</span><span class="p">}</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{manager_url}</span><span class="s1">/app&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">manager_url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">manager_url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="EngineClient.offline"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.engine_client.EngineClient.offline">[docs]</a>    <span class="k">def</span> <span class="nf">offline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance_id</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{manager_url}</span><span class="s1">/app?instanceId=</span><span class="si">{instanceId}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">manager_url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">manager_url</span><span class="p">,</span> <span class="n">instanceId</span><span class="o">=</span><span class="n">instance_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EngineClient.online"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.engine_client.EngineClient.online">[docs]</a>    <span class="k">def</span> <span class="nf">online</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance_id</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{manager_url}</span><span class="s1">/app/restart?instanceId=</span><span class="si">{instanceId}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">manager_url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">manager_url</span><span class="p">,</span>
+                                                                         <span class="n">instanceId</span><span class="o">=</span><span class="n">instance_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EngineClient.delete"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.engine_client.EngineClient.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance_id</span><span class="p">,</span> <span class="n">delete_DB</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{manager_url}</span><span class="s1">/app/forever?deleteDB=</span><span class="si">{deleteDB}</span><span class="s1">&amp;instanceId=</span><span class="si">{instanceId}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">manager_url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">manager_url</span><span class="p">,</span> <span class="n">deleteDB</span><span class="o">=</span><span class="n">delete_DB</span><span class="p">,</span> <span class="n">instanceId</span><span class="o">=</span><span class="n">instance_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EngineClient.get"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.engine_client.EngineClient.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance_id</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{manager_url}</span><span class="s1">/app&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">manager_url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">manager_url</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;instanceId&#39;</span><span class="p">:</span> <span class="n">instance_id</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EngineClient.list_sci"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.engine_client.EngineClient.list_sci">[docs]</a>    <span class="k">def</span> <span class="nf">list_sci</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_id</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{manager_url}</span><span class="s1">/component/runtime&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">manager_url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">manager_url</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;instanceId&#39;</span><span class="p">:</span> <span class="n">engine_id</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EngineClient.get_sci"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.engine_client.EngineClient.get_sci">[docs]</a>    <span class="k">def</span> <span class="nf">get_sci</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sci_id</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{manager_url}</span><span class="s1">/component/get/config&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">manager_url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">manager_url</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;scId&#39;</span><span class="p">:</span> <span class="n">sci_id</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EngineClient.update_sci"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.engine_client.EngineClient.update_sci">[docs]</a>    <span class="k">def</span> <span class="nf">update_sci</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sci_config</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{manager_url}</span><span class="s1">/component/update/config&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">manager_url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">manager_url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">sci_config</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, meteor
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

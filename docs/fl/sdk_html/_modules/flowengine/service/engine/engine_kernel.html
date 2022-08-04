@@ -1,0 +1,656 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>flowengine.service.engine.engine_kernel &mdash; FlowEngine-py-SDK release/1.5.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> FlowEngine-py-SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../index.html">Welcome to FlowEngine-py-SDK</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../service.html">service package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../client.html">client package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../model.html">model package</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">FlowEngine-py-SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>flowengine.service.engine.engine_kernel</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for flowengine.service.engine.engine_kernel</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*-coding:utf-8-*-</span>
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span><span class="nn">json</span>
+
+<span class="kn">from</span> <span class="nn">flowengine.client.engine_kernel_client</span> <span class="kn">import</span> <span class="n">EngineKernelClient</span>
+<span class="kn">from</span> <span class="nn">flowengine.config</span> <span class="kn">import</span> <span class="n">Settings</span>
+<span class="kn">from</span> <span class="nn">flowengine.config</span> <span class="kn">import</span> <span class="n">settings</span>
+<span class="kn">from</span> <span class="nn">flowengine.logger_manager</span> <span class="kn">import</span> <span class="n">logger</span>
+<span class="kn">from</span> <span class="nn">flowengine.service.automl_service</span> <span class="kn">import</span> <span class="n">automl_response_decorator</span>
+<span class="kn">from</span> <span class="nn">flowengine.service.base_service</span> <span class="kn">import</span> <span class="n">BaseService</span>
+
+<span class="n">log</span> <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="EngineKernelService"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService">[docs]</a><span class="k">class</span> <span class="nc">EngineKernelService</span><span class="p">(</span><span class="n">BaseService</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Flowengine 的 engineKernel 相关 service</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">instance_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">headers</span> <span class="ow">or</span> <span class="p">{})</span>
+        <span class="k">if</span> <span class="n">instance_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">old_instance_id</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;INSTANCE_ID&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;INSTANCE_ID&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">instance_id</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;engine_kernel&#39;</span><span class="p">]</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;INSTANCE_ID&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">old_instance_id</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;engine_kernel&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">EngineKernelClient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
+
+<div class="viewcode-block" id="EngineKernelService.query_process"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.query_process">[docs]</a>    <span class="nd">@automl_response_decorator</span>
+    <span class="k">def</span> <span class="nf">query_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">engine_key</span> <span class="o">=</span> <span class="n">engine_key</span> <span class="ow">or</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;engine_key&#39;</span><span class="p">]</span>
+        <span class="n">logic_engine_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_logic_engine_id</span><span class="p">(</span><span class="n">engine_key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">query_process</span><span class="p">(</span><span class="n">logic_engine_id</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.get_sci_runtime"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.get_sci_runtime">[docs]</a>    <span class="k">def</span> <span class="nf">get_sci_runtime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">,</span> <span class="n">sc_key</span><span class="p">):</span>
+        <span class="n">process</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">query_process</span><span class="p">(</span><span class="n">engine_key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">next</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">component</span> <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="n">process</span><span class="p">[</span><span class="s1">&#39;componentRuntimeList&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">component</span><span class="p">[</span><span class="s1">&#39;runtimeMeta&#39;</span><span class="p">][</span><span class="s1">&#39;key&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">sc_key</span><span class="p">),</span>
+            <span class="kc">None</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.get_service_url_from_runtime"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.get_service_url_from_runtime">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_service_url_from_runtime</span><span class="p">(</span><span class="n">runtime</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">runtime</span><span class="p">[</span><span class="s1">&#39;runtimeMeta&#39;</span><span class="p">][</span><span class="s1">&#39;k8sRunntime&#39;</span><span class="p">][</span><span class="s1">&#39;serviceEndpoint&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.get_listen_path_from_runtime"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.get_listen_path_from_runtime">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_listen_path_from_runtime</span><span class="p">(</span><span class="n">runtime</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">runtime</span><span class="p">[</span><span class="s1">&#39;runtimeMeta&#39;</span><span class="p">][</span><span class="s1">&#39;k8sRunntime&#39;</span><span class="p">][</span><span class="s1">&#39;listenPath&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.get_remote_url"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.get_remote_url">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_remote_url</span><span class="p">(</span><span class="n">listen_path</span><span class="p">,</span> <span class="n">cluster_url</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">cluster_url</span> <span class="o">=</span> <span class="n">cluster_url</span> <span class="ow">or</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;cluster_url&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">cluster_url</span> <span class="o">+</span> <span class="n">listen_path</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.get_remote_sci_url"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.get_remote_sci_url">[docs]</a>    <span class="k">def</span> <span class="nf">get_remote_sci_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">,</span> <span class="n">sc_key</span><span class="p">):</span>
+        <span class="n">runtime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_sci_runtime</span><span class="p">(</span><span class="n">engine_key</span><span class="p">,</span> <span class="n">sc_key</span><span class="p">)</span>
+        <span class="n">listen_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_listen_path_from_runtime</span><span class="p">(</span><span class="n">runtime</span><span class="p">)</span>
+        <span class="n">strs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+        <span class="n">ip_port</span> <span class="o">=</span> <span class="s1">&#39;/&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">strs</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">ip_port</span> <span class="o">+</span> <span class="n">listen_path</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.get_internal_sci_url"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.get_internal_sci_url">[docs]</a>    <span class="k">def</span> <span class="nf">get_internal_sci_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">,</span> <span class="n">sc_key</span><span class="p">):</span>
+        <span class="n">runtime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_sci_runtime</span><span class="p">(</span><span class="n">engine_key</span><span class="p">,</span> <span class="n">sc_key</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">runtime</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_service_url_from_runtime</span><span class="p">(</span><span class="n">runtime</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.get_sci_url"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.get_sci_url">[docs]</a>    <span class="k">def</span> <span class="nf">get_sci_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">,</span> <span class="n">sc_key</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">settings</span><span class="o">.</span><span class="n">section_name</span> <span class="o">==</span> <span class="n">Settings</span><span class="o">.</span><span class="n">REMOTE</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_remote_sci_url</span><span class="p">(</span><span class="n">engine_key</span><span class="p">,</span> <span class="n">sc_key</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_internal_sci_url</span><span class="p">(</span><span class="n">engine_key</span><span class="p">,</span> <span class="n">sc_key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">url</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.create_context_info_with_key"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.create_context_info_with_key">[docs]</a>    <span class="k">def</span> <span class="nf">create_context_info_with_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">context_info</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">create_context_with_key</span><span class="p">(</span><span class="n">engine_key</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">context_info</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.update_context_info_with_key"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.update_context_info_with_key">[docs]</a>    <span class="k">def</span> <span class="nf">update_context_info_with_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">context_info</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">update_context_info_with_key</span><span class="p">(</span><span class="n">engine_key</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">context_info</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.get_context_info_with_key"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.get_context_info_with_key">[docs]</a>    <span class="k">def</span> <span class="nf">get_context_info_with_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">context_key</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get_context_info_with_key</span><span class="p">(</span><span class="n">engine_key</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">context_key</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.list_context_info_with_key"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.list_context_info_with_key">[docs]</a>    <span class="k">def</span> <span class="nf">list_context_info_with_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">,</span> <span class="n">component</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">list_context_info_with_key</span><span class="p">(</span><span class="n">engine_key</span><span class="p">,</span> <span class="n">component</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.register_message_with_key"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.register_message_with_key">[docs]</a>    <span class="k">def</span> <span class="nf">register_message_with_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">message_info</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">register_message_with_key</span><span class="p">(</span><span class="n">engine_key</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">message_info</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.update_message_with_key"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.update_message_with_key">[docs]</a>    <span class="k">def</span> <span class="nf">update_message_with_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">message_info</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">update_message_with_key</span><span class="p">(</span><span class="n">engine_key</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">message_info</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.producer_message_with_key"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.producer_message_with_key">[docs]</a>    <span class="k">def</span> <span class="nf">producer_message_with_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">producer_message_with_key</span><span class="p">(</span><span class="n">engine_key</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.get_predict_config"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.get_predict_config">[docs]</a>    <span class="nd">@automl_response_decorator</span>
+    <span class="k">def</span> <span class="nf">get_predict_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">):</span>
+        <span class="n">loginc_engine_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_logic_engine_id</span><span class="p">(</span><span class="n">engine_key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get_predict_config</span><span class="p">(</span><span class="n">loginc_engine_id</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.get_history_by_index_name"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.get_history_by_index_name">[docs]</a>    <span class="nd">@automl_response_decorator</span>
+    <span class="k">def</span> <span class="nf">get_history_by_index_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_id</span><span class="p">,</span> <span class="n">index_name</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;获取指标历史</span>
+
+<span class="sd">        根据名字获取指标历史</span>
+
+<span class="sd">        :param int engine_id: 引擎ID,</span>
+<span class="sd">        :param str index_name: 指标名称,</span>
+<span class="sd">        :param int limit: 数据最大数量, 默认 10</span>
+
+<span class="sd">        :return: 指标历史列表</span>
+<span class="sd">        :rtype: list(dict)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get_history_by_index_name</span><span class="p">(</span><span class="n">engine_id</span><span class="p">,</span> <span class="n">index_name</span><span class="p">,</span> <span class="n">limit</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.get_sys_params"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.get_sys_params">[docs]</a>    <span class="nd">@automl_response_decorator</span>
+    <span class="k">def</span> <span class="nf">get_sys_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;获取系统配置</span>
+
+<span class="sd">        获取系统配置参数</span>
+
+<span class="sd">        :param str engine_key: 引擎 key</span>
+
+<span class="sd">        :return: 系统参数</span>
+<span class="sd">        :rtype: dict</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get_sys_params</span><span class="p">(</span><span class="n">engine_key</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.get_logic_engine_id"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.get_logic_engine_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_logic_engine_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;获取 engine id</span>
+
+<span class="sd">        通过 engine_key 获取 engine_id</span>
+
+<span class="sd">        :param str engine_key: 殷勤 key</span>
+
+<span class="sd">        :return:  引擎 id</span>
+<span class="sd">        :rtype: int</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_sys_params</span><span class="p">(</span><span class="n">engine_key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;engineId&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.start_online_predictor"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.start_online_predictor">[docs]</a>    <span class="nd">@automl_response_decorator</span>
+    <span class="k">def</span> <span class="nf">start_online_predictor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_prn</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">,</span> <span class="n">cpu</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mem</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">replica</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">feature_enabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                               <span class="n">kafka_end_point</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kafka_topic</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kafka_interval</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">externel_config</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="sd">&quot;&quot;&quot;部署在线预估</span>
+
+<span class="sd">        根据 model_prn 部署批量预估</span>
+
+
+<span class="sd">        :param str model_prn: model prn 地址</span>
+<span class="sd">        :param str engine_key: 引擎 key</span>
+<span class="sd">        :param int cpu: 单实例资源配置, cpu 核心数</span>
+<span class="sd">        :param int mem: 单实例资源配置, 内存（M）</span>
+<span class="sd">        :param int replica: 实例数量设置</span>
+<span class="sd">        :param bool feature_enabled: 是否开启自动回流，如开启，kafka 相关参数必须</span>
+<span class="sd">        :param str kafka_end_point: Kafka 地址</span>
+<span class="sd">        :param str kafka_topic: Kafka Topic</span>
+<span class="sd">        :param int kafka_interval: Kafka 回流周期，单位小时</span>
+<span class="sd">        :param externel_config: map 包含额外参数的配置，配置部分如下：</span>
+<span class="sd">            :int jvmMemoryLimit: jvm的大小</span>
+<span class="sd">            :bool isTFEEnabled: 是否开启TFE预估，如开启，zookeeper和主表相关参数必须</span>
+<span class="sd">            :str feMainTable: TFE预估主表</span>
+<span class="sd">            :str zkEndPoint: zookeeper addr</span>
+<span class="sd">            :str zkRootPath: zookeeper的rtidb path</span>
+<span class="sd">            :dict externalMap: 可额外传递的预估环境变量</span>
+
+<span class="sd">        :return: ``true`` 表示部署成功</span>
+<span class="sd">        :rtype: str</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">externel_config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">externel_config</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;cpuLimit&quot;</span><span class="p">:</span> <span class="n">cpu</span><span class="p">,</span>
+                <span class="s2">&quot;memLimit&quot;</span><span class="p">:</span> <span class="n">mem</span><span class="p">,</span>
+                <span class="s2">&quot;replica&quot;</span><span class="p">:</span> <span class="n">replica</span><span class="p">,</span>
+                <span class="s2">&quot;featureLogEnabled&quot;</span><span class="p">:</span> <span class="n">feature_enabled</span><span class="p">,</span>
+                <span class="s2">&quot;kafkaEndPoint&quot;</span><span class="p">:</span> <span class="n">kafka_end_point</span><span class="p">,</span>
+                <span class="s2">&quot;kafkaTopic&quot;</span><span class="p">:</span> <span class="n">kafka_topic</span><span class="p">,</span>
+                <span class="s2">&quot;kafkaInterval&quot;</span><span class="p">:</span> <span class="n">kafka_interval</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;modelDto&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;modelPrn&quot;</span><span class="p">:</span> <span class="n">model_prn</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;params&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">externel_config</span><span class="p">)</span>
+        <span class="n">loginc_engine_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_logic_engine_id</span><span class="p">(</span><span class="n">engine_key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post_online_predict_config</span><span class="p">(</span><span class="n">loginc_engine_id</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.start_manual_online_predictor"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.start_manual_online_predictor">[docs]</a>    <span class="nd">@automl_response_decorator</span>
+    <span class="k">def</span> <span class="nf">start_manual_online_predictor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_prn</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">,</span> <span class="n">cpu</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mem</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">replica</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">feature_enabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                      <span class="n">kafka_end_point</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kafka_topic</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pod_env</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;增强部署在线预估</span>
+
+<span class="sd">        根据 model_prn 部署在线预估</span>
+
+<span class="sd">        :param str model_prn: model prn 地址</span>
+<span class="sd">        :param str engine_key: 引擎 key</span>
+<span class="sd">        :param int cpu: 单实例资源配置, cpu 核心数</span>
+<span class="sd">        :param int mem: 单实例资源配置, 内存（M）</span>
+<span class="sd">        :param int replica: 实例数量设置</span>
+<span class="sd">        :param bool feature_enabled: 是否开启自动回流，如开启，kafka 相关参数必须</span>
+<span class="sd">        :param str kafka_end_point: Kafka 地址</span>
+<span class="sd">        :param str kafka_topic: Kafka Topic</span>
+<span class="sd">        :param map pod_env: 参考ee的在线预估的环境变量，扩展使用</span>
+
+<span class="sd">        :return: ``true`` 表示部署成功</span>
+<span class="sd">        :rtype: str</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">pod_env</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">pod_env</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;modelPrn&quot;</span><span class="p">:</span> <span class="n">model_prn</span><span class="p">,</span>
+            <span class="s2">&quot;cpu&quot;</span><span class="p">:</span> <span class="n">cpu</span><span class="p">,</span>
+            <span class="s2">&quot;memory&quot;</span><span class="p">:</span> <span class="n">mem</span><span class="p">,</span>
+            <span class="s2">&quot;featureLogEnabled&quot;</span><span class="p">:</span> <span class="n">feature_enabled</span><span class="p">,</span>
+            <span class="s2">&quot;kafkaEndpoints&quot;</span><span class="p">:</span> <span class="n">kafka_end_point</span><span class="p">,</span>
+            <span class="s2">&quot;kafkaFeatureTopic&quot;</span><span class="p">:</span> <span class="n">kafka_topic</span><span class="p">,</span>
+            <span class="s2">&quot;replica&quot;</span><span class="p">:</span> <span class="n">replica</span><span class="p">,</span>
+            <span class="s2">&quot;podEnvironment&quot;</span><span class="p">:</span> <span class="n">pod_env</span>
+        <span class="p">}</span>
+        <span class="n">loginc_engine_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_logic_engine_id</span><span class="p">(</span><span class="n">engine_key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post_manual_online_predict_config</span><span class="p">(</span><span class="n">loginc_engine_id</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.start_index"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.start_index">[docs]</a>    <span class="nd">@automl_response_decorator</span>
+    <span class="k">def</span> <span class="nf">start_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">,</span> <span class="n">template_id</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;开启自定义任务</span>
+
+<span class="sd">        开启自定义任务</span>
+
+<span class="sd">        :param str engine_key: 引擎 key</span>
+<span class="sd">        :param int index_id: 自定义任务 ID</span>
+
+<span class="sd">        :return: 本次自定义任务运行的信息</span>
+<span class="sd">                resp[&#39;data&#39;][‘id&#39;]是本次运行ID</span>
+<span class="sd">                resp[&#39;data&#39;][‘params&#39;]是本次运行的参数</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;engine_key&#39;</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">)</span>
+        <span class="n">logic_engine_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_logic_engine_id</span><span class="p">(</span><span class="n">engine_key</span><span class="p">)</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">start_index</span><span class="p">(</span><span class="n">logic_engine_id</span><span class="p">,</span> <span class="n">template_id</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">resp</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.stop_index"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.stop_index">[docs]</a>    <span class="nd">@automl_response_decorator</span>
+    <span class="k">def</span> <span class="nf">stop_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">,</span> <span class="n">history_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;停止自定义任务</span>
+
+<span class="sd">        停止自定义任务</span>
+
+<span class="sd">        :param str engine_key: 引擎 key</span>
+<span class="sd">        :param int index_id: 自定义任务 ID</span>
+
+<span class="sd">        :return: 本次自定义任务运行的信息</span>
+<span class="sd">                resp[&#39;data&#39;][‘id&#39;]是本次运行ID</span>
+<span class="sd">                resp[&#39;data&#39;][‘params&#39;]是本次运行的参数</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># / chart / history / 1 / stop?engineId = 1</span>
+        <span class="n">logic_engine_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_logic_engine_id</span><span class="p">(</span><span class="n">engine_key</span><span class="p">)</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">stop_index</span><span class="p">(</span><span class="n">logic_engine_id</span><span class="p">,</span> <span class="n">history_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">resp</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.restart_index"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.restart_index">[docs]</a>    <span class="nd">@automl_response_decorator</span>
+    <span class="k">def</span> <span class="nf">restart_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">,</span> <span class="n">history_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;重新启动自定义任务</span>
+
+<span class="sd">        重新启动自定义任务</span>
+
+<span class="sd">        :param str engine_key: 引擎 key</span>
+<span class="sd">        :param int index_id: 自定义任务 ID</span>
+
+<span class="sd">        :return: 本次自定义任务运行的信息</span>
+<span class="sd">                resp[&#39;data&#39;][‘id&#39;]是本次运行ID</span>
+<span class="sd">                resp[&#39;data&#39;][‘params&#39;]是本次运行的参数</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">logic_engine_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_logic_engine_id</span><span class="p">(</span><span class="n">engine_key</span><span class="p">)</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">restart_index</span><span class="p">(</span><span class="n">logic_engine_id</span><span class="p">,</span> <span class="n">history_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">resp</span></div>
+
+
+<div class="viewcode-block" id="EngineKernelService.get_pipeline_templates"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.get_pipeline_templates">[docs]</a>    <span class="k">def</span> <span class="nf">get_pipeline_templates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_template_id</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;获得指定模版下pipeline定义</span>
+
+<span class="sd">        :param engine_template_id: 模版id，默认为1</span>
+
+<span class="sd">        :return: pipeline模版</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">template</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="n">engine_template_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">template</span><span class="p">[</span><span class="s1">&#39;jobPipelineTemplates&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.get_pipelines"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.get_pipelines">[docs]</a>    <span class="k">def</span> <span class="nf">get_pipelines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;获得指定引擎的pipeline列表</span>
+
+<span class="sd">        :param engine_key: 引擎key</span>
+
+<span class="sd">        :return: pipeline列表</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">engine_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_logic_engine_id</span><span class="p">(</span><span class="n">engine_key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get_pipelines</span><span class="p">(</span><span class="n">engine_id</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.enable_pipeline"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.enable_pipeline">[docs]</a>    <span class="k">def</span> <span class="nf">enable_pipeline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pipeline_id</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;生效引擎key及pipeline_id的pipeline循环运行策略</span>
+
+<span class="sd">        :param pipeline_id:</span>
+<span class="sd">        :param engine_key:</span>
+
+<span class="sd">        :return:操作状态</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">engine_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_logic_engine_id</span><span class="p">(</span><span class="n">engine_key</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">enable_pipeline</span><span class="p">(</span><span class="n">engine_id</span><span class="p">,</span> <span class="n">pipeline_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;post error,try again!&#39;</span><span class="p">}</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.disable_pipeline"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.disable_pipeline">[docs]</a>    <span class="k">def</span> <span class="nf">disable_pipeline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pipeline_id</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;失效引擎key及pipeline_id的pipeline循环运行策略</span>
+
+<span class="sd">        :param pipeline_id: pipeline</span>
+<span class="sd">        :param engine_key:引擎key</span>
+
+<span class="sd">        :return:操作状态</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">engine_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_logic_engine_id</span><span class="p">(</span><span class="n">engine_key</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">disable_pipeline</span><span class="p">(</span><span class="n">engine_id</span><span class="p">,</span> <span class="n">pipeline_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;post error,try again!&#39;</span><span class="p">}</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.list_pipeline_history"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.list_pipeline_history">[docs]</a>    <span class="k">def</span> <span class="nf">list_pipeline_history</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pipeline_id</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;列举引擎key及pipeline_id的所有history信息</span>
+
+<span class="sd">        :param pipeline_id: pipeline</span>
+<span class="sd">        :param engine_key:引擎key</span>
+
+<span class="sd">        :return:操作状态</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">engine_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_logic_engine_id</span><span class="p">(</span><span class="n">engine_key</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">list_pipeline_histories</span><span class="p">(</span><span class="n">pipeline_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;post error,try again!&#39;</span><span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="EngineKernelService.create_or_update_pipeline"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.create_or_update_pipeline">[docs]</a>    <span class="k">def</span> <span class="nf">create_or_update_pipeline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_pipeline_raw</span><span class="p">,</span> <span class="n">pipeline_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">engine_template_id</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;新增或者更新已有的pipeline</span>
+
+<span class="sd">        :param new_pipeline_raw: pipeline定义</span>
+<span class="sd">        :param pipeline_id: 更新时提供更新的pipeline_id</span>
+<span class="sd">        :param engine_template_id:引擎模版id，默认为1</span>
+
+<span class="sd">        :return:操作状态</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">template</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="n">engine_template_id</span><span class="p">)</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">payload</span><span class="p">[</span><span class="s1">&#39;engineDashBoardTemplate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">template</span><span class="p">[</span><span class="s1">&#39;engineDashBoardTemplate&#39;</span><span class="p">]</span>
+        <span class="n">payload</span><span class="p">[</span><span class="s1">&#39;indexTemplate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">template</span><span class="p">[</span><span class="s1">&#39;indexTemplate&#39;</span><span class="p">]</span>
+        <span class="n">oldPipelines</span> <span class="o">=</span> <span class="n">template</span><span class="p">[</span><span class="s1">&#39;jobPipelineTemplates&#39;</span><span class="p">]</span>
+        <span class="n">new_pipeline</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">new_pipeline</span><span class="p">[</span><span class="s1">&#39;engineTemplateId&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">engine_template_id</span>
+        <span class="n">new_pipeline</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_pipeline_raw</span>
+        <span class="k">if</span> <span class="n">pipeline_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">new_pipeline</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pipeline_id</span>
+            <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">oldPipelines</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">pipeline_id</span><span class="p">:</span>
+                    <span class="n">oldPipelines</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+                    <span class="k">break</span>
+        <span class="n">oldPipelines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_pipeline</span><span class="p">)</span>
+        <span class="n">payload</span><span class="p">[</span><span class="s1">&#39;jobPipelineTemplates&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">oldPipelines</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">save_template</span><span class="p">(</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="k">lambda</span> <span class="n">o</span><span class="p">:</span> <span class="n">o</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">6</span><span class="p">),</span> <span class="s1">&#39;solution-job-runner&#39;</span><span class="p">,</span>
+            <span class="n">engine_template_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;post error,try again!&#39;</span><span class="p">}</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.run_pipeline"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.run_pipeline">[docs]</a>    <span class="k">def</span> <span class="nf">run_pipeline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">,</span> <span class="n">pipeline_id</span><span class="p">,</span><span class="n">job_params</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;运行一次pipeline</span>
+
+<span class="sd">        :param engine_key: 引擎key</span>
+<span class="sd">        :param pipeline_id: 要启动的pipeline_id</span>
+<span class="sd">        :param job_params: 启动参数{&#39;jobid&#39;:{&#39;param1&#39;:&#39;xxx&#39;} ...},eg.{&quot;b2ab4917-a739-47f7-a6ca-7998dbe00222&quot;:{&quot;param1&quot;:&quot;111&quot;}}</span>
+
+<span class="sd">        :return:pipeline启动状态</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">engine_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_logic_engine_id</span><span class="p">(</span><span class="n">engine_key</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">run_pipeline</span><span class="p">(</span><span class="n">engine_id</span><span class="p">,</span> <span class="n">pipeline_id</span><span class="p">,</span><span class="n">job_params</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;post error,try again!&#39;</span><span class="p">}</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.stop_pipeline_run"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.stop_pipeline_run">[docs]</a>    <span class="k">def</span> <span class="nf">stop_pipeline_run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">,</span> <span class="n">history_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;停止指定的pipeline运行</span>
+
+<span class="sd">        :param engine_key: 引擎key</span>
+<span class="sd">        :param history_id: 运行记录id</span>
+
+<span class="sd">        :return: 操作状态</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">engine_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_logic_engine_id</span><span class="p">(</span><span class="n">engine_key</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">stop_pipeline_run</span><span class="p">(</span><span class="n">history_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;post error,try again!&#39;</span><span class="p">}</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.resume_pipeline_run"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.resume_pipeline_run">[docs]</a>    <span class="k">def</span> <span class="nf">resume_pipeline_run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">,</span> <span class="n">history_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">       指定pipeline运行记录继续运行</span>
+<span class="sd">        :param engine_key: 引擎key</span>
+<span class="sd">        :param history_id: 运行记录id</span>
+<span class="sd">        :return: 操作状态</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">engine_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_logic_engine_id</span><span class="p">(</span><span class="n">engine_key</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">resume_pipeline_run</span><span class="p">(</span><span class="n">history_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;post error,try again!&#39;</span><span class="p">}</span></div>
+
+<div class="viewcode-block" id="EngineKernelService.get_pipeline_run_info"><a class="viewcode-back" href="../../../../flowengine.service.engine.html#flowengine.service.engine.engine_kernel.EngineKernelService.get_pipeline_run_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_pipeline_run_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">,</span> <span class="n">history_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;获得指定pipeline运行的运行结果</span>
+
+<span class="sd">        :param engine_key: 引擎key</span>
+<span class="sd">        :param history_id: 运行记录id</span>
+
+<span class="sd">        :return: 操作状态</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">engine_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_logic_engine_id</span><span class="p">(</span><span class="n">engine_key</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get_pipeline_run_info</span><span class="p">(</span><span class="n">history_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;post error,try again!&#39;</span><span class="p">}</span></div></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">EngineKernelService</span><span class="p">()</span>
+    <span class="n">t1</span><span class="o">.</span><span class="n">run_pipeline</span><span class="p">(</span><span class="s1">&#39;pepeline&#39;</span><span class="p">,</span><span class="mi">9</span><span class="p">,{</span><span class="s2">&quot;b2ab4917-a739-47f7-a6ca-7998dbe00222&quot;</span><span class="p">:{</span><span class="s2">&quot;param1&quot;</span><span class="p">:</span><span class="s2">&quot;112&quot;</span><span class="p">}})</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, meteor
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

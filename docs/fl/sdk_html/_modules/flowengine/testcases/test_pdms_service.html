@@ -1,0 +1,393 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>flowengine.testcases.test_pdms_service &mdash; FlowEngine-py-SDK release/1.5.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> FlowEngine-py-SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Welcome to FlowEngine-py-SDK</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../service.html">service package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../client.html">client package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../model.html">model package</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">FlowEngine-py-SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>flowengine.testcases.test_pdms_service</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for flowengine.testcases.test_pdms_service</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">unittest</span>
+
+<span class="kn">from</span> <span class="nn">flowengine.logger_manager</span> <span class="kn">import</span> <span class="n">logger</span>
+<span class="kn">from</span> <span class="nn">flowengine.service.pdms_service</span> <span class="kn">import</span> <span class="n">PdmsService</span>
+<span class="kn">from</span> <span class="nn">flowengine.testcases.loadConfig</span> <span class="kn">import</span> <span class="n">LoadConfig</span>
+
+<span class="n">table_json</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">               {</span>
+<span class="s2">                   &quot;dataSource&quot;: {</span>
+<span class="s2">                       &quot;module&quot;:&quot;telamon&quot;,</span>
+<span class="s2">                       &quot;protocol&quot;:&quot;HDFS&quot;,</span>
+<span class="s2">                       &quot;columnSpliter&quot;:&quot;0x2C&quot;,</span>
+<span class="s2">                       &quot;lineSpliter&quot;:&quot;0x0A&quot;,</span>
+<span class="s2">                       &quot;encoding&quot;:&quot;utf-8&quot;,</span>
+<span class="s2">                       &quot;nullValues&quot;:null,</span>
+<span class="s2">                       &quot;isFirstLineSchema&quot;:true,</span>
+<span class="s2">                       &quot;fileType&quot;:&quot;text&quot;,</span>
+<span class="s2">                       &quot;dateFormat&quot;:null,</span>
+<span class="s2">                       &quot;dateTimeFormat&quot;:null,</span>
+<span class="s2">                       &quot;fileSuffix&quot;:[</span>
+<span class="s2">                           &quot;.csv&quot;</span>
+<span class="s2">                       ],</span>
+<span class="s2">                       &quot;originFileType&quot;:&quot;csv&quot;</span>
+<span class="s2">                   },</span>
+<span class="s2">                   &quot;config&quot;:{</span>
+<span class="s2">                       &quot;advanced_config&quot;:&quot;{\&quot;-m\&quot;: \&quot;4\&quot;,\&quot;mapreduce.job.reduces\&quot;:\&quot;3\&quot;, \&quot;mapreduce.map.memory.mb\&quot;: \&quot;4096\&quot;, \&quot;mapreduce.map.java.opts\&quot;: \&quot;-Xmx3072M\&quot;, \&quot;mapreduce.reduce.memory.mb\&quot;: \&quot;4096\&quot;, \&quot;mapreduce.reduce.java.opts\&quot;: \&quot;-Xmx3072M\&quot;}&quot;</span>
+<span class="s2">                   },</span>
+<span class="s2">                  &quot;dataTarget&quot;:{</span>
+<span class="s2">                     &quot;format&quot;:&quot;parquet&quot;,</span>
+<span class="s2">                     &quot;typeError&quot;:&quot;SKIP&quot;,</span>
+<span class="s2">                     &quot;columnError&quot;:&quot;SKIP&quot;,</span>
+<span class="s2">                     &quot;jsonError&quot;:&quot;SKIP&quot;</span>
+<span class="s2">                  }    </span>
+<span class="s2">               }&quot;&quot;&quot;</span>
+
+<span class="n">hive_json</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                {</span>
+<span class="s2">                    &quot;dataSource&quot;: {</span>
+<span class="s2">                        &quot;type&quot;: &quot;hive&quot;,</span>
+<span class="s2">                        &quot;host&quot;: &quot;172.27.128.183&quot;,</span>
+<span class="s2">                        &quot;port&quot;: 10000,</span>
+<span class="s2">                        &quot;dbname&quot;: &quot;aie_recommendation&quot;,</span>
+<span class="s2">                        &quot;username&quot;: &quot;cdhadmin&quot;,</span>
+<span class="s2">                        &quot;password&quot;: &quot;cdhadmin&quot;,</span>
+<span class="s2">                        &quot;encoding&quot;: &quot;UTF-8&quot;,</span>
+<span class="s2">                        &quot;table&quot;: &quot;kfc_recsys_sellcode_promocode&quot;</span>
+<span class="s2">                    },</span>
+<span class="s2">                    &quot;dataTarget&quot;: {</span>
+<span class="s2">                        &quot;format&quot;: &quot;parquet&quot;,</span>
+<span class="s2">                        &quot;schema&quot;: [</span>
+<span class="s2">                            {</span>
+<span class="s2">                                &quot;name&quot;: &quot;promotioncode&quot;,</span>
+<span class="s2">                                &quot;type&quot;: &quot;String&quot;</span>
+<span class="s2">                            },</span>
+<span class="s2">                            {</span>
+<span class="s2">                                &quot;name&quot;: &quot;sell_code&quot;,</span>
+<span class="s2">                                &quot;type&quot;: &quot;String&quot;</span>
+<span class="s2">                            },</span>
+<span class="s2">                            {</span>
+<span class="s2">                                &quot;name&quot;: &quot;biz_date&quot;,</span>
+<span class="s2">                                &quot;type&quot;: &quot;String&quot;</span>
+<span class="s2">                            },</span>
+<span class="s2">                            {</span>
+<span class="s2">                                &quot;name&quot;: &quot;insert_time&quot;,</span>
+<span class="s2">                                &quot;type&quot;: &quot;timestamp&quot;</span>
+<span class="s2">                            }</span>
+<span class="s2">                        ],</span>
+<span class="s2">                        &quot;prn&quot;: &quot;cb/hive-group.table-group/prefix.table&quot;,</span>
+<span class="s2">                        &quot;groupPrn&quot;: &quot;cb/hive-group.table-group&quot;</span>
+<span class="s2">                    },</span>
+<span class="s2">                    &quot;splitPartitionedTable&quot;: true</span>
+<span class="s2">                }&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="TestPDMSService"><a class="viewcode-back" href="../../../flowengine.testcases.html#flowengine.testcases.test_pdms_service.TestPDMSService">[docs]</a><span class="k">class</span> <span class="nc">TestPDMSService</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;PDMS Service Test Case&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="TestPDMSService.setUp"><a class="viewcode-back" href="../../../flowengine.testcases.html#flowengine.testcases.test_pdms_service.TestPDMSService.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">LoadConfig</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span> <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
+
+        <span class="c1"># self.table_prn = config.get_http(&#39;table_prn&#39;)</span>
+        <span class="c1"># self.table_group_prn = config.get_http(&#39;table_group_prn&#39;)</span>
+        <span class="c1"># self.instance_prn = config.get_http(&#39;instance_prn&#39;)</span>
+        <span class="c1"># self.model_prn = config.get_http(&#39;model_prn&#39;)</span>
+        <span class="c1"># self.report_prn = config.get_http(&#39;report_prn&#39;)</span>
+        <span class="c1"># self.csv_url = config.get_http(&#39;csv_url&#39;)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span> <span class="o">=</span> <span class="n">PdmsService</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="TestPDMSService.test_get_instance"><a class="viewcode-back" href="../../../flowengine.testcases.html#flowengine.testcases.test_pdms_service.TestPDMSService.test_get_instance">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_instance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;test get instance&#39;</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">instance_prn</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">prn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">instance_prn</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestPDMSService.test_create_instance"><a class="viewcode-back" href="../../../flowengine.testcases.html#flowengine.testcases.test_pdms_service.TestPDMSService.test_create_instance">[docs]</a>    <span class="k">def</span> <span class="nf">test_create_instance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">instance_prn</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">create_instance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">instance</span><span class="p">,</span> <span class="n">force_to_create</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">prn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">instance_prn</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestPDMSService.test_create_table"><a class="viewcode-back" href="../../../flowengine.testcases.html#flowengine.testcases.test_pdms_service.TestPDMSService.test_create_table">[docs]</a>    <span class="k">def</span> <span class="nf">test_create_table</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">table_prn</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">force_to_create</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">prn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">table_prn</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestPDMSService.test_get_table"><a class="viewcode-back" href="../../../flowengine.testcases.html#flowengine.testcases.test_pdms_service.TestPDMSService.test_get_table">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_table</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">table_prn</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">prn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">table_prn</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestPDMSService.test_create_model"><a class="viewcode-back" href="../../../flowengine.testcases.html#flowengine.testcases.test_pdms_service.TestPDMSService.test_create_model">[docs]</a>    <span class="k">def</span> <span class="nf">test_create_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_prn</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">create_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">force_to_create</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">prn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_prn</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestPDMSService.test_get_model"><a class="viewcode-back" href="../../../flowengine.testcases.html#flowengine.testcases.test_pdms_service.TestPDMSService.test_get_model">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_prn</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">prn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_prn</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestPDMSService.test_create_report"><a class="viewcode-back" href="../../../flowengine.testcases.html#flowengine.testcases.test_pdms_service.TestPDMSService.test_create_report">[docs]</a>    <span class="k">def</span> <span class="nf">test_create_report</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">report</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">get_report</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">report_prn</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">create_report</span><span class="p">(</span><span class="n">report</span><span class="p">,</span> <span class="n">force_to_create</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">prn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">report_prn</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestPDMSService.test_get_report"><a class="viewcode-back" href="../../../flowengine.testcases.html#flowengine.testcases.test_pdms_service.TestPDMSService.test_get_report">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_report</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">get_report</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">report_prn</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">prn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">report_prn</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestPDMSService.test_import_data"><a class="viewcode-back" href="../../../flowengine.testcases.html#flowengine.testcases.test_pdms_service.TestPDMSService.test_import_data">[docs]</a>    <span class="k">def</span> <span class="nf">test_import_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">table_prn</span><span class="p">)</span>
+
+        <span class="n">table_prn</span> <span class="o">=</span> <span class="s1">&#39;automl/automl-python-sdk-</span><span class="si">%s</span><span class="s1">.table&#39;</span> <span class="o">%</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">))</span>
+        <span class="n">table_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">table_json</span><span class="p">)</span>
+        <span class="n">table_dict</span><span class="p">[</span><span class="s1">&#39;dataSource&#39;</span><span class="p">][</span><span class="s1">&#39;url&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">csv_url</span>
+        <span class="n">table_dict</span><span class="p">[</span><span class="s1">&#39;dataTarget&#39;</span><span class="p">][</span><span class="s1">&#39;prn&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">table_prn</span>
+        <span class="n">table_dict</span><span class="p">[</span><span class="s1">&#39;dataTarget&#39;</span><span class="p">][</span><span class="s1">&#39;schema&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">schema</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">table_dict</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">import_data</span><span class="p">(</span><span class="n">table_dict</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">],</span> <span class="s1">&#39;0&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;table&#39;</span><span class="p">][</span><span class="s1">&#39;prn&#39;</span><span class="p">],</span> <span class="n">table_prn</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestPDMSService.test_check_schemas"><a class="viewcode-back" href="../../../flowengine.testcases.html#flowengine.testcases.test_pdms_service.TestPDMSService.test_check_schemas">[docs]</a>    <span class="k">def</span> <span class="nf">test_check_schemas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">table_prn</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">check_schemas</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">schema</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestPDMSService.test_import_and_wait"><a class="viewcode-back" href="../../../flowengine.testcases.html#flowengine.testcases.test_pdms_service.TestPDMSService.test_import_and_wait">[docs]</a>    <span class="k">def</span> <span class="nf">test_import_and_wait</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">table_prn</span><span class="p">)</span>
+        <span class="n">table_prn</span> <span class="o">=</span> <span class="s1">&#39;automl/automl-python-sdk-</span><span class="si">%s</span><span class="s1">.table&#39;</span> <span class="o">%</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">))</span>
+        <span class="n">table_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">table_json</span><span class="p">)</span>
+        <span class="n">table_dict</span><span class="p">[</span><span class="s1">&#39;dataSource&#39;</span><span class="p">][</span><span class="s1">&#39;url&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">csv_url</span>
+        <span class="n">table_dict</span><span class="p">[</span><span class="s1">&#39;dataTarget&#39;</span><span class="p">][</span><span class="s1">&#39;prn&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">table_prn</span>
+        <span class="n">table_dict</span><span class="p">[</span><span class="s1">&#39;dataTarget&#39;</span><span class="p">][</span><span class="s1">&#39;schema&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">schema</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">import_and_wait</span><span class="p">(</span><span class="n">table_dict</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">prn</span><span class="p">,</span> <span class="n">table_prn</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">schema</span><span class="p">,</span> <span class="n">table</span><span class="o">.</span><span class="n">schema</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">toDict</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="TestPDMSService.test_preview_table"><a class="viewcode-back" href="../../../flowengine.testcases.html#flowengine.testcases.test_pdms_service.TestPDMSService.test_preview_table">[docs]</a>    <span class="k">def</span> <span class="nf">test_preview_table</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">res_table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">table_prn</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">preview_table</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">table_prn</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;schema&#39;</span><span class="p">],</span> <span class="n">res_table</span><span class="o">.</span><span class="n">schema</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestPDMSService.test_get_table_group"><a class="viewcode-back" href="../../../flowengine.testcases.html#flowengine.testcases.test_pdms_service.TestPDMSService.test_get_table_group">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_table_group</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">get_table_group</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">table_group_prn</span><span class="p">)</span>
+        <span class="n">res_table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">table_prn</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">schema</span><span class="p">,</span> <span class="n">res_table</span><span class="o">.</span><span class="n">schema</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestPDMSService.test_create_table_group"><a class="viewcode-back" href="../../../flowengine.testcases.html#flowengine.testcases.test_pdms_service.TestPDMSService.test_create_table_group">[docs]</a>    <span class="k">def</span> <span class="nf">test_create_table_group</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">res_table_group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">get_table_group</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">table_group_prn</span><span class="p">)</span>
+        <span class="n">table_group_prn</span> <span class="o">=</span> <span class="s1">&#39;automl/automl-python-sdk_behaviourTable_</span><span class="si">%s</span><span class="s1">.table-group&#39;</span> <span class="o">%</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">))</span>
+        <span class="n">res_table_group</span><span class="o">.</span><span class="n">prn</span> <span class="o">=</span> <span class="n">table_group_prn</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">create_table_group</span><span class="p">(</span><span class="n">res_table_group</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">prn</span><span class="p">,</span> <span class="n">table_group_prn</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestPDMSService.test_get_tables_by_table_group"><a class="viewcode-back" href="../../../flowengine.testcases.html#flowengine.testcases.test_pdms_service.TestPDMSService.test_get_tables_by_table_group">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_tables_by_table_group</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">tables</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">get_tables_by_table_group</span><span class="p">(</span><span class="s1">&#39;HyperCycle_ML/apiauto-15718999718_behaviourTable_20191024145209.table-group&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">table</span> <span class="ow">in</span> <span class="n">tables</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">groupPrn</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">groupPrn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">table_group_prn</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestPDMSService.test_import_hive_to_pdms"><a class="viewcode-back" href="../../../flowengine.testcases.html#flowengine.testcases.test_pdms_service.TestPDMSService.test_import_hive_to_pdms">[docs]</a>    <span class="k">def</span> <span class="nf">test_import_hive_to_pdms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">hive</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">hive_json</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">import_hive_to_pdms</span><span class="p">(</span><span class="n">hive</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">toDict</span><span class="p">())</span></div></div>
+
+
+<span class="n">unittest</span><span class="o">.</span><span class="n">main</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, meteor
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

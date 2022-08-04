@@ -1,0 +1,1030 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>client package &mdash; FlowEngine-py-SDK release/1.5.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="model package" href="model.html" />
+    <link rel="prev" title="crontab_service module" href="crontab_service.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> FlowEngine-py-SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to FlowEngine-py-SDK</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="service.html">service package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">client package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-flowengine.client.automl_client">automl_client module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-flowengine.client.base_client">base_client module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-flowengine.client.batch_predictor_client">batch_predictor_client module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-flowengine.client.engine_client">engine_client module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-flowengine.client.hdfs_client">hdfs_client module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-flowengine.client.kubernetes_client">kubernetes_client module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-flowengine.client.market_client">market_client module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-flowengine.client.self_learner_client">self_learner_client module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-flowengine.client.shell_client">shell_client module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-flowengine.client.telamon">telamon module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-flowengine.client.workflow">workflow module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-flowengine.client.yarn">yarn module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="model.html">model package</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">FlowEngine-py-SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>client package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/client.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="client-package">
+<h1>client package<a class="headerlink" href="#client-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-flowengine.client.automl_client">
+<span id="automl-client-module"></span><h2>automl_client module<a class="headerlink" href="#module-flowengine.client.automl_client" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.client.automl_client.AutoMLClient">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.client.automl_client.</code><code class="sig-name descname">AutoMLClient</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">url</span></em>, <em class="sig-param"><span class="n">headers</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="flowengine.client.html#flowengine.client.base_client.BaseClient" title="flowengine.client.base_client.BaseClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">flowengine.client.base_client.BaseClient</span></code></a></p>
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.check_hdfs">
+<code class="sig-name descname">check_hdfs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_id</span></em>, <em class="sig-param"><span class="n">hdfs_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.check_hdfs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.check_hdfs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.check_schema">
+<code class="sig-name descname">check_schema</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_id</span></em>, <em class="sig-param"><span class="n">data_type</span></em>, <em class="sig-param"><span class="n">group_prn</span></em>, <em class="sig-param"><span class="n">group_name</span></em>, <em class="sig-param"><span class="n">schema</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.check_schema"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.check_schema" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.create_context_with_key">
+<code class="sig-name descname">create_context_with_key</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_key</span></em>, <em class="sig-param"><span class="n">component</span></em>, <em class="sig-param"><span class="n">context_info</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.create_context_with_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.create_context_with_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.deploy_batch_predictor">
+<code class="sig-name descname">deploy_batch_predictor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_id</span></em>, <em class="sig-param"><span class="n">config</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.deploy_batch_predictor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.deploy_batch_predictor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.deploy_batch_predictor_by_prn">
+<code class="sig-name descname">deploy_batch_predictor_by_prn</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model_prn</span></em>, <em class="sig-param"><span class="n">engine_id</span></em>, <em class="sig-param"><span class="n">interval_hours</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.deploy_batch_predictor_by_prn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.deploy_batch_predictor_by_prn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.deploy_model_to_self_learner">
+<code class="sig-name descname">deploy_model_to_self_learner</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_id</span></em>, <em class="sig-param"><span class="n">model_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.deploy_model_to_self_learner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.deploy_model_to_self_learner" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.get_context_info_with_key">
+<code class="sig-name descname">get_context_info_with_key</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_key</span></em>, <em class="sig-param"><span class="n">component</span></em>, <em class="sig-param"><span class="n">context_key</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.get_context_info_with_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.get_context_info_with_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.get_explore_info">
+<code class="sig-name descname">get_explore_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">logic_engine_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.get_explore_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.get_explore_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.get_explore_status">
+<code class="sig-name descname">get_explore_status</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_id</span></em>, <em class="sig-param"><span class="n">explore_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.get_explore_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.get_explore_status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.get_history_by_index_id">
+<code class="sig-name descname">get_history_by_index_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_id</span></em>, <em class="sig-param"><span class="n">index_job_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.get_history_by_index_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.get_history_by_index_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.get_history_by_index_name">
+<code class="sig-name descname">get_history_by_index_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_id</span></em>, <em class="sig-param"><span class="n">index_name</span></em>, <em class="sig-param"><span class="n">limit</span><span class="o">=</span><span class="default_value">10</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.get_history_by_index_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.get_history_by_index_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.get_predict_config">
+<code class="sig-name descname">get_predict_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">predict_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.get_predict_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.get_predict_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.get_self_learning_train_info">
+<code class="sig-name descname">get_self_learning_train_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">logic_engine_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.get_self_learning_train_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.get_self_learning_train_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.get_sys_params">
+<code class="sig-name descname">get_sys_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_key</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.get_sys_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.get_sys_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.import_hdfs">
+<code class="sig-name descname">import_hdfs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_id</span></em>, <em class="sig-param"><span class="n">group_prn</span></em>, <em class="sig-param"><span class="n">group_name</span></em>, <em class="sig-param"><span class="n">upload_config</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.import_hdfs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.import_hdfs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.list_context_info_with_key">
+<code class="sig-name descname">list_context_info_with_key</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_key</span></em>, <em class="sig-param"><span class="n">component</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.list_context_info_with_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.list_context_info_with_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.list_job">
+<code class="sig-name descname">list_job</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_id</span></em>, <em class="sig-param"><span class="n">data_type</span></em>, <em class="sig-param"><span class="n">group_prn</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.list_job"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.list_job" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.list_notice">
+<code class="sig-name descname">list_notice</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.list_notice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.list_notice" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.list_table">
+<code class="sig-name descname">list_table</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_id</span></em>, <em class="sig-param"><span class="n">data_type</span></em>, <em class="sig-param"><span class="n">group_prn</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.list_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.list_table" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.notify">
+<code class="sig-name descname">notify</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_id</span></em>, <em class="sig-param"><span class="n">explore_id</span></em>, <em class="sig-param"><span class="n">stage</span></em>, <em class="sig-param"><span class="n">child_stage</span></em>, <em class="sig-param"><span class="n">content</span></em>, <em class="sig-param"><span class="n">notice_level</span><span class="o">=</span><span class="default_value">'INFO'</span></em>, <em class="sig-param"><span class="n">extra_content</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.notify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.notify" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.notify_error">
+<code class="sig-name descname">notify_error</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_id</span></em>, <em class="sig-param"><span class="n">explore_id</span></em>, <em class="sig-param"><span class="n">stage</span></em>, <em class="sig-param"><span class="n">child_stage</span></em>, <em class="sig-param"><span class="n">content</span></em>, <em class="sig-param"><span class="n">extra_content</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.notify_error"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.notify_error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.notify_info">
+<code class="sig-name descname">notify_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_id</span></em>, <em class="sig-param"><span class="n">explore_id</span></em>, <em class="sig-param"><span class="n">stage</span></em>, <em class="sig-param"><span class="n">child_stage</span></em>, <em class="sig-param"><span class="n">content</span></em>, <em class="sig-param"><span class="n">extra_content</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.notify_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.notify_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.notify_warn">
+<code class="sig-name descname">notify_warn</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_id</span></em>, <em class="sig-param"><span class="n">explore_id</span></em>, <em class="sig-param"><span class="n">stage</span></em>, <em class="sig-param"><span class="n">child_stage</span></em>, <em class="sig-param"><span class="n">content</span></em>, <em class="sig-param"><span class="n">extra_content</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.notify_warn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.notify_warn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.poll_message_with_key">
+<code class="sig-name descname">poll_message_with_key</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_key</span></em>, <em class="sig-param"><span class="n">component</span></em>, <em class="sig-param"><span class="n">topic</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.poll_message_with_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.poll_message_with_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.post_manual_online_predict_config">
+<code class="sig-name descname">post_manual_online_predict_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">predict_id</span></em>, <em class="sig-param"><span class="n">config</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.post_manual_online_predict_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.post_manual_online_predict_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.post_online_predict_config">
+<code class="sig-name descname">post_online_predict_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">predict_id</span></em>, <em class="sig-param"><span class="n">config</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.post_online_predict_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.post_online_predict_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.preview_data">
+<code class="sig-name descname">preview_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_id</span></em>, <em class="sig-param"><span class="n">data_type</span></em>, <em class="sig-param"><span class="n">file_type</span></em>, <em class="sig-param"><span class="n">encoding</span></em>, <em class="sig-param"><span class="n">is_first_line_schema</span></em>, <em class="sig-param"><span class="n">table_file_path</span></em>, <em class="sig-param"><span class="n">group_prn</span></em>, <em class="sig-param"><span class="n">group_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.preview_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.preview_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.producer_message_with_key">
+<code class="sig-name descname">producer_message_with_key</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_key</span></em>, <em class="sig-param"><span class="n">component</span></em>, <em class="sig-param"><span class="n">topic</span></em>, <em class="sig-param"><span class="n">message_info</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.producer_message_with_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.producer_message_with_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.register_message_with_key">
+<code class="sig-name descname">register_message_with_key</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_key</span></em>, <em class="sig-param"><span class="n">component</span></em>, <em class="sig-param"><span class="n">message_info</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.register_message_with_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.register_message_with_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.request">
+<code class="sig-name descname">request</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">relative_url</span></em>, <em class="sig-param"><span class="n">method</span></em>, <em class="sig-param"><span class="n">body</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.request" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.restart_index">
+<code class="sig-name descname">restart_index</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_id</span></em>, <em class="sig-param"><span class="n">history_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.restart_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.restart_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.save_explore_config">
+<code class="sig-name descname">save_explore_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_id</span></em>, <em class="sig-param"><span class="n">explore_config</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.save_explore_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.save_explore_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.set_relation">
+<code class="sig-name descname">set_relation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_id</span></em>, <em class="sig-param"><span class="n">primary_key</span></em>, <em class="sig-param"><span class="n">label</span></em>, <em class="sig-param"><span class="n">data_type</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.set_relation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.set_relation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.start_explore">
+<code class="sig-name descname">start_explore</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_id</span></em>, <em class="sig-param"><span class="n">explore_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.start_explore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.start_explore" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.start_index">
+<code class="sig-name descname">start_index</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_id</span></em>, <em class="sig-param"><span class="n">template_id</span></em>, <em class="sig-param"><span class="n">body</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.start_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.start_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.stop_explore">
+<code class="sig-name descname">stop_explore</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_id</span></em>, <em class="sig-param"><span class="n">explore_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.stop_explore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.stop_explore" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.stop_index">
+<code class="sig-name descname">stop_index</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_id</span></em>, <em class="sig-param"><span class="n">history_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.stop_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.stop_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.subscribe_message_with_key">
+<code class="sig-name descname">subscribe_message_with_key</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_key</span></em>, <em class="sig-param"><span class="n">component</span></em>, <em class="sig-param"><span class="n">topic</span></em>, <em class="sig-param"><span class="n">trigger</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.subscribe_message_with_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.subscribe_message_with_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.update_context_info_with_key">
+<code class="sig-name descname">update_context_info_with_key</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_key</span></em>, <em class="sig-param"><span class="n">component</span></em>, <em class="sig-param"><span class="n">context_info</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.update_context_info_with_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.update_context_info_with_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.automl_client.AutoMLClient.update_message_with_key">
+<code class="sig-name descname">update_message_with_key</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_key</span></em>, <em class="sig-param"><span class="n">component</span></em>, <em class="sig-param"><span class="n">message_info</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#AutoMLClient.update_message_with_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.AutoMLClient.update_message_with_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="flowengine.client.automl_client.NoticeLevel">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.client.automl_client.</code><code class="sig-name descname">NoticeLevel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/automl_client.html#NoticeLevel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.automl_client.NoticeLevel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt id="flowengine.client.automl_client.NoticeLevel.ERROR">
+<code class="sig-name descname">ERROR</code><em class="property"> = (1,)</em><a class="headerlink" href="#flowengine.client.automl_client.NoticeLevel.ERROR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flowengine.client.automl_client.NoticeLevel.INFO">
+<code class="sig-name descname">INFO</code><em class="property"> = (0,)</em><a class="headerlink" href="#flowengine.client.automl_client.NoticeLevel.INFO" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flowengine.client.automl_client.NoticeLevel.WARN">
+<code class="sig-name descname">WARN</code><em class="property"> = (2,)</em><a class="headerlink" href="#flowengine.client.automl_client.NoticeLevel.WARN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-flowengine.client.base_client">
+<span id="base-client-module"></span><h2>base_client module<a class="headerlink" href="#module-flowengine.client.base_client" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.client.base_client.BaseClient">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.client.base_client.</code><code class="sig-name descname">BaseClient</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">url</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">headers</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/base_client.html#BaseClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.base_client.BaseClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="flowengine.client.base_client.BaseClient.delete">
+<code class="sig-name descname">delete</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kws</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/base_client.html#BaseClient.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.base_client.BaseClient.delete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.base_client.BaseClient.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kws</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/base_client.html#BaseClient.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.base_client.BaseClient.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.base_client.BaseClient.post">
+<code class="sig-name descname">post</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kws</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/base_client.html#BaseClient.post"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.base_client.BaseClient.post" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.base_client.BaseClient.put">
+<code class="sig-name descname">put</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kws</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/base_client.html#BaseClient.put"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.base_client.BaseClient.put" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-flowengine.client.batch_predictor_client">
+<span id="batch-predictor-client-module"></span><h2>batch_predictor_client module<a class="headerlink" href="#module-flowengine.client.batch_predictor_client" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.client.batch_predictor_client.BatchPredictorClient">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.client.batch_predictor_client.</code><code class="sig-name descname">BatchPredictorClient</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">url</span></em>, <em class="sig-param"><span class="n">headers</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/batch_predictor_client.html#BatchPredictorClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.batch_predictor_client.BatchPredictorClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="flowengine.client.batch_predictor_client.BatchPredictorClient.deploy_model">
+<code class="sig-name descname">deploy_model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/batch_predictor_client.html#BatchPredictorClient.deploy_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.batch_predictor_client.BatchPredictorClient.deploy_model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.batch_predictor_client.BatchPredictorClient.deploy_model_by_prn">
+<code class="sig-name descname">deploy_model_by_prn</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model_prn</span></em>, <em class="sig-param"><span class="n">interval_hours</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/batch_predictor_client.html#BatchPredictorClient.deploy_model_by_prn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.batch_predictor_client.BatchPredictorClient.deploy_model_by_prn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.batch_predictor_client.BatchPredictorClient.get_config">
+<code class="sig-name descname">get_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/batch_predictor_client.html#BatchPredictorClient.get_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.batch_predictor_client.BatchPredictorClient.get_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.batch_predictor_client.BatchPredictorClient.get_history">
+<code class="sig-name descname">get_history</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">solution_key</span></em>, <em class="sig-param"><span class="n">count</span><span class="o">=</span><span class="default_value">10</span></em>, <em class="sig-param"><span class="n">offset</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">order_by</span><span class="o">=</span><span class="default_value">'start_time'</span></em>, <em class="sig-param"><span class="n">asc</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/batch_predictor_client.html#BatchPredictorClient.get_history"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.batch_predictor_client.BatchPredictorClient.get_history" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.batch_predictor_client.BatchPredictorClient.get_solution">
+<code class="sig-name descname">get_solution</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/batch_predictor_client.html#BatchPredictorClient.get_solution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.batch_predictor_client.BatchPredictorClient.get_solution" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.batch_predictor_client.BatchPredictorClient.resume_batch_predictor">
+<code class="sig-name descname">resume_batch_predictor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">execution_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/batch_predictor_client.html#BatchPredictorClient.resume_batch_predictor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.batch_predictor_client.BatchPredictorClient.resume_batch_predictor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.batch_predictor_client.BatchPredictorClient.start_once">
+<code class="sig-name descname">start_once</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">solutionKey</span></em>, <em class="sig-param"><span class="n">body</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/batch_predictor_client.html#BatchPredictorClient.start_once"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.batch_predictor_client.BatchPredictorClient.start_once" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.batch_predictor_client.BatchPredictorClient.stop_batch_predictor">
+<code class="sig-name descname">stop_batch_predictor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">execution_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/batch_predictor_client.html#BatchPredictorClient.stop_batch_predictor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.batch_predictor_client.BatchPredictorClient.stop_batch_predictor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-flowengine.client.engine_client">
+<span id="engine-client-module"></span><h2>engine_client module<a class="headerlink" href="#module-flowengine.client.engine_client" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.client.engine_client.EngineClient">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.client.engine_client.</code><code class="sig-name descname">EngineClient</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">url</span></em>, <em class="sig-param"><span class="n">headers</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/engine_client.html#EngineClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.engine_client.EngineClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="flowengine.client.engine_client.EngineClient.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">app_name</span></em>, <em class="sig-param"><span class="n">engine_key</span></em>, <em class="sig-param"><span class="n">template_id</span></em>, <em class="sig-param"><span class="n">workspace_id</span></em>, <em class="sig-param"><span class="n">user_name</span></em>, <em class="sig-param"><span class="n">logic_automl</span></em>, <em class="sig-param"><span class="n">component_config_map</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/engine_client.html#EngineClient.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.engine_client.EngineClient.create" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.engine_client.EngineClient.delete">
+<code class="sig-name descname">delete</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">instance_id</span></em>, <em class="sig-param"><span class="n">delete_DB</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/engine_client.html#EngineClient.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.engine_client.EngineClient.delete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.engine_client.EngineClient.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">instance_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/engine_client.html#EngineClient.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.engine_client.EngineClient.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.engine_client.EngineClient.get_sci">
+<code class="sig-name descname">get_sci</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sci_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/engine_client.html#EngineClient.get_sci"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.engine_client.EngineClient.get_sci" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.engine_client.EngineClient.get_template_markets">
+<code class="sig-name descname">get_template_markets</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/engine_client.html#EngineClient.get_template_markets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.engine_client.EngineClient.get_template_markets" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.engine_client.EngineClient.get_users">
+<code class="sig-name descname">get_users</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">workspace_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/engine_client.html#EngineClient.get_users"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.engine_client.EngineClient.get_users" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.engine_client.EngineClient.get_workspaces">
+<code class="sig-name descname">get_workspaces</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/engine_client.html#EngineClient.get_workspaces"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.engine_client.EngineClient.get_workspaces" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.engine_client.EngineClient.list_active_apps">
+<code class="sig-name descname">list_active_apps</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">workspace_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/engine_client.html#EngineClient.list_active_apps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.engine_client.EngineClient.list_active_apps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.engine_client.EngineClient.list_deactive_apps">
+<code class="sig-name descname">list_deactive_apps</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">workspace_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/engine_client.html#EngineClient.list_deactive_apps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.engine_client.EngineClient.list_deactive_apps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.engine_client.EngineClient.list_sci">
+<code class="sig-name descname">list_sci</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">engine_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/engine_client.html#EngineClient.list_sci"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.engine_client.EngineClient.list_sci" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.engine_client.EngineClient.offline">
+<code class="sig-name descname">offline</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">instance_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/engine_client.html#EngineClient.offline"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.engine_client.EngineClient.offline" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.engine_client.EngineClient.online">
+<code class="sig-name descname">online</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">instance_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/engine_client.html#EngineClient.online"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.engine_client.EngineClient.online" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.engine_client.EngineClient.update_sci">
+<code class="sig-name descname">update_sci</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sci_config</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/engine_client.html#EngineClient.update_sci"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.engine_client.EngineClient.update_sci" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-flowengine.client.hdfs_client">
+<span id="hdfs-client-module"></span><h2>hdfs_client module<a class="headerlink" href="#module-flowengine.client.hdfs_client" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.client.hdfs_client.HdfsClient">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.client.hdfs_client.</code><code class="sig-name descname">HdfsClient</code><a class="reference internal" href="_modules/flowengine/client/hdfs_client.html#HdfsClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.hdfs_client.HdfsClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>能够直接读写 hdfs 文件，原理是封装了 python lib: hdfs 的 InsecureClient 实例。</p>
+<dl class="py method">
+<dt id="flowengine.client.hdfs_client.HdfsClient.get_contents">
+<code class="sig-name descname">get_contents</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/hdfs_client.html#HdfsClient.get_contents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.hdfs_client.HdfsClient.get_contents" title="Permalink to this definition">¶</a></dt>
+<dd><p>一次性的读取文件的所有内容
+&#64;param file: 文件的 hdfs 路径。
+&#64;return: str</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.hdfs_client.HdfsClient.get_hdfs_client">
+<code class="sig-name descname">get_hdfs_client</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/hdfs_client.html#HdfsClient.get_hdfs_client"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.hdfs_client.HdfsClient.get_hdfs_client" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取 python lib: hdfs 的 InsecureClient 实例
+&#64;return: InsecureClient</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-flowengine.client.kubernetes_client">
+<span id="kubernetes-client-module"></span><h2>kubernetes_client module<a class="headerlink" href="#module-flowengine.client.kubernetes_client" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.client.kubernetes_client.KubernetesClient">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.client.kubernetes_client.</code><code class="sig-name descname">KubernetesClient</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config_file</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/kubernetes_client.html#KubernetesClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.kubernetes_client.KubernetesClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="flowengine.client.html#flowengine.client.base_client.BaseClient" title="flowengine.client.base_client.BaseClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">flowengine.client.base_client.BaseClient</span></code></a></p>
+<dl class="py method">
+<dt id="flowengine.client.kubernetes_client.KubernetesClient.exec">
+<code class="sig-name descname">exec</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pod</span></em>, <em class="sig-param"><span class="n">name_space</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/kubernetes_client.html#KubernetesClient.exec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.kubernetes_client.KubernetesClient.exec" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.kubernetes_client.KubernetesClient.exec_cmd">
+<code class="sig-name descname">exec_cmd</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span></em>, <em class="sig-param"><span class="n">pod</span></em>, <em class="sig-param"><span class="n">name_space</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/kubernetes_client.html#KubernetesClient.exec_cmd"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.kubernetes_client.KubernetesClient.exec_cmd" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.kubernetes_client.KubernetesClient.list_pods">
+<code class="sig-name descname">list_pods</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/kubernetes_client.html#KubernetesClient.list_pods"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.kubernetes_client.KubernetesClient.list_pods" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.kubernetes_client.KubernetesClient.logs">
+<code class="sig-name descname">logs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pod</span></em>, <em class="sig-param"><span class="n">name_space</span></em>, <em class="sig-param"><span class="n">follow</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/kubernetes_client.html#KubernetesClient.logs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.kubernetes_client.KubernetesClient.logs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-flowengine.client.market_client">
+<span id="market-client-module"></span><h2>market_client module<a class="headerlink" href="#module-flowengine.client.market_client" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.client.market_client.MarketClient">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.client.market_client.</code><code class="sig-name descname">MarketClient</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">url</span></em>, <em class="sig-param"><span class="n">headers</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/market_client.html#MarketClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.market_client.MarketClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="flowengine.client.html#flowengine.client.base_client.BaseClient" title="flowengine.client.base_client.BaseClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">flowengine.client.base_client.BaseClient</span></code></a></p>
+<dl class="py method">
+<dt id="flowengine.client.market_client.MarketClient.clone_asol">
+<code class="sig-name descname">clone_asol</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">asol_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/market_client.html#MarketClient.clone_asol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.market_client.MarketClient.clone_asol" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.market_client.MarketClient.create_sc">
+<code class="sig-name descname">create_sc</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">version</span></em>, <em class="sig-param"><span class="n">stage</span></em>, <em class="sig-param"><span class="n">sc_type</span></em>, <em class="sig-param"><span class="n">sc_content</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/market_client.html#MarketClient.create_sc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.market_client.MarketClient.create_sc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.market_client.MarketClient.delete_sc">
+<code class="sig-name descname">delete_sc</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sc_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/market_client.html#MarketClient.delete_sc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.market_client.MarketClient.delete_sc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.market_client.MarketClient.export_asol">
+<code class="sig-name descname">export_asol</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">asol_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/market_client.html#MarketClient.export_asol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.market_client.MarketClient.export_asol" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.market_client.MarketClient.get_asol">
+<code class="sig-name descname">get_asol</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">asol_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/market_client.html#MarketClient.get_asol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.market_client.MarketClient.get_asol" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.market_client.MarketClient.get_dict_value">
+<code class="sig-name descname">get_dict_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dict_code</span></em>, <em class="sig-param"><span class="n">value_code</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/market_client.html#MarketClient.get_dict_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.market_client.MarketClient.get_dict_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.market_client.MarketClient.get_image_from_comfig_center">
+<code class="sig-name descname">get_image_from_comfig_center</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">image_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/market_client.html#MarketClient.get_image_from_comfig_center"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.market_client.MarketClient.get_image_from_comfig_center" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.market_client.MarketClient.get_sc">
+<code class="sig-name descname">get_sc</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">version</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/market_client.html#MarketClient.get_sc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.market_client.MarketClient.get_sc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.market_client.MarketClient.import_asol">
+<code class="sig-name descname">import_asol</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">asol_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/market_client.html#MarketClient.import_asol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.market_client.MarketClient.import_asol" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.market_client.MarketClient.list_asol">
+<code class="sig-name descname">list_asol</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/market_client.html#MarketClient.list_asol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.market_client.MarketClient.list_asol" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.market_client.MarketClient.list_sc">
+<code class="sig-name descname">list_sc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/market_client.html#MarketClient.list_sc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.market_client.MarketClient.list_sc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.market_client.MarketClient.list_stage">
+<code class="sig-name descname">list_stage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/market_client.html#MarketClient.list_stage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.market_client.MarketClient.list_stage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.market_client.MarketClient.prepare_sc">
+<code class="sig-name descname">prepare_sc</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sc_config</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/market_client.html#MarketClient.prepare_sc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.market_client.MarketClient.prepare_sc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.market_client.MarketClient.update_asol">
+<code class="sig-name descname">update_asol</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">asol_id</span></em>, <em class="sig-param"><span class="n">asol_content</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/market_client.html#MarketClient.update_asol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.market_client.MarketClient.update_asol" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.market_client.MarketClient.upload_solution_ui">
+<code class="sig-name descname">upload_solution_ui</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">version</span></em>, <em class="sig-param"><span class="n">group</span></em>, <em class="sig-param"><span class="n">file_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/market_client.html#MarketClient.upload_solution_ui"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.market_client.MarketClient.upload_solution_ui" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-flowengine.client.self_learner_client">
+<span id="self-learner-client-module"></span><h2>self_learner_client module<a class="headerlink" href="#module-flowengine.client.self_learner_client" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.client.self_learner_client.SelfLearnerClient">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.client.self_learner_client.</code><code class="sig-name descname">SelfLearnerClient</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">url</span></em>, <em class="sig-param"><span class="n">headers</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/self_learner_client.html#SelfLearnerClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.self_learner_client.SelfLearnerClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="flowengine.client.self_learner_client.SelfLearnerClient.deploy_solution">
+<code class="sig-name descname">deploy_solution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">solution_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/self_learner_client.html#SelfLearnerClient.deploy_solution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.self_learner_client.SelfLearnerClient.deploy_solution" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.self_learner_client.SelfLearnerClient.get_history">
+<code class="sig-name descname">get_history</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">solution_key</span></em>, <em class="sig-param"><span class="n">count</span><span class="o">=</span><span class="default_value">10</span></em>, <em class="sig-param"><span class="n">offset</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">order_by</span><span class="o">=</span><span class="default_value">'start_time'</span></em>, <em class="sig-param"><span class="n">asc</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/self_learner_client.html#SelfLearnerClient.get_history"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.self_learner_client.SelfLearnerClient.get_history" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.self_learner_client.SelfLearnerClient.get_solution">
+<code class="sig-name descname">get_solution</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/self_learner_client.html#SelfLearnerClient.get_solution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.self_learner_client.SelfLearnerClient.get_solution" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.self_learner_client.SelfLearnerClient.list_solution">
+<code class="sig-name descname">list_solution</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/self_learner_client.html#SelfLearnerClient.list_solution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.self_learner_client.SelfLearnerClient.list_solution" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.self_learner_client.SelfLearnerClient.resume_self_learning">
+<code class="sig-name descname">resume_self_learning</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">execution_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/self_learner_client.html#SelfLearnerClient.resume_self_learning"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.self_learner_client.SelfLearnerClient.resume_self_learning" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.self_learner_client.SelfLearnerClient.start_once">
+<code class="sig-name descname">start_once</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">solutionKey</span></em>, <em class="sig-param"><span class="n">body</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/self_learner_client.html#SelfLearnerClient.start_once"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.self_learner_client.SelfLearnerClient.start_once" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.self_learner_client.SelfLearnerClient.stop_self_learning">
+<code class="sig-name descname">stop_self_learning</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">execution_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/self_learner_client.html#SelfLearnerClient.stop_self_learning"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.self_learner_client.SelfLearnerClient.stop_self_learning" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-flowengine.client.shell_client">
+<span id="shell-client-module"></span><h2>shell_client module<a class="headerlink" href="#module-flowengine.client.shell_client" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.client.shell_client.ShellClient">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.client.shell_client.</code><code class="sig-name descname">ShellClient</code><a class="reference internal" href="_modules/flowengine/client/shell_client.html#ShellClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.shell_client.ShellClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>命令行工具，用于执行 shell 命令。</p>
+<dl class="py method">
+<dt id="flowengine.client.shell_client.ShellClient.run">
+<em class="property">static </em><code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span></em>, <em class="sig-param"><span class="n">sudo</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">password</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/shell_client.html#ShellClient.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.shell_client.ShellClient.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>执行 shell 命令</p>
+<p>执行 shell 命令</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>:cmd（str):需要执行的命令行命令
+:sudo (bool): 默认否，是否使用 sudo 执行命令
+:passwor (str): 默认空，sudo 用户的明文密码</p>
+</dd>
+<dt>Returns:</dt><dd><p>:p (Popen):执行命令对象
+:retcode (int): 命令执行后的返回值，例如：0 表示执行正常，1 表示执行出错。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.shell_client.ShellClient.run_spark">
+<em class="property">static </em><code class="sig-name descname">run_spark</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span></em>, <em class="sig-param"><span class="n">sudo</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">password</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/shell_client.html#ShellClient.run_spark"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.shell_client.ShellClient.run_spark" title="Permalink to this definition">¶</a></dt>
+<dd><p>执行 spark-submit 命令</p>
+<p>执行 spark-submit 命令</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>:cmd（str):需要执行的命令行命令
+:sudo (bool): 默认否，是否使用 sudo 执行命令
+:passwor (str): 默认空，sudo 用户的明文密码</p>
+</dd>
+<dt>Returns:</dt><dd><p>:p (Popen):执行命令对象
+:retcode (int): 命令执行后的返回值，例如：0 表示执行正常，1 表示执行出错。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.shell_client.ShellClient.run_yarn">
+<em class="property">static </em><code class="sig-name descname">run_yarn</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span></em>, <em class="sig-param"><span class="n">sudo</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">password</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/shell_client.html#ShellClient.run_yarn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.shell_client.ShellClient.run_yarn" title="Permalink to this definition">¶</a></dt>
+<dd><p>执行 yarn 命令</p>
+<p>执行 yarn 命令</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>:cmd（str):需要执行的命令行命令
+:sudo (bool): 默认否，是否使用 sudo 执行命令
+:passwor (str): 默认空，sudo 用户的明文密码</p>
+</dd>
+<dt>Returns:</dt><dd><p>:p (Popen):执行命令对象
+:app_id (str): yarn app 的 id
+:tracking_ui (str): yarn app 的 tracking ui 链接
+:retcode (int): 命令执行后的返回值，例如：0 表示执行正常，1 表示执行出错。</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-flowengine.client.telamon">
+<span id="telamon-module"></span><h2>telamon module<a class="headerlink" href="#module-flowengine.client.telamon" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.client.telamon.TelamonClient">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.client.telamon.</code><code class="sig-name descname">TelamonClient</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">url</span></em>, <em class="sig-param"><span class="n">headers</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/telamon.html#TelamonClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.telamon.TelamonClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="flowengine.client.telamon.TelamonClient.add_tag_to_tablegroup">
+<code class="sig-name descname">add_tag_to_tablegroup</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tag</span></em>, <em class="sig-param"><span class="n">well</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/telamon.html#TelamonClient.add_tag_to_tablegroup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.telamon.TelamonClient.add_tag_to_tablegroup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.telamon.TelamonClient.check_hive">
+<code class="sig-name descname">check_hive</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hive</span></em>, <em class="sig-param"><span class="n">well</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/telamon.html#TelamonClient.check_hive"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.telamon.TelamonClient.check_hive" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.telamon.TelamonClient.create_instance">
+<code class="sig-name descname">create_instance</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">instance</span></em>, <em class="sig-param"><span class="n">upsert</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/telamon.html#TelamonClient.create_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.telamon.TelamonClient.create_instance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.telamon.TelamonClient.create_model">
+<code class="sig-name descname">create_model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span></em>, <em class="sig-param"><span class="n">upsert</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/telamon.html#TelamonClient.create_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.telamon.TelamonClient.create_model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.telamon.TelamonClient.create_report">
+<code class="sig-name descname">create_report</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">report</span></em>, <em class="sig-param"><span class="n">upsert</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/telamon.html#TelamonClient.create_report"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.telamon.TelamonClient.create_report" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.telamon.TelamonClient.create_table">
+<code class="sig-name descname">create_table</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">table</span></em>, <em class="sig-param"><span class="n">upsert</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/telamon.html#TelamonClient.create_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.telamon.TelamonClient.create_table" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.telamon.TelamonClient.create_table_group">
+<code class="sig-name descname">create_table_group</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">table_group</span></em>, <em class="sig-param"><span class="n">upsert</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/telamon.html#TelamonClient.create_table_group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.telamon.TelamonClient.create_table_group" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.telamon.TelamonClient.get_instance">
+<code class="sig-name descname">get_instance</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">prn</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/telamon.html#TelamonClient.get_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.telamon.TelamonClient.get_instance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.telamon.TelamonClient.get_model">
+<code class="sig-name descname">get_model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">prn</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/telamon.html#TelamonClient.get_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.telamon.TelamonClient.get_model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.telamon.TelamonClient.get_report">
+<code class="sig-name descname">get_report</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">prn</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/telamon.html#TelamonClient.get_report"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.telamon.TelamonClient.get_report" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.telamon.TelamonClient.get_reports">
+<code class="sig-name descname">get_reports</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">related_model</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/telamon.html#TelamonClient.get_reports"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.telamon.TelamonClient.get_reports" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.telamon.TelamonClient.get_table">
+<code class="sig-name descname">get_table</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">prn</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/telamon.html#TelamonClient.get_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.telamon.TelamonClient.get_table" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.telamon.TelamonClient.get_table_group">
+<code class="sig-name descname">get_table_group</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">table_group_prn</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/telamon.html#TelamonClient.get_table_group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.telamon.TelamonClient.get_table_group" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.telamon.TelamonClient.get_tables_by_table_group_prn">
+<code class="sig-name descname">get_tables_by_table_group_prn</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">table_group_prn</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/telamon.html#TelamonClient.get_tables_by_table_group_prn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.telamon.TelamonClient.get_tables_by_table_group_prn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.telamon.TelamonClient.import_data">
+<code class="sig-name descname">import_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">body</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/telamon.html#TelamonClient.import_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.telamon.TelamonClient.import_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.telamon.TelamonClient.import_rtidb_from_kafka">
+<code class="sig-name descname">import_rtidb_from_kafka</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">body</span></em>, <em class="sig-param"><span class="n">upsert</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/telamon.html#TelamonClient.import_rtidb_from_kafka"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.telamon.TelamonClient.import_rtidb_from_kafka" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.telamon.TelamonClient.import_rtidb_from_pdms">
+<code class="sig-name descname">import_rtidb_from_pdms</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">body</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/telamon.html#TelamonClient.import_rtidb_from_pdms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.telamon.TelamonClient.import_rtidb_from_pdms" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.telamon.TelamonClient.import_table_from_hive">
+<code class="sig-name descname">import_table_from_hive</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">body</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/telamon.html#TelamonClient.import_table_from_hive"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.telamon.TelamonClient.import_table_from_hive" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.telamon.TelamonClient.preview_hive">
+<code class="sig-name descname">preview_hive</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hive</span></em>, <em class="sig-param"><span class="n">limit</span></em>, <em class="sig-param"><span class="n">random</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/telamon.html#TelamonClient.preview_hive"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.telamon.TelamonClient.preview_hive" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.telamon.TelamonClient.preview_table">
+<code class="sig-name descname">preview_table</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">prn</span></em>, <em class="sig-param"><span class="n">limit</span></em>, <em class="sig-param"><span class="n">random</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/telamon.html#TelamonClient.preview_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.telamon.TelamonClient.preview_table" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-flowengine.client.workflow">
+<span id="workflow-module"></span><h2>workflow module<a class="headerlink" href="#module-flowengine.client.workflow" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.client.workflow.WorkflowClient">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.client.workflow.</code><code class="sig-name descname">WorkflowClient</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">url</span></em>, <em class="sig-param"><span class="n">headers</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/workflow.html#WorkflowClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.workflow.WorkflowClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="flowengine.client.workflow.WorkflowClient.get_log">
+<code class="sig-name descname">get_log</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dag_id</span></em>, <em class="sig-param"><span class="n">run_id</span></em>, <em class="sig-param"><span class="n">node_id</span></em>, <em class="sig-param"><span class="n">log_key</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/workflow.html#WorkflowClient.get_log"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.workflow.WorkflowClient.get_log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.workflow.WorkflowClient.get_node_info">
+<code class="sig-name descname">get_node_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dag_id</span></em>, <em class="sig-param"><span class="n">run_id</span></em>, <em class="sig-param"><span class="n">node_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/workflow.html#WorkflowClient.get_node_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.workflow.WorkflowClient.get_node_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.workflow.WorkflowClient.get_workflow_info">
+<code class="sig-name descname">get_workflow_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dag_id</span></em>, <em class="sig-param"><span class="n">run_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/workflow.html#WorkflowClient.get_workflow_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.workflow.WorkflowClient.get_workflow_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.workflow.WorkflowClient.submit_dag">
+<code class="sig-name descname">submit_dag</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dag_json</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/workflow.html#WorkflowClient.submit_dag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.workflow.WorkflowClient.submit_dag" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.workflow.WorkflowClient.terminate">
+<code class="sig-name descname">terminate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dag_id</span></em>, <em class="sig-param"><span class="n">run_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/workflow.html#WorkflowClient.terminate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.workflow.WorkflowClient.terminate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-flowengine.client.yarn">
+<span id="yarn-module"></span><h2>yarn module<a class="headerlink" href="#module-flowengine.client.yarn" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flowengine.client.yarn.YarnClient">
+<em class="property">class </em><code class="sig-prename descclassname">flowengine.client.yarn.</code><code class="sig-name descname">YarnClient</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">url</span></em>, <em class="sig-param"><span class="n">user_name</span></em>, <em class="sig-param"><span class="n">headers</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/yarn.html#YarnClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.yarn.YarnClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>yarn restful api 客户端</p>
+<dl class="py method">
+<dt id="flowengine.client.yarn.YarnClient.get_app">
+<code class="sig-name descname">get_app</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">app_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/yarn.html#YarnClient.get_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.yarn.YarnClient.get_app" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.yarn.YarnClient.get_appstatistics">
+<code class="sig-name descname">get_appstatistics</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/yarn.html#YarnClient.get_appstatistics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.yarn.YarnClient.get_appstatistics" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.yarn.YarnClient.get_stat">
+<code class="sig-name descname">get_stat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">app_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/yarn.html#YarnClient.get_stat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.yarn.YarnClient.get_stat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flowengine.client.yarn.YarnClient.kill_app">
+<code class="sig-name descname">kill_app</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">app_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flowengine/client/yarn.html#YarnClient.kill_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flowengine.client.yarn.YarnClient.kill_app" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="model.html" class="btn btn-neutral float-right" title="model package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="crontab_service.html" class="btn btn-neutral float-left" title="crontab_service module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, meteor
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

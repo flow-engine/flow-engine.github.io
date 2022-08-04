@@ -1,0 +1,27 @@
+service package
+==========================
+
+
+
+.. toctree::
+   :maxdepth: 4
+   :caption: Contents:
+
+   sci_solution_explore_service.rst
+   sci_solution_explore_regression_service.rst
+   sci_solution_explore_binary_service.rst
+   sci_data_process_service.rst
+   sci_batch_predictor_service.rst
+   batch_predictor_service.rst
+   engine_kernel_service.rst
+   keystone_service.rst
+   kubernetes_service.rst
+   manager_service.rst
+   market_service.rst
+   pdms_service.rst
+   sc_instance_service.rst
+   sci_self_learner_service.rst
+   self_learner_service.rst
+   workflow_service.rst
+   yarn_service.rst
+   crontab_service.rst

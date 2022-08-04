@@ -1,0 +1,269 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>flowengine.service.hyperx_service &mdash; FlowEngine-py-SDK release/1.5.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> FlowEngine-py-SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Welcome to FlowEngine-py-SDK</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../service.html">service package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../client.html">client package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../model.html">model package</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">FlowEngine-py-SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>flowengine.service.hyperx_service</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for flowengine.service.hyperx_service</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*-coding:utf-8-*-</span>
+
+<span class="kn">from</span> <span class="nn">flowengine.logger_manager</span> <span class="kn">import</span> <span class="n">logger</span>
+<span class="kn">from</span> <span class="nn">flowengine.service.pdms_service</span> <span class="kn">import</span> <span class="n">PdmsService</span>
+
+<span class="n">log</span> <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="HyperXService"><a class="viewcode-back" href="../../../flowengine.service.html#flowengine.HyperXService">[docs]</a><span class="k">class</span> <span class="nc">HyperXService</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    HyperX Service，跨组件抽象 Service</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">solution_explore_instance</span><span class="p">,</span> <span class="n">self_learner_instance</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">automl</span> <span class="o">=</span> <span class="n">solution_explore_instance</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">selfLearner</span> <span class="o">=</span> <span class="n">self_learner_instance</span>
+
+<div class="viewcode-block" id="HyperXService.list_self_learning_model"><a class="viewcode-back" href="../../../flowengine.service.html#flowengine.HyperXService.list_self_learning_model">[docs]</a>    <span class="k">def</span> <span class="nf">list_self_learning_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;获取自学习模型列表</span>
+
+<span class="sd">        获取所有自学习模型</span>
+
+<span class="sd">        :param str engine_key: 引擎 key,</span>
+
+<span class="sd">        :return: 内容数据, 如果 ``&quot;currentStatus&quot; == &quot;SUCCESS&quot;`` 并且 ``&quot;currentStage&quot; == &quot;REPORTING&quot;`` 表示成功</span>
+
+<span class="sd">            枚举值参见 :py:class:`flowengine.service.self_learner_service.ExecutionStage` 和  :py:class:`flowengine.service.self_learner_service.ExecutionStatus`</span>
+
+<span class="sd">            modelApplication 表示用于上线（在线预估、批量预估）的 model prn</span>
+<span class="sd">        :rtype: list(dict)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">selfLearner</span><span class="o">.</span><span class="n">get_solution</span><span class="p">()</span>
+        <span class="n">solution_key</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;solutionKey&#39;</span><span class="p">]</span>
+        <span class="n">models</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">selfLearner</span><span class="o">.</span><span class="n">get_history</span><span class="p">(</span><span class="n">solution_key</span><span class="p">)</span>
+        <span class="n">report_model_map</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">automl</span><span class="o">.</span><span class="n">get_report_model_map</span><span class="p">(</span><span class="n">engine_key</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models</span><span class="p">:</span>
+            <span class="n">model</span><span class="p">[</span><span class="s1">&#39;modelApplication&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">report_model_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">model</span><span class="p">[</span><span class="s1">&#39;modelReport&#39;</span><span class="p">],</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;modelReport&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">models</span></div>
+
+<div class="viewcode-block" id="HyperXService.get_self_learner_model_reports"><a class="viewcode-back" href="../../../flowengine.service.html#flowengine.HyperXService.get_self_learner_model_reports">[docs]</a>    <span class="k">def</span> <span class="nf">get_self_learner_model_reports</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_prn</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;获取自学习模型的模型报告</span>
+
+<span class="sd">        获取 model_prn 对应模型的模型分析报告</span>
+
+<span class="sd">        :param str model_prn: 模型 prn ，来自 :py:class:`HyperXService.list_self_learning_model` 的 modelApplication</span>
+<span class="sd">        :param str engine_key: 引擎 key</span>
+
+<span class="sd">        :return: 内容数据, ret[&#39;list&#39;][x][&#39;content&#39;][&#39;aucMetrics&#39;][&#39;globalAuc&#39;] 为测试集 auc</span>
+<span class="sd">        :rtype: dict</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">report_model_map</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">automl</span><span class="o">.</span><span class="n">get_report_model_map</span><span class="p">(</span><span class="n">engine_key</span><span class="p">)</span>
+        <span class="n">report_prn</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">report_model_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">v</span> <span class="o">==</span> <span class="n">model_prn</span><span class="p">:</span>
+                <span class="n">report_prn</span> <span class="o">=</span> <span class="n">k</span>
+                <span class="k">break</span>
+        <span class="k">if</span> <span class="n">report_prn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;catn find the report for model_prn:</span><span class="si">%s</span><span class="s1"> with engine_key:</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">model_prn</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">pdms</span> <span class="o">=</span> <span class="n">PdmsService</span><span class="p">()</span>
+        <span class="n">reports</span> <span class="o">=</span> <span class="n">pdms</span><span class="o">.</span><span class="n">get_related_model_reports</span><span class="p">(</span><span class="n">report_prn</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">reports</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, meteor
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

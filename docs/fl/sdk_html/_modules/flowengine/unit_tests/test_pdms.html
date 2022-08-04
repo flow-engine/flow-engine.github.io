@@ -1,0 +1,582 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>flowengine.unit_tests.test_pdms &mdash; FlowEngine-py-SDK release/1.5.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> FlowEngine-py-SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Welcome to FlowEngine-py-SDK</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../service.html">service package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../client.html">client package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../model.html">model package</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">FlowEngine-py-SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>flowengine.unit_tests.test_pdms</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for flowengine.unit_tests.test_pdms</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">unittest</span> <span class="kn">import</span> <span class="n">TestCase</span>
+
+<span class="kn">from</span> <span class="nn">flowengine.model</span> <span class="kn">import</span> <span class="n">Instance</span>
+<span class="kn">from</span> <span class="nn">flowengine.model.pdms_models</span> <span class="kn">import</span> <span class="n">Table</span><span class="p">,</span> <span class="n">Model</span><span class="p">,</span> <span class="n">Report</span><span class="p">,</span> <span class="n">TableGroup</span>
+<span class="kn">from</span> <span class="nn">flowengine.service.pdms_service</span> <span class="kn">import</span> <span class="n">PdmsService</span>
+
+<span class="n">hive_json</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    {</span>
+<span class="s2">    &quot;type&quot;: &quot;hive&quot;,</span>
+<span class="s2">    &quot;host&quot;: &quot;172.27.128.183&quot;,</span>
+<span class="s2">    &quot;port&quot;: 10000,</span>
+<span class="s2">    &quot;dbname&quot;: &quot;test&quot;,</span>
+<span class="s2">    &quot;username&quot;: &quot;cdhadmin&quot;,</span>
+<span class="s2">    &quot;password&quot;: &quot;cdhadmin&quot;,</span>
+<span class="s2">    &quot;encoding&quot;: &quot;utf-8&quot;</span>
+<span class="s2">}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">hive_table</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    {</span>
+<span class="s2">    &quot;type&quot;: &quot;hive&quot;,</span>
+<span class="s2">    &quot;host&quot;: &quot;172.27.128.183&quot;,</span>
+<span class="s2">    &quot;port&quot;: 10000,</span>
+<span class="s2">    &quot;dbname&quot;: &quot;aie_recommendation&quot;,</span>
+<span class="s2">    &quot;username&quot;: &quot;cdhadmin&quot;,</span>
+<span class="s2">    &quot;password&quot;: &quot;cdhadmin&quot;,</span>
+<span class="s2">    &quot;encoding&quot;: &quot;utf-8&quot;,</span>
+<span class="s2">    &quot;table&quot;: &quot;kfc_recsys_sellcode_promocode&quot;</span>
+<span class="s2">}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">hive_data</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                {</span>
+<span class="s2">                    &quot;dataSource&quot;: {</span>
+<span class="s2">                        &quot;type&quot;: &quot;hive&quot;,</span>
+<span class="s2">                        &quot;host&quot;: &quot;172.27.128.183&quot;,</span>
+<span class="s2">                        &quot;port&quot;: 10000,</span>
+<span class="s2">                        &quot;dbname&quot;: &quot;aie_recommendation&quot;,</span>
+<span class="s2">                        &quot;username&quot;: &quot;cdhadmin&quot;,</span>
+<span class="s2">                        &quot;password&quot;: &quot;cdhadmin&quot;,</span>
+<span class="s2">                        &quot;encoding&quot;: &quot;UTF-8&quot;,</span>
+<span class="s2">                        &quot;module&quot;: &quot;telamon&quot;,</span>
+<span class="s2">                        &quot;table&quot;: &quot;kfc_recsys_sellcode_promocode&quot;</span>
+<span class="s2">                    },</span>
+<span class="s2">                    &quot;dataTarget&quot;: {</span>
+<span class="s2">                        &quot;format&quot;: &quot;parquet&quot;,</span>
+<span class="s2">                        &quot;schema&quot;: [</span>
+<span class="s2">                            {</span>
+<span class="s2">                                &quot;name&quot;: &quot;promotioncode&quot;,</span>
+<span class="s2">                                &quot;type&quot;: &quot;String&quot;</span>
+<span class="s2">                            },</span>
+<span class="s2">                            {</span>
+<span class="s2">                                &quot;name&quot;: &quot;sell_code&quot;,</span>
+<span class="s2">                                &quot;type&quot;: &quot;String&quot;</span>
+<span class="s2">                            },</span>
+<span class="s2">                            {</span>
+<span class="s2">                                &quot;name&quot;: &quot;biz_date&quot;,</span>
+<span class="s2">                                &quot;type&quot;: &quot;String&quot;</span>
+<span class="s2">                            },</span>
+<span class="s2">                            {</span>
+<span class="s2">                                &quot;name&quot;: &quot;insert_time&quot;,</span>
+<span class="s2">                                &quot;type&quot;: &quot;Timestamp&quot;</span>
+<span class="s2">                            },</span>
+<span class="s2">                            {</span>
+<span class="s2">                                &quot;name&quot;: &quot;p_biz_date&quot;,</span>
+<span class="s2">                                &quot;type&quot;: &quot;Int&quot;</span>
+<span class="s2">                            }</span>
+
+<span class="s2">                        ],</span>
+<span class="s2">                        &quot;prn&quot;: &quot;cb/hive_test.table-group/prefix.table&quot;,</span>
+<span class="s2">                        &quot;groupPrn&quot;: &quot;cb/hive_test.table-group&quot;</span>
+<span class="s2">                    },</span>
+<span class="s2">                    &quot;splitPartitionedTable&quot;: true</span>
+<span class="s2">                }&quot;&quot;&quot;</span>
+
+
+
+<span class="n">hive_table</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    {</span>
+<span class="s2">    &quot;type&quot;: &quot;hive&quot;,</span>
+<span class="s2">    &quot;host&quot;: &quot;172.27.128.183&quot;,</span>
+<span class="s2">    &quot;port&quot;: 10000,</span>
+<span class="s2">    &quot;dbname&quot;: &quot;aie_recommendation&quot;,</span>
+<span class="s2">    &quot;username&quot;: &quot;cdhadmin&quot;,</span>
+<span class="s2">    &quot;password&quot;: &quot;cdhadmin&quot;,</span>
+<span class="s2">    &quot;encoding&quot;: &quot;utf-8&quot;,</span>
+<span class="s2">    &quot;table&quot;: &quot;kfc_recsys_sellcode_promocode&quot;</span>
+<span class="s2">}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">hive_data</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                {</span>
+<span class="s2">                    &quot;dataSource&quot;: {</span>
+<span class="s2">                        &quot;type&quot;: &quot;hive&quot;,</span>
+<span class="s2">                        &quot;host&quot;: &quot;172.27.128.183&quot;,</span>
+<span class="s2">                        &quot;port&quot;: 10000,</span>
+<span class="s2">                        &quot;dbname&quot;: &quot;aie_recommendation&quot;,</span>
+<span class="s2">                        &quot;username&quot;: &quot;cdhadmin&quot;,</span>
+<span class="s2">                        &quot;password&quot;: &quot;cdhadmin&quot;,</span>
+<span class="s2">                        &quot;encoding&quot;: &quot;UTF-8&quot;,</span>
+<span class="s2">                        &quot;module&quot;: &quot;telamon&quot;,</span>
+<span class="s2">                        &quot;table&quot;: &quot;kfc_recsys_sellcode_promocode&quot;</span>
+<span class="s2">                    },</span>
+<span class="s2">                    &quot;dataTarget&quot;: {</span>
+<span class="s2">                        &quot;format&quot;: &quot;parquet&quot;,</span>
+<span class="s2">                        &quot;schema&quot;: [</span>
+<span class="s2">                            {</span>
+<span class="s2">                                &quot;name&quot;: &quot;promotioncode&quot;,</span>
+<span class="s2">                                &quot;type&quot;: &quot;String&quot;</span>
+<span class="s2">                            },</span>
+<span class="s2">                            {</span>
+<span class="s2">                                &quot;name&quot;: &quot;sell_code&quot;,</span>
+<span class="s2">                                &quot;type&quot;: &quot;String&quot;</span>
+<span class="s2">                            },</span>
+<span class="s2">                            {</span>
+<span class="s2">                                &quot;name&quot;: &quot;biz_date&quot;,</span>
+<span class="s2">                                &quot;type&quot;: &quot;String&quot;</span>
+<span class="s2">                            },</span>
+<span class="s2">                            {</span>
+<span class="s2">                                &quot;name&quot;: &quot;insert_time&quot;,</span>
+<span class="s2">                                &quot;type&quot;: &quot;Timestamp&quot;</span>
+<span class="s2">                            },</span>
+<span class="s2">                            {</span>
+<span class="s2">                                &quot;name&quot;: &quot;p_biz_date&quot;,</span>
+<span class="s2">                                &quot;type&quot;: &quot;Int&quot;</span>
+<span class="s2">                            }</span>
+<span class="s2">                            </span>
+<span class="s2">                        ],</span>
+<span class="s2">                        &quot;prn&quot;: &quot;cb/hive_test.table-group/prefix.table&quot;,</span>
+<span class="s2">                        &quot;groupPrn&quot;: &quot;cb/hive_test.table-group&quot;</span>
+<span class="s2">                    },</span>
+<span class="s2">                    &quot;splitPartitionedTable&quot;: true</span>
+<span class="s2">                }&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="TestResourceHubDataPool"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_pdms.TestResourceHubDataPool">[docs]</a><span class="k">class</span> <span class="nc">TestResourceHubDataPool</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="TestResourceHubDataPool.setUp"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_pdms.TestResourceHubDataPool.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;setUp...&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span> <span class="o">=</span> <span class="n">PdmsService</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prn</span> <span class="o">=</span> <span class="s1">&#39;flowengine/automl_explore_2_tuning_featurego_prepare_small-FeatureExtract-59dfc7.instance&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">table_prn</span> <span class="o">=</span> <span class="s1">&#39;flowengine/automl_explore_32-QueryExec-bce151.table&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">report_prn</span> <span class="o">=</span> <span class="s1">&#39;flowengine/flowengine-EvalBiModel-b78409.report&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_prn</span> <span class="o">=</span> <span class="s1">&#39;flowengine/automl_lr_train_tuning_30-PicoTraining-7a339c.model&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">notExistPrn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prn</span> <span class="o">+</span> <span class="s1">&#39;12&#39;</span></div>
+
+<div class="viewcode-block" id="TestResourceHubDataPool.tearDown"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_pdms.TestResourceHubDataPool.tearDown">[docs]</a>    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;tearDown...&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestResourceHubDataPool.test_get_instance"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_pdms.TestResourceHubDataPool.test_get_instance">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_instance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">notExistPrn</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;instance should be None&#39;</span><span class="p">)</span>
+        <span class="n">instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">prn</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span> <span class="o">==</span> <span class="n">Instance</span><span class="p">,</span> <span class="s1">&#39;请求返回类型不正确&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">prn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">prn</span><span class="p">,</span> <span class="s1">&#39;url is not the same.&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestResourceHubDataPool.test_create_instance"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_pdms.TestResourceHubDataPool.test_create_instance">[docs]</a>    <span class="k">def</span> <span class="nf">test_create_instance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">prn</span><span class="p">)</span>
+        <span class="n">new_instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">create_instance</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">force_to_create</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">new_instance</span><span class="o">.</span><span class="n">prn</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">prn</span><span class="p">,</span> <span class="s1">&#39;prn should be the same.&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestResourceHubDataPool.test_create_table"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_pdms.TestResourceHubDataPool.test_create_table">[docs]</a>    <span class="k">def</span> <span class="nf">test_create_table</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">table_prn</span><span class="p">)</span>
+        <span class="n">new_table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">force_to_create</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">new_table</span><span class="o">.</span><span class="n">prn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">table_prn</span><span class="p">,</span> <span class="s1">&#39;prn should be the same&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestResourceHubDataPool.test_get_table"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_pdms.TestResourceHubDataPool.test_get_table">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_table</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">notExistPrn</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;instance should be None&#39;</span><span class="p">)</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="s1">&#39;flowengine/automl_standard_model_train_7_32_9-DataSplit-890285.table&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">table</span><span class="p">)</span> <span class="o">==</span> <span class="n">Table</span><span class="p">,</span> <span class="s1">&#39;请求返回类型不正确&#39;</span><span class="p">)</span></div>
+        <span class="c1"># self.assertEqual(table.prn, self.table_prn, &#39;url is not the same.&#39;)</span>
+
+<div class="viewcode-block" id="TestResourceHubDataPool.test_create_model"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_pdms.TestResourceHubDataPool.test_create_model">[docs]</a>    <span class="k">def</span> <span class="nf">test_create_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_prn</span><span class="p">)</span>
+        <span class="n">new_model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">create_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">force_to_create</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">new_model</span><span class="o">.</span><span class="n">prn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_prn</span><span class="p">,</span> <span class="s1">&#39;prn should be the same&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestResourceHubDataPool.test_get_model"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_pdms.TestResourceHubDataPool.test_get_model">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">notExistPrn</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;model should be None&#39;</span><span class="p">)</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_prn</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">model</span><span class="p">)</span> <span class="o">==</span> <span class="n">Model</span><span class="p">,</span> <span class="s1">&#39;请求返回类型不正确&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">prn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_prn</span><span class="p">,</span> <span class="s1">&#39;url is not the same.&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestResourceHubDataPool.test_create_report"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_pdms.TestResourceHubDataPool.test_create_report">[docs]</a>    <span class="k">def</span> <span class="nf">test_create_report</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">report</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">get_report</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">report_prn</span><span class="p">)</span>
+        <span class="n">new_report</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">create_report</span><span class="p">(</span><span class="n">report</span><span class="p">,</span> <span class="n">force_to_create</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">new_report</span><span class="o">.</span><span class="n">prn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">report_prn</span><span class="p">,</span> <span class="s1">&#39;prn should be the same&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestResourceHubDataPool.test_get_report"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_pdms.TestResourceHubDataPool.test_get_report">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_report</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># report = self.pdms.get_report(self.notExistPrn)</span>
+        <span class="c1"># self.assertEqual(report, None, &#39;report should be None&#39;)</span>
+        <span class="n">report</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">get_report</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">report_prn</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">report</span><span class="p">)</span> <span class="o">==</span> <span class="n">Report</span><span class="p">,</span> <span class="s1">&#39;请求返回类型不正确&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">report</span><span class="o">.</span><span class="n">prn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">report_prn</span><span class="p">,</span> <span class="s1">&#39;url is not the same.&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestResourceHubDataPool.test_import_data"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_pdms.TestResourceHubDataPool.test_import_data">[docs]</a>    <span class="k">def</span> <span class="nf">test_import_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">table_json</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            {</span>
+<span class="s2">           &quot;dataSource&quot;:{</span>
+<span class="s2">              &quot;protocol&quot;:&quot;LOCAL&quot;,</span>
+<span class="s2">              &quot;encoding&quot;:&quot;UTF-8&quot;,</span>
+<span class="s2">              &quot;fileType&quot;:&quot;text&quot;,</span>
+<span class="s2">              &quot;lineSpliter&quot;:&quot;</span><span class="se">\\</span><span class="s2">n&quot;,</span>
+<span class="s2">              &quot;columnSpliter&quot;:&quot;,&quot;,</span>
+<span class="s2">              &quot;isFirstLineSchema&quot;:true</span>
+<span class="s2">           },</span>
+<span class="s2">           &quot;dataTarget&quot;:{</span>
+<span class="s2">              &quot;format&quot;:&quot;parquet&quot;,</span>
+<span class="s2">              &quot;typeError&quot;:&quot;SKIP&quot;,</span>
+<span class="s2">              &quot;columnError&quot;:&quot;SKIP&quot;,</span>
+<span class="s2">              &quot;jsonError&quot;:&quot;SKIP&quot;</span>
+<span class="s2">           }</span>
+<span class="s2">        }</span>
+<span class="s2">            &quot;&quot;&quot;</span>
+        <span class="n">schemas</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="n">schemas</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;col_1&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Int&quot;</span><span class="p">})</span>
+        <span class="n">schemas</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;automl_id&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Int&quot;</span><span class="p">})</span>
+        <span class="n">table_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">table_json</span><span class="p">)</span>
+        <span class="n">table_dict</span><span class="p">[</span><span class="s1">&#39;dataSource&#39;</span><span class="p">][</span><span class="s1">&#39;url&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;hdfs:///user/flowengine/feedback.csv&#39;</span>
+        <span class="n">table_dict</span><span class="p">[</span><span class="s1">&#39;dataTarget&#39;</span><span class="p">][</span><span class="s1">&#39;prn&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;flowengine/hdfs_table_154528706848320182420021277.table&#39;</span>
+        <span class="n">table_dict</span><span class="p">[</span><span class="s1">&#39;dataTarget&#39;</span><span class="p">][</span><span class="s1">&#39;schema&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">schemas</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">import_data</span><span class="p">(</span><span class="n">table_dict</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ret</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">],</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;error:</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">ret</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ret</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;table&#39;</span><span class="p">][</span><span class="s1">&#39;prn&#39;</span><span class="p">],</span> <span class="n">table_dict</span><span class="p">[</span><span class="s1">&#39;dataTarget&#39;</span><span class="p">][</span><span class="s1">&#39;prn&#39;</span><span class="p">],</span> <span class="s1">&#39;prn should be the same.&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestResourceHubDataPool.test_preview_table"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_pdms.TestResourceHubDataPool.test_preview_table">[docs]</a>    <span class="k">def</span> <span class="nf">test_preview_table</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">prn</span> <span class="o">=</span> <span class="s1">&#39;flowengine/automl_standard_model_train_7_32_9-DataSplit-890285.table&#39;</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">preview_table</span><span class="p">(</span><span class="n">prn</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">content_value</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">[</span><span class="s2">&quot;10007&quot;</span><span class="p">,</span> <span class="s2">&quot;63.0&quot;</span><span class="p">,</span> <span class="s2">&quot;Private&quot;</span><span class="p">,</span> <span class="s2">&quot;156127.0&quot;</span><span class="p">,</span> <span class="s2">&quot;Some-college&quot;</span><span class="p">,</span> <span class="s2">&quot;10&quot;</span><span class="p">,</span> <span class="s2">&quot;Married-civ-spouse&quot;</span><span class="p">,</span> <span class="s2">&quot;Handlers-cleaners&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;Husband&quot;</span><span class="p">,</span> <span class="s2">&quot;White&quot;</span><span class="p">,</span> <span class="s2">&quot;Male&quot;</span><span class="p">,</span> <span class="s2">&quot;0.0&quot;</span><span class="p">,</span> <span class="s2">&quot;0.0&quot;</span><span class="p">,</span> <span class="s2">&quot;45.0&quot;</span><span class="p">,</span> <span class="s2">&quot;United-States&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s2">&quot;10022&quot;</span><span class="p">,</span> <span class="s2">&quot;18.0&quot;</span><span class="p">,</span> <span class="s2">&quot;Private&quot;</span><span class="p">,</span> <span class="s2">&quot;64253.0&quot;</span><span class="p">,</span> <span class="s2">&quot;11th&quot;</span><span class="p">,</span> <span class="s2">&quot;7&quot;</span><span class="p">,</span> <span class="s2">&quot;Never-married&quot;</span><span class="p">,</span> <span class="s2">&quot;Sales&quot;</span><span class="p">,</span> <span class="s2">&quot;Own-child&quot;</span><span class="p">,</span> <span class="s2">&quot;Black&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;Female&quot;</span><span class="p">,</span> <span class="s2">&quot;0.0&quot;</span><span class="p">,</span> <span class="s2">&quot;0.0&quot;</span><span class="p">,</span> <span class="s2">&quot;20.0&quot;</span><span class="p">,</span> <span class="s2">&quot;United-States&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s2">&quot;1005&quot;</span><span class="p">,</span> <span class="s2">&quot;48.0&quot;</span><span class="p">,</span> <span class="s2">&quot;Private&quot;</span><span class="p">,</span> <span class="s2">&quot;226696.0&quot;</span><span class="p">,</span> <span class="s2">&quot;HS-grad&quot;</span><span class="p">,</span> <span class="s2">&quot;9&quot;</span><span class="p">,</span> <span class="s2">&quot;Married-civ-spouse&quot;</span><span class="p">,</span> <span class="s2">&quot;Craft-repair&quot;</span><span class="p">,</span> <span class="s2">&quot;Husband&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;Black&quot;</span><span class="p">,</span> <span class="s2">&quot;Male&quot;</span><span class="p">,</span> <span class="s2">&quot;0.0&quot;</span><span class="p">,</span> <span class="s2">&quot;0.0&quot;</span><span class="p">,</span> <span class="s2">&quot;40.0&quot;</span><span class="p">,</span> <span class="s2">&quot;United-States&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s2">&quot;10054&quot;</span><span class="p">,</span> <span class="s2">&quot;35.0&quot;</span><span class="p">,</span> <span class="s2">&quot;Private&quot;</span><span class="p">,</span> <span class="s2">&quot;169037.0&quot;</span><span class="p">,</span> <span class="s2">&quot;HS-grad&quot;</span><span class="p">,</span> <span class="s2">&quot;9&quot;</span><span class="p">,</span> <span class="s2">&quot;Married-civ-spouse&quot;</span><span class="p">,</span> <span class="s2">&quot;Transport-moving&quot;</span><span class="p">,</span> <span class="s2">&quot;Wife&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;White&quot;</span><span class="p">,</span> <span class="s2">&quot;Female&quot;</span><span class="p">,</span> <span class="s2">&quot;0.0&quot;</span><span class="p">,</span> <span class="s2">&quot;0.0&quot;</span><span class="p">,</span> <span class="s2">&quot;48.0&quot;</span><span class="p">,</span> <span class="s2">&quot;United-States&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s2">&quot;10064&quot;</span><span class="p">,</span> <span class="s2">&quot;29.0&quot;</span><span class="p">,</span> <span class="s2">&quot;Private&quot;</span><span class="p">,</span> <span class="s2">&quot;187479.0&quot;</span><span class="p">,</span> <span class="s2">&quot;Some-college&quot;</span><span class="p">,</span> <span class="s2">&quot;10&quot;</span><span class="p">,</span> <span class="s2">&quot;Married-civ-spouse&quot;</span><span class="p">,</span> <span class="s2">&quot;Craft-repair&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;Husband&quot;</span><span class="p">,</span> <span class="s2">&quot;White&quot;</span><span class="p">,</span> <span class="s2">&quot;Male&quot;</span><span class="p">,</span> <span class="s2">&quot;0.0&quot;</span><span class="p">,</span> <span class="s2">&quot;0.0&quot;</span><span class="p">,</span> <span class="s2">&quot;50.0&quot;</span><span class="p">,</span> <span class="s2">&quot;United-States&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s2">&quot;10085&quot;</span><span class="p">,</span> <span class="s2">&quot;32.0&quot;</span><span class="p">,</span> <span class="s2">&quot;Private&quot;</span><span class="p">,</span> <span class="s2">&quot;236396.0&quot;</span><span class="p">,</span> <span class="s2">&quot;HS-grad&quot;</span><span class="p">,</span> <span class="s2">&quot;9&quot;</span><span class="p">,</span> <span class="s2">&quot;Married-civ-spouse&quot;</span><span class="p">,</span> <span class="s2">&quot;Handlers-cleaners&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;Husband&quot;</span><span class="p">,</span> <span class="s2">&quot;White&quot;</span><span class="p">,</span> <span class="s2">&quot;Male&quot;</span><span class="p">,</span> <span class="s2">&quot;0.0&quot;</span><span class="p">,</span> <span class="s2">&quot;0.0&quot;</span><span class="p">,</span> <span class="s2">&quot;40.0&quot;</span><span class="p">,</span> <span class="s2">&quot;United-States&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s2">&quot;10094&quot;</span><span class="p">,</span> <span class="s2">&quot;17.0&quot;</span><span class="p">,</span> <span class="s2">&quot;Local-gov&quot;</span><span class="p">,</span> <span class="s2">&quot;236831.0&quot;</span><span class="p">,</span> <span class="s2">&quot;12th&quot;</span><span class="p">,</span> <span class="s2">&quot;8&quot;</span><span class="p">,</span> <span class="s2">&quot;Never-married&quot;</span><span class="p">,</span> <span class="s2">&quot;Adm-clerical&quot;</span><span class="p">,</span> <span class="s2">&quot;Own-child&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;Black&quot;</span><span class="p">,</span> <span class="s2">&quot;Female&quot;</span><span class="p">,</span> <span class="s2">&quot;0.0&quot;</span><span class="p">,</span> <span class="s2">&quot;0.0&quot;</span><span class="p">,</span> <span class="s2">&quot;15.0&quot;</span><span class="p">,</span> <span class="s2">&quot;United-States&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s2">&quot;10108&quot;</span><span class="p">,</span> <span class="s2">&quot;31.0&quot;</span><span class="p">,</span> <span class="s2">&quot;Private&quot;</span><span class="p">,</span> <span class="s2">&quot;328734.0&quot;</span><span class="p">,</span> <span class="s2">&quot;HS-grad&quot;</span><span class="p">,</span> <span class="s2">&quot;9&quot;</span><span class="p">,</span> <span class="s2">&quot;Never-married&quot;</span><span class="p">,</span> <span class="s2">&quot;Adm-clerical&quot;</span><span class="p">,</span> <span class="s2">&quot;Unmarried&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;White&quot;</span><span class="p">,</span> <span class="s2">&quot;Female&quot;</span><span class="p">,</span> <span class="s2">&quot;0.0&quot;</span><span class="p">,</span> <span class="s2">&quot;2238.0&quot;</span><span class="p">,</span> <span class="s2">&quot;40.0&quot;</span><span class="p">,</span> <span class="s2">&quot;United-States&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s2">&quot;10113&quot;</span><span class="p">,</span> <span class="s2">&quot;44.0&quot;</span><span class="p">,</span> <span class="s2">&quot;Private&quot;</span><span class="p">,</span> <span class="s2">&quot;83827.0&quot;</span><span class="p">,</span> <span class="s2">&quot;HS-grad&quot;</span><span class="p">,</span> <span class="s2">&quot;9&quot;</span><span class="p">,</span> <span class="s2">&quot;Divorced&quot;</span><span class="p">,</span> <span class="s2">&quot;Exec-managerial&quot;</span><span class="p">,</span> <span class="s2">&quot;Not-in-family&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;White&quot;</span><span class="p">,</span> <span class="s2">&quot;Female&quot;</span><span class="p">,</span> <span class="s2">&quot;0.0&quot;</span><span class="p">,</span> <span class="s2">&quot;0.0&quot;</span><span class="p">,</span> <span class="s2">&quot;50.0&quot;</span><span class="p">,</span> <span class="s2">&quot;United-States&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s2">&quot;10118&quot;</span><span class="p">,</span> <span class="s2">&quot;39.0&quot;</span><span class="p">,</span> <span class="s2">&quot;Self-emp-not-inc&quot;</span><span class="p">,</span> <span class="s2">&quot;192626.0&quot;</span><span class="p">,</span> <span class="s2">&quot;HS-grad&quot;</span><span class="p">,</span> <span class="s2">&quot;9&quot;</span><span class="p">,</span> <span class="s2">&quot;Separated&quot;</span><span class="p">,</span> <span class="s2">&quot;Farming-fishing&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;Not-in-family&quot;</span><span class="p">,</span> <span class="s2">&quot;White&quot;</span><span class="p">,</span> <span class="s2">&quot;Male&quot;</span><span class="p">,</span> <span class="s2">&quot;0.0&quot;</span><span class="p">,</span> <span class="s2">&quot;0.0&quot;</span><span class="p">,</span> <span class="s2">&quot;50.0&quot;</span><span class="p">,</span> <span class="s2">&quot;United-States&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">]],</span>
+            <span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;automl_id&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Int&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Double&quot;</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;workclass&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;String&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;fnlwgt&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Double&quot;</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;education&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;String&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;education_num&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Int&quot;</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;marital_status&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;String&quot;</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;occupation&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;String&quot;</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;relationship&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;String&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;race&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;String&quot;</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;sex&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;String&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;capital_gain&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Double&quot;</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;capital_loss&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Double&quot;</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;hours_per_week&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Double&quot;</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;native_country&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;String&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;over_50K&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Int&quot;</span><span class="p">}],</span>
+            <span class="s2">&quot;meta&quot;</span><span class="p">:</span> <span class="p">{},</span> <span class="s2">&quot;jdbcTableMeta&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;partitionSchema&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">content_value</span><span class="p">,</span> <span class="s1">&#39;content should be same&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestResourceHubDataPool.test_get_table_group"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_pdms.TestResourceHubDataPool.test_get_table_group">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_table_group</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">prn</span> <span class="o">=</span> <span class="s1">&#39;flowengine/zhaoqing-test.table-group&#39;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">get_table_group</span><span class="p">(</span><span class="n">prn</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestResourceHubDataPool.test_create_table_group"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_pdms.TestResourceHubDataPool.test_create_table_group">[docs]</a>    <span class="k">def</span> <span class="nf">test_create_table_group</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">prn</span> <span class="o">=</span> <span class="s1">&#39;flowengine/vfff1_feedbackTable_20195224090517.table-group&#39;</span>
+        <span class="n">tg</span> <span class="o">=</span> <span class="n">TableGroup</span><span class="p">(</span><span class="s1">&#39;name1&#39;</span><span class="p">,</span> <span class="n">prn</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">create_table_group</span><span class="p">(</span><span class="n">tg</span><span class="o">.</span><span class="n">toDict</span><span class="p">())</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestResourceHubDataPool.test_get_tables_by_table_group"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_pdms.TestResourceHubDataPool.test_get_tables_by_table_group">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_tables_by_table_group</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">prn</span> <span class="o">=</span> <span class="s1">&#39;flowengine/erfenlei28-04_behaviourTable_20194428040557.table-group&#39;</span>
+        <span class="n">tables</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">get_tables_by_table_group</span><span class="p">(</span><span class="n">prn</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">table</span> <span class="ow">in</span> <span class="n">tables</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">toDict</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="TestResourceHubDataPool.test_import_rtidb_from_pdms"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_pdms.TestResourceHubDataPool.test_import_rtidb_from_pdms">[docs]</a>    <span class="k">def</span> <span class="nf">test_import_rtidb_from_pdms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">rtidb_json</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            {</span>
+<span class="s2">           &quot;table&quot;: &quot;t1&quot;,</span>
+<span class="s2">           &quot;zkEndpoints&quot;: &quot;172.27.128.147:2181&quot;,</span>
+<span class="s2">           &quot;zkRootPath&quot;: &quot;/rtidb_cluster&quot;,</span>
+<span class="s2">           &quot;nsEndPoint&quot;: &quot;172.27.128.147:6527&quot;</span>
+<span class="s2">        }</span>
+<span class="s2">            &quot;&quot;&quot;</span>
+        <span class="n">rtidb_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">rtidb_json</span><span class="p">)</span>
+        <span class="n">rtidb_dict</span><span class="p">[</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;hdfs:///user/flowengine/k8s01/automl132/demo/workspace/admin/telamon/1/flowengine/test12_table&quot;</span>
+        <span class="n">rtidb_dict</span><span class="p">[</span><span class="s2">&quot;rtidbTimestampColumn&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">import_rtidb_from_pdms</span><span class="p">(</span><span class="n">rtidb_dict</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ret</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">],</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;error:</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">ret</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestResourceHubDataPool.test_import_rtidb_from_kafka"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_pdms.TestResourceHubDataPool.test_import_rtidb_from_kafka">[docs]</a>    <span class="k">def</span> <span class="nf">test_import_rtidb_from_kafka</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">kafka_rtidb_json</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            {</span>
+<span class="s2">            &quot;jobType&quot;: &quot;STREAM_KAFKA_TO_RTIDB&quot;,</span>
+<span class="s2">            &quot;storageFormat&quot;: &quot;csv&quot;,</span>
+<span class="s2">            &quot;kafkaConnect&quot;: &quot;172.27.128.147:9092&quot;,</span>
+<span class="s2">            &quot;topicName&quot;: &quot;rtidb-test&quot;,</span>
+<span class="s2">            &quot;rtidbZookeeper&quot;: &quot;172.27.128.147:2181&quot;,</span>
+<span class="s2">            &quot;rtidbRootPath&quot;: &quot;/rtidb_cluster&quot;</span>
+<span class="s2">        }</span>
+<span class="s2">            &quot;&quot;&quot;</span>
+        <span class="n">kafka_rtidb_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">kafka_rtidb_json</span><span class="p">)</span>
+        <span class="n">kafka_rtidb_dict</span><span class="p">[</span><span class="s2">&quot;prn&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;rtidb/testKafkaLogBack.stream-job&quot;</span>
+        <span class="n">schema_json</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        {</span>
+<span class="s2">            &quot;table_name&quot;:&quot;test_kafka&quot;,</span>
+<span class="s2">            &quot;fields&quot;: [</span>
+<span class="s2">        </span>
+<span class="s2">            {</span>
+<span class="s2">                &quot;name&quot;:&quot;actor&quot;,</span>
+<span class="s2">                &quot;type&quot;:&quot;String&quot;</span>
+<span class="s2">            },</span>
+<span class="s2">            {</span>
+<span class="s2">                &quot;name&quot;:&quot;movie_id&quot;,</span>
+<span class="s2">                &quot;type&quot;:&quot;String&quot;</span>
+<span class="s2">            },</span>
+<span class="s2">            {</span>
+<span class="s2">                &quot;name&quot;:&quot;price&quot;,</span>
+<span class="s2">                &quot;type&quot;:&quot;Int&quot;</span>
+<span class="s2">            },</span>
+<span class="s2">            {</span>
+<span class="s2">                &quot;name&quot;:&quot;time&quot;,</span>
+<span class="s2">                &quot;type&quot;:&quot;Timestamp&quot;</span>
+<span class="s2">            }</span>
+<span class="s2">        }</span>
+<span class="s2">        &quot;&quot;&quot;</span>
+        <span class="n">kafka_rtidb_dict</span><span class="p">[</span><span class="s2">&quot;transactionSchema&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">schema_json</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+        <span class="n">kafka_rtidb_dict</span><span class="p">[</span><span class="s2">&quot;rtidbTable&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;t1&quot;</span>
+        <span class="n">kafka_rtidb_dict</span><span class="p">[</span><span class="s2">&quot;rtidbTimestampColumn&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">import_rtidb_from_kafka</span><span class="p">(</span><span class="n">kafka_rtidb_dict</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ret</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">],</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;error:</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">ret</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestResourceHubDataPool.test_check_hive"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_pdms.TestResourceHubDataPool.test_check_hive">[docs]</a>    <span class="k">def</span> <span class="nf">test_check_hive</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">hive</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">hive_json</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">check_hive</span><span class="p">(</span><span class="n">hive</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestResourceHubDataPool.test_import_hive"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_pdms.TestResourceHubDataPool.test_import_hive">[docs]</a>    <span class="k">def</span> <span class="nf">test_import_hive</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">hive_json</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            {</span>
+<span class="s2">           &quot;dataSource&quot;:{</span>
+<span class="s2">              &quot;protocol&quot;:&quot;LOCAL&quot;,</span>
+<span class="s2">              &quot;encoding&quot;:&quot;UTF-8&quot;,</span>
+<span class="s2">              &quot;fileType&quot;:&quot;text&quot;,</span>
+<span class="s2">              &quot;lineSpliter&quot;:&quot;</span><span class="se">\\</span><span class="s2">n&quot;,</span>
+<span class="s2">              &quot;columnSpliter&quot;:&quot;,&quot;,</span>
+<span class="s2">              &quot;isFirstLineSchema&quot;:true</span>
+<span class="s2">           },</span>
+<span class="s2">           &quot;dataTarget&quot;:{</span>
+<span class="s2">              &quot;format&quot;:&quot;parquet&quot;,</span>
+<span class="s2">              &quot;typeError&quot;:&quot;SKIP&quot;,</span>
+<span class="s2">              &quot;columnError&quot;:&quot;SKIP&quot;,</span>
+<span class="s2">              &quot;jsonError&quot;:&quot;SKIP&quot;</span>
+<span class="s2">           }</span>
+<span class="s2">        }</span>
+<span class="s2">            &quot;&quot;&quot;</span>
+        <span class="n">schemas</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="n">schemas</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;col_1&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Int&quot;</span><span class="p">})</span>
+        <span class="n">schemas</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;automl_id&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Int&quot;</span><span class="p">})</span>
+        <span class="n">table_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">hive_json</span><span class="p">)</span>
+        <span class="n">table_dict</span><span class="p">[</span><span class="s1">&#39;dataSource&#39;</span><span class="p">][</span><span class="s1">&#39;url&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;hdfs:///user/flowengine/feedback.csv&#39;</span>
+        <span class="n">table_dict</span><span class="p">[</span><span class="s1">&#39;dataTarget&#39;</span><span class="p">][</span><span class="s1">&#39;prn&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;flowengine/hdfs_table_154528706848320182420021277.table&#39;</span>
+        <span class="n">table_dict</span><span class="p">[</span><span class="s1">&#39;dataTarget&#39;</span><span class="p">][</span><span class="s1">&#39;schema&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">schemas</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">import_data</span><span class="p">(</span><span class="n">table_dict</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ret</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">],</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;error:</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">ret</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ret</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;table&#39;</span><span class="p">][</span><span class="s1">&#39;prn&#39;</span><span class="p">],</span> <span class="n">table_dict</span><span class="p">[</span><span class="s1">&#39;dataTarget&#39;</span><span class="p">][</span><span class="s1">&#39;prn&#39;</span><span class="p">],</span> <span class="s1">&#39;prn should be the same.&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestResourceHubDataPool.test_import_hive_to_pdms"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_pdms.TestResourceHubDataPool.test_import_hive_to_pdms">[docs]</a>    <span class="k">def</span> <span class="nf">test_import_hive_to_pdms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hive</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdms</span><span class="o">.</span><span class="n">import_hive_to_pdms</span><span class="p">(</span><span class="n">hive</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, meteor
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+pdms\_service module
+==========================
+
+
+
+PdmsService Service
+-----------------------------------------
+
+.. autoclass:: flowengine.service.pdms_service.PdmsService
+    :members:
+    :undoc-members:
+    :show-inheritance:

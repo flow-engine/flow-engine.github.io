@@ -1,0 +1,9 @@
+body > div {
+    opacity: inherit!important;
+}
+.logo {
+    background-size: cover!important;
+    margin-top: 1px!important;
+    height: 50px!important;
+    width: 166px!important;
+}

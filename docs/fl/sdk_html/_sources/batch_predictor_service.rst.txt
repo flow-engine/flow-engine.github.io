@@ -1,0 +1,32 @@
+batch\_predictor\_service module
+==================================
+
+
+
+ExecutionStage Enum
+-----------------------------------------
+
+.. autoclass:: flowengine.service.batch_predictor_service.ExecutionStage
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+
+ExecutionStatus Service
+-----------------------------------------
+
+.. autoclass:: flowengine.service.batch_predictor_service.ExecutionStatus
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+
+BatchPredictorService Service
+-----------------------------------------
+
+.. autoclass:: flowengine.service.batch_predictor_service.BatchPredictorService
+    :members:
+    :undoc-members:
+    :show-inheritance:

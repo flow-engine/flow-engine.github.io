@@ -1,0 +1,12 @@
+market\_service module
+==========================
+
+
+
+MarketService Service
+-----------------------------------------
+
+.. autoclass:: flowengine.service.market_service.MarketService
+    :members:
+    :undoc-members:
+    :show-inheritance:

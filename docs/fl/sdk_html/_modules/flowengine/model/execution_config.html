@@ -1,0 +1,295 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>flowengine.model.execution_config &mdash; FlowEngine-py-SDK release/1.5.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> FlowEngine-py-SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Welcome to FlowEngine-py-SDK</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../service.html">service package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../client.html">client package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../model.html">model package</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">FlowEngine-py-SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>flowengine.model.execution_config</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for flowengine.model.execution_config</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: UTF-8 -*-</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+
+<span class="kn">import</span> <span class="nn">enum</span>
+
+
+<div class="viewcode-block" id="Param"><a class="viewcode-back" href="../../../flowengine.model.html#flowengine.model.execution_config.Param">[docs]</a><span class="k">class</span> <span class="nc">Param</span><span class="p">:</span>
+    <span class="sd">&#39;&#39;&#39;JOB的输入参数，job内可以通过${key}引用,如果要作为下游输出使用需要是FILE类型&#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;FILE&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">describe</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">describe</span> <span class="o">=</span> <span class="n">describe</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="nb">type</span>  <span class="c1"># FILE,TEXT</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span></div>
+
+
+<div class="viewcode-block" id="OutputConfig"><a class="viewcode-back" href="../../../flowengine.model.html#flowengine.model.execution_config.OutputConfig">[docs]</a><span class="k">class</span> <span class="nc">OutputConfig</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_type</span><span class="o">=</span><span class="s2">&quot;Table&quot;</span><span class="p">,</span><span class="n">output_node_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_type</span> <span class="o">=</span> <span class="n">output_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_node_id</span> <span class="o">=</span> <span class="n">output_node_id</span></div>
+
+
+
+<div class="viewcode-block" id="RunMode"><a class="viewcode-back" href="../../../flowengine.model.html#flowengine.model.execution_config.RunMode">[docs]</a><span class="k">class</span> <span class="nc">RunMode</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
+
+    <span class="n">SINGLE</span> <span class="o">=</span> <span class="s1">&#39;SINGLE&#39;</span>
+    <span class="n">PERIODICAL</span> <span class="o">=</span> <span class="s1">&#39;PERIODICAL&#39;</span>
+    <span class="n">CRONTAB</span> <span class="o">=</span> <span class="s1">&#39;CRONTAB&#39;</span>
+    <span class="n">MESSAGE</span> <span class="o">=</span> <span class="s1">&#39;MESSAGE&#39;</span>
+
+<div class="viewcode-block" id="RunMode.value_str"><a class="viewcode-back" href="../../../flowengine.model.html#flowengine.model.execution_config.RunMode.value_str">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">value_str</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">key_map</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">SINGLE</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="s2">&quot;单次触发&quot;</span><span class="p">,</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">PERIODICAL</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="s2">&quot;周期触发&quot;</span><span class="p">,</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">CRONTAB</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="s2">&quot;CRONTAB周期触发&quot;</span><span class="p">,</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">MESSAGE</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="s2">&quot;消息触发&quot;</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">key_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="TimeUnit"><a class="viewcode-back" href="../../../flowengine.model.html#flowengine.model.execution_config.TimeUnit">[docs]</a><span class="k">class</span> <span class="nc">TimeUnit</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">HOUR</span> <span class="o">=</span> <span class="s1">&#39;HOUR&#39;</span>
+    <span class="n">DAY</span> <span class="o">=</span> <span class="s1">&#39;DAY&#39;</span>
+    <span class="n">MINUTE</span> <span class="o">=</span> <span class="s1">&#39;MINUTE&#39;</span>
+    <span class="n">SECOND</span> <span class="o">=</span> <span class="s1">&#39;SECOND&#39;</span>
+
+<div class="viewcode-block" id="TimeUnit.value_str"><a class="viewcode-back" href="../../../flowengine.model.html#flowengine.model.execution_config.TimeUnit.value_str">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">value_str</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">key_map</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">HOUR</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="s2">&quot;小时&quot;</span><span class="p">,</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">DAY</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="s2">&quot;天&quot;</span><span class="p">,</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">MINUTE</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="s2">&quot;分&quot;</span><span class="p">,</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">SECOND</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="s2">&quot;秒&quot;</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">key_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span></div></div>
+
+
+
+
+<div class="viewcode-block" id="ExecutionConfig"><a class="viewcode-back" href="../../../flowengine.model.html#flowengine.model.execution_config.ExecutionConfig">[docs]</a><span class="k">class</span> <span class="nc">ExecutionConfig</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">run_mode</span><span class="o">=</span> <span class="n">RunMode</span><span class="o">.</span><span class="n">SINGLE</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>  <span class="c1"># SINGLE,PERIODICAL,CRONTAB,MESSAGE</span>
+                 <span class="n">cron_expression</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>  <span class="c1"># CRONTAB表达式 runMode = CRONTAB ,</span>
+                 <span class="n">interval</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1"># 周期任务模式的间隔时间 runMode = PERIODICAL，</span>
+                 <span class="n">interval_unit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="n">MINUTE</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>  <span class="c1"># 周期任务模式的间隔单位，HOUR,DAY,MINUTE,SECOND  runMode = PERIODICAL，</span>
+                 <span class="n">trigger</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>  <span class="c1"># msg模式下触发的topic runMode = MESSAGE，</span>
+                 <span class="n">retry_count</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1"># job失败重试次数</span>
+                 <span class="n">delay_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1"># sensor模式下延时触发 1.5.2 暂不支持保留字段</span>
+                 <span class="n">delay_time_unit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="n">MINUTE</span><span class="o">.</span><span class="n">value</span>  <span class="c1"># HOUR,DAY,MINUTE,SECOND 1.5.2 暂不支持保留字段</span>
+                 <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">run_mode</span> <span class="o">=</span> <span class="n">run_mode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cron_expression</span> <span class="o">=</span> <span class="n">cron_expression</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interval</span> <span class="o">=</span> <span class="n">interval</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interval_unit</span> <span class="o">=</span> <span class="n">interval_unit</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trigger</span> <span class="o">=</span> <span class="n">trigger</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">retry_count</span> <span class="o">=</span> <span class="n">retry_count</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_time</span> <span class="o">=</span> <span class="n">delay_time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_time_unit</span> <span class="o">=</span> <span class="n">delay_time_unit</span></div>
+
+
+<div class="viewcode-block" id="MsgPublishConfig"><a class="viewcode-back" href="../../../flowengine.model.html#flowengine.model.execution_config.MsgPublishConfig">[docs]</a><span class="k">class</span> <span class="nc">MsgPublishConfig</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="nb">type</span><span class="p">,</span><span class="n">topic</span><span class="p">,</span><span class="n">describe</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="nb">type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">describe</span> <span class="o">=</span> <span class="n">describe</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">topic</span> <span class="o">=</span> <span class="n">topic</span></div>
+
+
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, meteor
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

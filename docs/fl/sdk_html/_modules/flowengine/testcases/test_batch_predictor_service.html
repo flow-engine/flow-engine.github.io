@@ -1,0 +1,283 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>flowengine.testcases.test_batch_predictor_service &mdash; FlowEngine-py-SDK release/1.5.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> FlowEngine-py-SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Welcome to FlowEngine-py-SDK</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../service.html">service package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../client.html">client package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../model.html">model package</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">FlowEngine-py-SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>flowengine.testcases.test_batch_predictor_service</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for flowengine.testcases.test_batch_predictor_service</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Author: liyuqing@4paradigm.com</span>
+<span class="sd">Date: 2019-10-16</span>
+<span class="sd">Test cases of batch predictor service</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">flowengine.config</span> <span class="kn">import</span> <span class="n">settings</span>
+<span class="kn">from</span> <span class="nn">flowengine.service.batch_predictor_service</span> <span class="kn">import</span> <span class="n">BatchPredictorService</span>
+
+
+<div class="viewcode-block" id="TestSelfLearnerService"><a class="viewcode-back" href="../../../flowengine.testcases.html#flowengine.testcases.test_batch_predictor_service.TestSelfLearnerService">[docs]</a><span class="k">class</span> <span class="nc">TestSelfLearnerService</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="TestSelfLearnerService.setUp"><a class="viewcode-back" href="../../../flowengine.testcases.html#flowengine.testcases.test_batch_predictor_service.TestSelfLearnerService.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch_predictor</span> <span class="o">=</span> <span class="n">BatchPredictorService</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="TestSelfLearnerService.test_get_solution"><a class="viewcode-back" href="../../../flowengine.testcases.html#flowengine.testcases.test_batch_predictor_service.TestSelfLearnerService.test_get_solution">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_solution</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_predictor</span><span class="o">.</span><span class="n">get_solution</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;dataSources&#39;</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="TestSelfLearnerService.test_get_history"><a class="viewcode-back" href="../../../flowengine.testcases.html#flowengine.testcases.test_batch_predictor_service.TestSelfLearnerService.test_get_history">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_history</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_predictor</span><span class="o">.</span><span class="n">get_history</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestSelfLearnerService.test_start_once_batch_predictor"><a class="viewcode-back" href="../../../flowengine.testcases.html#flowengine.testcases.test_batch_predictor_service.TestSelfLearnerService.test_start_once_batch_predictor">[docs]</a>    <span class="k">def</span> <span class="nf">test_start_once_batch_predictor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">data_source</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;HyperCycle_ML/apiauto-15717293341_behaviourTable_20191022153039.table-group&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s2">&quot;prn&quot;</span><span class="p">:</span> <span class="s2">&quot;HyperCycle_ML/apiauto-15717293341_behaviourTable_20191022153039.table-group&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;isTableGroup&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                <span class="s2">&quot;sliceType&quot;</span><span class="p">:</span> <span class="s2">&quot;PART&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;sliceValue&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;from&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="s2">&quot;to&quot;</span><span class="p">:</span> <span class="mi">1000</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;supportTime&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                <span class="s2">&quot;isRequired&quot;</span><span class="p">:</span> <span class="kc">True</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+
+        <span class="n">model_config</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s2">&quot;prn&quot;</span><span class="p">:</span> <span class="s2">&quot;HyperCycle_ML/self_learning_apiauto-15717293341_20191022153040.model-group/automl-PicoTraining-649-8d3390d8426c.model&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;modelGroupPrn&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s2">&quot;modelType&quot;</span><span class="p">:</span> <span class="s2">&quot;SINGLE_MODEL&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;filterId&quot;</span><span class="p">:</span> <span class="kc">None</span>
+        <span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_predictor</span><span class="o">.</span><span class="n">start_once_batch_predictor</span><span class="p">(</span><span class="n">data_source</span><span class="p">,</span> <span class="n">model_config</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestSelfLearnerService.test_stop_batch_predictor"><a class="viewcode-back" href="../../../flowengine.testcases.html#flowengine.testcases.test_batch_predictor_service.TestSelfLearnerService.test_stop_batch_predictor">[docs]</a>    <span class="k">def</span> <span class="nf">test_stop_batch_predictor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_predictor</span><span class="o">.</span><span class="n">stop_batch_predictor</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestSelfLearnerService.test_restart_batch_predictor"><a class="viewcode-back" href="../../../flowengine.testcases.html#flowengine.testcases.test_batch_predictor_service.TestSelfLearnerService.test_restart_batch_predictor">[docs]</a>    <span class="k">def</span> <span class="nf">test_restart_batch_predictor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_predictor</span><span class="o">.</span><span class="n">restart_batch_predictor</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestSelfLearnerService.test_start_batch_predictor_by_config"><a class="viewcode-back" href="../../../flowengine.testcases.html#flowengine.testcases.test_batch_predictor_service.TestSelfLearnerService.test_start_batch_predictor_by_config">[docs]</a>    <span class="k">def</span> <span class="nf">test_start_batch_predictor_by_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">data_source</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;dataSources&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;HyperCycle_ML/apiauto-15716372833_behaviourTable_20191021135444.table-group&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s2">&quot;prn&quot;</span><span class="p">:</span> <span class="s2">&quot;HyperCycle_ML/apiauto-15716372833_behaviourTable_20191021135444.table-group&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;isTableGroup&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                <span class="s2">&quot;sliceType&quot;</span><span class="p">:</span> <span class="s2">&quot;PART&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;sliceValue&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;from&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="s2">&quot;to&quot;</span><span class="p">:</span> <span class="mi">1000</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;supportTime&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                <span class="s2">&quot;isRequired&quot;</span><span class="p">:</span> <span class="kc">True</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="kc">None</span>
+    <span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_predictor</span><span class="o">.</span><span class="n">start_once_batch_predictor_by_config</span><span class="p">(</span><span class="n">data_source</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, meteor
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+.. FlowEngine-py-SDK documentation master file, created by
+   sphinx-quickstart on Fri Jul 26 21:21:23 2019.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Welcome to FlowEngine-py-SDK
+=============================================
+
+   FlowEngine-py-sdk 是 FlowEngine 提供的 python SDK。该 SDK 为开发者提供 API 和支撑 FlowEngine cli 开发。
+   通过该 SDK 开发者便可以按需开发丰富的插件和灵活的开发组件的自定义命令。
+
+特性如下：
+
+- 丰富的官方组件（数据导入、模型探索、自学习、批量预估等） SDK API
+- FlowEngine 全流程 API
+- FlowEngine 环境中配置自动化，无缝支持 FlowEngine 插件开发
+- FlowEngine 插件开发案例丰富
+- 自动切换线上线下环境配置
+
+More About FlowEngine
+-----------------------
+
+FlowEngine py sdk 主要包含：
+
+=========================================  ============================================================================
+module                                     功能
+=========================================  ============================================================================
+ **manager_service**                       FlowEngine 服务类，主要创建和操作 engine 和 sci 等。
+ **market_service**                        Market 服务类，主要负责方案和组件的管理等。
+ **solution_explore_service**              官方方案探索组件实例的基础服务类，主要包含探索模型基础等功能。
+ **engine_kernel_service**                 FlowEngine engine core 服务类，整体协调管理各个组件实例。
+ **solution_explore_binary_service**       官方方案探索之二分类组件实例的服务类。
+ **solution_explore_regression_service**   官方方案探索之回归类组件实例的服务类。
+ **sci_self_learner_service**              官方自学习组件实例的服务类，主要包含自学习任务查看、开启、停止等。
+ **workflow_service**                      FlowEngine 底层依赖 pws 服务的服务类，主要包含 dag 提交、查看运行状态等。
+ **sci_batch_predictor_service**           官方批量预估组件的服务类，主要包含批量预估任务的开启和查看等。
+ **pdms_service**                          FlowEngine 底层依赖 pdms 服务的服务类，主要包含不同存储对象的增删查改等。
+=========================================  ============================================================================
+
+.. toctree::
+    :hidden:
+
+    self
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Contents:
+
+   service
+   client
+   model
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

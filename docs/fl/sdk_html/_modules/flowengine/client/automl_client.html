@@ -1,0 +1,432 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>flowengine.client.automl_client &mdash; FlowEngine-py-SDK release/1.5.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> FlowEngine-py-SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Welcome to FlowEngine-py-SDK</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../service.html">service package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../client.html">client package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../model.html">model package</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">FlowEngine-py-SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>flowengine.client.automl_client</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for flowengine.client.automl_client</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*-coding:utf-8-*-</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="kn">from</span> <span class="nn">flowengine.client.base_client</span> <span class="kn">import</span> <span class="n">BaseClient</span>
+
+
+<div class="viewcode-block" id="NoticeLevel"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.NoticeLevel">[docs]</a><span class="k">class</span> <span class="nc">NoticeLevel</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">INFO</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">ERROR</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">WARN</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span></div>
+
+
+<div class="viewcode-block" id="AutoMLClient"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient">[docs]</a><span class="k">class</span> <span class="nc">AutoMLClient</span><span class="p">(</span><span class="n">BaseClient</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s1">&#39;/automl/v1&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">context_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s1">&#39;/flowengine/v1/engines/pipeline/contextInfo&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="s1">&#39;/flowengine/v1/engines/pipeline/message&#39;</span>
+
+<div class="viewcode-block" id="AutoMLClient.notify_error"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.notify_error">[docs]</a>    <span class="k">def</span> <span class="nf">notify_error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_id</span><span class="p">,</span> <span class="n">explore_id</span><span class="p">,</span> <span class="n">stage</span><span class="p">,</span> <span class="n">child_stage</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">extra_content</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="n">engine_id</span><span class="p">,</span> <span class="n">explore_id</span><span class="p">,</span> <span class="n">stage</span><span class="p">,</span> <span class="n">child_stage</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span>
+                           <span class="n">extra_content</span><span class="o">=</span><span class="n">extra_content</span><span class="p">,</span> <span class="n">notice_level</span><span class="o">=</span><span class="n">NoticeLevel</span><span class="o">.</span><span class="n">ERROR</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.notify_info"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.notify_info">[docs]</a>    <span class="k">def</span> <span class="nf">notify_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_id</span><span class="p">,</span> <span class="n">explore_id</span><span class="p">,</span> <span class="n">stage</span><span class="p">,</span> <span class="n">child_stage</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">extra_content</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="n">engine_id</span><span class="p">,</span> <span class="n">explore_id</span><span class="p">,</span> <span class="n">stage</span><span class="p">,</span> <span class="n">child_stage</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span>
+                           <span class="n">extra_content</span><span class="o">=</span><span class="n">extra_content</span><span class="p">,</span> <span class="n">notice_level</span><span class="o">=</span><span class="n">NoticeLevel</span><span class="o">.</span><span class="n">INFO</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.notify_warn"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.notify_warn">[docs]</a>    <span class="k">def</span> <span class="nf">notify_warn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_id</span><span class="p">,</span> <span class="n">explore_id</span><span class="p">,</span> <span class="n">stage</span><span class="p">,</span> <span class="n">child_stage</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">extra_content</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="n">engine_id</span><span class="p">,</span> <span class="n">explore_id</span><span class="p">,</span> <span class="n">stage</span><span class="p">,</span> <span class="n">child_stage</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span>
+                           <span class="n">extra_content</span><span class="o">=</span><span class="n">extra_content</span><span class="p">,</span> <span class="n">notice_level</span><span class="o">=</span><span class="n">NoticeLevel</span><span class="o">.</span><span class="n">WARN</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.notify"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.notify">[docs]</a>    <span class="k">def</span> <span class="nf">notify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_id</span><span class="p">,</span> <span class="n">explore_id</span><span class="p">,</span> <span class="n">stage</span><span class="p">,</span> <span class="n">child_stage</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">notice_level</span><span class="o">=</span><span class="n">NoticeLevel</span><span class="o">.</span><span class="n">INFO</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+               <span class="n">extra_content</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;/notification/</span><span class="si">{notice_level}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">notice_level</span><span class="o">=</span><span class="n">notice_level</span><span class="p">)</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;engineId&#39;</span><span class="p">:</span> <span class="n">engine_id</span><span class="p">,</span>
+            <span class="s1">&#39;exploreId&#39;</span><span class="p">:</span> <span class="n">explore_id</span><span class="p">,</span>
+            <span class="s1">&#39;stage&#39;</span><span class="p">:</span> <span class="n">stage</span><span class="p">,</span>
+            <span class="s1">&#39;childStage&#39;</span><span class="p">:</span> <span class="n">child_stage</span><span class="p">,</span>
+            <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="n">content</span><span class="p">,</span>
+            <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="n">extra_content</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.list_notice"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.list_notice">[docs]</a>    <span class="k">def</span> <span class="nf">list_notice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_id</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{url}</span><span class="s1">/engines/</span><span class="si">{engine_id}</span><span class="s1">/explore/1/getLogByPage&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">engine_id</span><span class="o">=</span><span class="n">engine_id</span><span class="p">)</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;condition&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;levels&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;INFO&quot;</span><span class="p">,</span> <span class="s2">&quot;WARN&quot;</span><span class="p">,</span> <span class="s2">&quot;ERROR&quot;</span><span class="p">]},</span> <span class="s2">&quot;pageNum&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="s2">&quot;pageSize&quot;</span><span class="p">:</span> <span class="mi">100000</span><span class="p">,</span>
+                <span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="mi">100000</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">body</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.request"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.request">[docs]</a>    <span class="k">def</span> <span class="nf">request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">relative_url</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="n">relative_url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">body</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.get_history_by_index_name"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.get_history_by_index_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_history_by_index_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_id</span><span class="p">,</span> <span class="n">index_name</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+        <span class="n">relative_url</span> <span class="o">=</span> <span class="s1">&#39;/chart/historyListByName/</span><span class="si">{engine_id}</span><span class="s1">/</span><span class="si">{index_name}</span><span class="s1">?limit=</span><span class="si">{limit}</span><span class="s1">&#39;</span><span class="o">.</span> \
+            <span class="nb">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">engine_id</span><span class="o">=</span><span class="n">engine_id</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="n">index_name</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">relative_url</span><span class="p">,</span> <span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.get_sys_params"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.get_sys_params">[docs]</a>    <span class="k">def</span> <span class="nf">get_sys_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/system/getParamWithoutTemplate&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;engineKey&#39;</span><span class="p">:</span> <span class="n">engine_key</span><span class="p">}</span> <span class="k">if</span> <span class="n">engine_key</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.deploy_batch_predictor"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.deploy_batch_predictor">[docs]</a>    <span class="k">def</span> <span class="nf">deploy_batch_predictor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_id</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;/batchPrediction/config/solution/</span><span class="si">{engineId}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">engineId</span><span class="o">=</span><span class="n">engine_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">config</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.deploy_batch_predictor_by_prn"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.deploy_batch_predictor_by_prn">[docs]</a>    <span class="k">def</span> <span class="nf">deploy_batch_predictor_by_prn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_prn</span><span class="p">,</span> <span class="n">engine_id</span><span class="p">,</span> <span class="n">interval_hours</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;/batchPrediction/config/solution/</span><span class="si">{engineId}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">engineId</span><span class="o">=</span><span class="n">engine_id</span><span class="p">)</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;modelType&quot;</span><span class="p">:</span> <span class="s2">&quot;SINGLE_MODEL&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;modelDto&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;modelPrn&quot;</span><span class="p">:</span> <span class="n">model_prn</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;intervalHours&quot;</span><span class="p">:</span> <span class="n">interval_hours</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.post_online_predict_config"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.post_online_predict_config">[docs]</a>    <span class="k">def</span> <span class="nf">post_online_predict_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predict_id</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{url}</span><span class="s1">/onlinePrediction/</span><span class="si">{predictId}</span><span class="s1">/predictorConfig&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">predictId</span><span class="o">=</span><span class="n">predict_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">config</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.post_manual_online_predict_config"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.post_manual_online_predict_config">[docs]</a>    <span class="k">def</span> <span class="nf">post_manual_online_predict_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predict_id</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{url}</span><span class="s1">/onlinePrediction/</span><span class="si">{predictId}</span><span class="s1">/manualPredictorConfig&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">predictId</span><span class="o">=</span><span class="n">predict_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">config</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.get_predict_config"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.get_predict_config">[docs]</a>    <span class="k">def</span> <span class="nf">get_predict_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predict_id</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="s1">/onlinePrediction/</span><span class="si">{</span><span class="n">predict_id</span><span class="si">}</span><span class="s1">/predictorConfig&#39;</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.get_self_learning_train_info"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.get_self_learning_train_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_self_learning_train_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">logic_engine_id</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{url}</span><span class="s1">/engines/</span><span class="si">{logic_engine_id}</span><span class="s1">/getTrainInfo&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">logic_engine_id</span><span class="o">=</span><span class="n">logic_engine_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.get_explore_info"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.get_explore_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_explore_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">logic_engine_id</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{url}</span><span class="s1">/engines/</span><span class="si">{logic_engine_id}</span><span class="s1">/getExploreInfo&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">logic_engine_id</span><span class="o">=</span><span class="n">logic_engine_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.deploy_model_to_self_learner"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.deploy_model_to_self_learner">[docs]</a>    <span class="k">def</span> <span class="nf">deploy_model_to_self_learner</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_id</span><span class="p">,</span> <span class="n">model_id</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{url}</span><span class="s1">/engines/</span><span class="si">{engine_id}</span><span class="s1">/solution/publish/</span><span class="si">{model_id}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">engine_id</span><span class="o">=</span><span class="n">engine_id</span><span class="p">,</span>
+                                                                             <span class="n">model_id</span><span class="o">=</span><span class="n">model_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.check_hdfs"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.check_hdfs">[docs]</a>    <span class="k">def</span> <span class="nf">check_hdfs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_id</span><span class="p">,</span> <span class="n">hdfs_path</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{url}</span><span class="s1">/engines/</span><span class="si">{engine_id}</span><span class="s1">/hdfs/check&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">engine_id</span><span class="o">=</span><span class="n">engine_id</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">hdfs_path</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.preview_data"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.preview_data">[docs]</a>    <span class="k">def</span> <span class="nf">preview_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_id</span><span class="p">,</span> <span class="n">data_type</span><span class="p">,</span> <span class="n">file_type</span><span class="p">,</span> <span class="n">encoding</span><span class="p">,</span> <span class="n">is_first_line_schema</span><span class="p">,</span> <span class="n">table_file_path</span><span class="p">,</span> <span class="n">group_prn</span><span class="p">,</span> <span class="n">group_name</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{url}</span><span class="s1">/engines/</span><span class="si">{engine_id}</span><span class="s1">/table/upload/preview&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">engine_id</span><span class="o">=</span><span class="n">engine_id</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">fileType</span><span class="o">=</span><span class="n">file_type</span><span class="p">,</span> <span class="n">dataType</span><span class="o">=</span><span class="n">data_type</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span> <span class="n">isFirstLineSchema</span><span class="o">=</span><span class="n">is_first_line_schema</span><span class="p">,</span>
+                      <span class="n">tableFilePath</span><span class="o">=</span><span class="n">table_file_path</span><span class="p">,</span> <span class="n">groupPrn</span><span class="o">=</span><span class="n">group_prn</span><span class="p">,</span> <span class="n">groupName</span><span class="o">=</span><span class="n">group_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.check_schema"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.check_schema">[docs]</a>    <span class="k">def</span> <span class="nf">check_schema</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_id</span><span class="p">,</span> <span class="n">data_type</span><span class="p">,</span> <span class="n">group_prn</span><span class="p">,</span> <span class="n">group_name</span><span class="p">,</span> <span class="n">schema</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{url}</span><span class="s1">/engines/</span><span class="si">{engine_id}</span><span class="s1">/table/differentSchema&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">engine_id</span><span class="o">=</span><span class="n">engine_id</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">dataType</span><span class="o">=</span><span class="n">data_type</span><span class="p">,</span> <span class="n">groupPrn</span><span class="o">=</span><span class="n">group_prn</span><span class="p">,</span> <span class="n">groupName</span><span class="o">=</span><span class="n">group_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">schema</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.import_hdfs"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.import_hdfs">[docs]</a>    <span class="k">def</span> <span class="nf">import_hdfs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_id</span><span class="p">,</span> <span class="n">group_prn</span><span class="p">,</span> <span class="n">group_name</span><span class="p">,</span> <span class="n">upload_config</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{url}</span><span class="s1">/engines/</span><span class="si">{engine_id}</span><span class="s1">/hdfs/import&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">engine_id</span><span class="o">=</span><span class="n">engine_id</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">tableGroupPrn</span><span class="o">=</span><span class="n">group_prn</span><span class="p">,</span> <span class="n">groupName</span><span class="o">=</span><span class="n">group_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">upload_config</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.list_table"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.list_table">[docs]</a>    <span class="k">def</span> <span class="nf">list_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_id</span><span class="p">,</span> <span class="n">data_type</span><span class="p">,</span> <span class="n">group_prn</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{url}</span><span class="s1">/engines/</span><span class="si">{engine_id}</span><span class="s1">/table/list&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">engine_id</span><span class="o">=</span><span class="n">engine_id</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">dataType</span><span class="o">=</span><span class="n">data_type</span><span class="p">,</span> <span class="n">tableGroupPrn</span><span class="o">=</span><span class="n">group_prn</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.list_job"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.list_job">[docs]</a>    <span class="k">def</span> <span class="nf">list_job</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_id</span><span class="p">,</span> <span class="n">data_type</span><span class="p">,</span> <span class="n">group_prn</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{url}</span><span class="s1">/engines/</span><span class="si">{engine_id}</span><span class="s1">/table/job/list&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">engine_id</span><span class="o">=</span><span class="n">engine_id</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">dataType</span><span class="o">=</span><span class="n">data_type</span><span class="p">,</span> <span class="n">tableGroupPrn</span><span class="o">=</span><span class="n">group_prn</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.save_explore_config"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.save_explore_config">[docs]</a>    <span class="k">def</span> <span class="nf">save_explore_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_id</span><span class="p">,</span> <span class="n">explore_config</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{url}</span><span class="s1">/engines/</span><span class="si">{engine_id}</span><span class="s1">/saveModelExploreConfig&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">engine_id</span><span class="o">=</span><span class="n">engine_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">explore_config</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.start_explore"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.start_explore">[docs]</a>    <span class="k">def</span> <span class="nf">start_explore</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_id</span><span class="p">,</span> <span class="n">explore_id</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{url}</span><span class="s1">/engines/</span><span class="si">{engine_id}</span><span class="s1">/explore/</span><span class="si">{explore_id}</span><span class="s1">/run&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">engine_id</span><span class="o">=</span><span class="n">engine_id</span><span class="p">,</span>
+                                                                          <span class="n">explore_id</span><span class="o">=</span><span class="n">explore_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.get_explore_status"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.get_explore_status">[docs]</a>    <span class="k">def</span> <span class="nf">get_explore_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_id</span><span class="p">,</span> <span class="n">explore_id</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{url}</span><span class="s1">/engines/</span><span class="si">{engine_id}</span><span class="s1">/explore/</span><span class="si">{explore_id}</span><span class="s1">/getRunInfo&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">engine_id</span><span class="o">=</span><span class="n">engine_id</span><span class="p">,</span>
+                                                                                 <span class="n">explore_id</span><span class="o">=</span><span class="n">explore_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.stop_explore"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.stop_explore">[docs]</a>    <span class="k">def</span> <span class="nf">stop_explore</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_id</span><span class="p">,</span> <span class="n">explore_id</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{url}</span><span class="s1">/engines/</span><span class="si">{engine_id}</span><span class="s1">/explore/</span><span class="si">{explore_id}</span><span class="s1">/stop&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">engine_id</span><span class="o">=</span><span class="n">engine_id</span><span class="p">,</span>
+                                                                           <span class="n">explore_id</span><span class="o">=</span><span class="n">explore_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.set_relation"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.set_relation">[docs]</a>    <span class="k">def</span> <span class="nf">set_relation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_id</span><span class="p">,</span> <span class="n">primary_key</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">data_type</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="s1">/engines/</span><span class="si">{</span><span class="n">engine_id</span><span class="si">}</span><span class="s1">/tableGroups/relation&#39;</span>
+        <span class="n">query_param</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">primaryKey</span><span class="o">=</span><span class="n">primary_key</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="n">dataType</span><span class="o">=</span><span class="n">data_type</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">query_param</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.create_context_with_key"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.create_context_with_key">[docs]</a>    <span class="k">def</span> <span class="nf">create_context_with_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">context_info</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{url}</span><span class="s1">/</span><span class="si">{engineKey}</span><span class="s1">/config/</span><span class="si">{component}</span><span class="s1">/create&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">context_url</span><span class="p">,</span> <span class="n">engineKey</span><span class="o">=</span><span class="n">engine_key</span><span class="p">,</span>
+                                                                   <span class="n">component</span><span class="o">=</span><span class="n">component</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">context_info</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.update_context_info_with_key"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.update_context_info_with_key">[docs]</a>    <span class="k">def</span> <span class="nf">update_context_info_with_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">context_info</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{url}</span><span class="s1">/</span><span class="si">{engineKey}</span><span class="s1">/config/</span><span class="si">{component}</span><span class="s1">/update&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">context_url</span><span class="p">,</span> <span class="n">engineKey</span><span class="o">=</span><span class="n">engine_key</span><span class="p">,</span>
+                                                                   <span class="n">component</span><span class="o">=</span><span class="n">component</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">context_info</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.get_context_info_with_key"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.get_context_info_with_key">[docs]</a>    <span class="k">def</span> <span class="nf">get_context_info_with_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">context_key</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{url}</span><span class="s1">/</span><span class="si">{engineKey}</span><span class="s1">/config/</span><span class="si">{component}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">context_url</span><span class="p">,</span> <span class="n">engineKey</span><span class="o">=</span><span class="n">engine_key</span><span class="p">,</span>
+                                                            <span class="n">component</span><span class="o">=</span><span class="n">component</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="s1">&#39;contextKey=&#39;</span> <span class="o">+</span> <span class="n">context_key</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.list_context_info_with_key"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.list_context_info_with_key">[docs]</a>    <span class="k">def</span> <span class="nf">list_context_info_with_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">,</span> <span class="n">component</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{url}</span><span class="s1">/</span><span class="si">{engineKey}</span><span class="s1">/list/</span><span class="si">{component}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">context_url</span><span class="p">,</span> <span class="n">engineKey</span><span class="o">=</span><span class="n">engine_key</span><span class="p">,</span>
+                                                          <span class="n">component</span><span class="o">=</span><span class="n">component</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.register_message_with_key"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.register_message_with_key">[docs]</a>    <span class="k">def</span> <span class="nf">register_message_with_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">message_info</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{url}</span><span class="s1">/</span><span class="si">{engineKey}</span><span class="s1">/config/</span><span class="si">{component}</span><span class="s1">/create&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">message_url</span><span class="p">,</span> <span class="n">engineKey</span><span class="o">=</span><span class="n">engine_key</span><span class="p">,</span>
+                                                                   <span class="n">component</span><span class="o">=</span><span class="n">component</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">message_info</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.update_message_with_key"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.update_message_with_key">[docs]</a>    <span class="k">def</span> <span class="nf">update_message_with_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">message_info</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{url}</span><span class="s1">/</span><span class="si">{engineKey}</span><span class="s1">/config/</span><span class="si">{component}</span><span class="s1">/update&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">message_url</span><span class="p">,</span> <span class="n">engineKey</span><span class="o">=</span><span class="n">engine_key</span><span class="p">,</span>
+                                                                   <span class="n">component</span><span class="o">=</span><span class="n">component</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">message_info</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.subscribe_message_with_key"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.subscribe_message_with_key">[docs]</a>    <span class="k">def</span> <span class="nf">subscribe_message_with_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">trigger</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{url}</span><span class="s1">/</span><span class="si">{engineKey}</span><span class="s1">/config/</span><span class="si">{component}</span><span class="s1">/subscribe/</span><span class="si">{topic}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">message_url</span><span class="p">,</span> <span class="n">engineKey</span><span class="o">=</span><span class="n">engine_key</span>
+                                                                              <span class="p">,</span> <span class="n">component</span><span class="o">=</span><span class="n">component</span><span class="p">,</span> <span class="n">topic</span><span class="o">=</span><span class="n">topic</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">trigger</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.producer_message_with_key"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.producer_message_with_key">[docs]</a>    <span class="k">def</span> <span class="nf">producer_message_with_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">message_info</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{url}</span><span class="s1">/</span><span class="si">{engineKey}</span><span class="s1">/log/</span><span class="si">{component}</span><span class="s1">/producer/</span><span class="si">{topic}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">message_url</span><span class="p">,</span> <span class="n">engineKey</span><span class="o">=</span><span class="n">engine_key</span>
+                                                                          <span class="p">,</span> <span class="n">component</span><span class="o">=</span><span class="n">component</span><span class="p">,</span> <span class="n">topic</span><span class="o">=</span><span class="n">topic</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">message_info</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.poll_message_with_key"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.poll_message_with_key">[docs]</a>    <span class="k">def</span> <span class="nf">poll_message_with_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">,</span> <span class="n">component</span><span class="p">,</span> <span class="n">topic</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{url}</span><span class="s1">/</span><span class="si">{engineKey}</span><span class="s1">/log/</span><span class="si">{component}</span><span class="s1">/poll/</span><span class="si">{topic}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">engineKey</span><span class="o">=</span><span class="n">engine_key</span>
+                                                                      <span class="p">,</span> <span class="n">component</span><span class="o">=</span><span class="n">component</span><span class="p">,</span> <span class="n">topic</span><span class="o">=</span><span class="n">topic</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.stop_index"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.stop_index">[docs]</a>    <span class="k">def</span> <span class="nf">stop_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_id</span><span class="p">,</span> <span class="n">history_id</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{url}</span><span class="s1">/chart/history/</span><span class="si">{historyId}</span><span class="s1">/stop&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">engine_id</span><span class="o">=</span><span class="n">engine_id</span><span class="p">,</span>
+                                                                                   <span class="n">historyId</span><span class="o">=</span><span class="n">history_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.get_history_by_index_id"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.get_history_by_index_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_history_by_index_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_id</span><span class="p">,</span> <span class="n">index_job_id</span><span class="p">):</span>
+
+        <span class="n">relative_url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{url}</span><span class="s1">/chart/historyListByJob/</span><span class="si">{index_job_id}</span><span class="s1">?pageNumber=1&amp;pageSize=100&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span>
+                                                                                                  <span class="n">engine_id</span><span class="o">=</span><span class="n">engine_id</span><span class="p">,</span> <span class="n">index_job_id</span><span class="o">=</span><span class="n">index_job_id</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">relative_url</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="s2">&quot;pageNumber=1&amp;pageSize=100&quot;</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">relative_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.start_index"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.start_index">[docs]</a>    <span class="k">def</span> <span class="nf">start_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine_id</span><span class="p">,</span> <span class="n">template_id</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{url}</span><span class="s1">/chart/</span><span class="si">{engine_id}</span><span class="s1">/</span><span class="si">{template_id}</span><span class="s1">/start&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">engine_id</span><span class="o">=</span><span class="n">engine_id</span><span class="p">,</span>
+                                                                <span class="n">template_id</span><span class="o">=</span><span class="n">template_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">body</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AutoMLClient.restart_index"><a class="viewcode-back" href="../../../flowengine.client.html#flowengine.client.automl_client.AutoMLClient.restart_index">[docs]</a>    <span class="k">def</span> <span class="nf">restart_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="n">engine_id</span><span class="p">,</span> <span class="n">history_id</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{url}</span><span class="s1">/chart/history/</span><span class="si">{historyId}</span><span class="s1">/restart?engineId=</span><span class="si">{engine_id}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">engine_id</span><span class="o">=</span><span class="n">engine_id</span><span class="p">,</span> <span class="n">historyId</span><span class="o">=</span><span class="n">history_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, meteor
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

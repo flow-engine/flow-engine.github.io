@@ -1,0 +1,283 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>flowengine.unit_tests.test_engine &mdash; FlowEngine-py-SDK release/1.5.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> FlowEngine-py-SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Welcome to FlowEngine-py-SDK</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../service.html">service package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../client.html">client package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../model.html">model package</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">FlowEngine-py-SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>flowengine.unit_tests.test_engine</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for flowengine.unit_tests.test_engine</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">unittest</span> <span class="kn">import</span> <span class="n">TestCase</span>
+
+<span class="kn">from</span> <span class="nn">flowengine.logger_manager</span> <span class="kn">import</span> <span class="n">logger</span>
+<span class="kn">from</span> <span class="nn">flowengine.service.keystone_service</span> <span class="kn">import</span> <span class="n">KeystoneService</span>
+<span class="kn">from</span> <span class="nn">flowengine.service.manager_service</span> <span class="kn">import</span> <span class="n">ManagerService</span>
+<span class="kn">from</span> <span class="nn">flowengine.service.market_service</span> <span class="kn">import</span> <span class="n">MarketService</span>
+
+<span class="n">log</span> <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="TestManager"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_engine.TestManager">[docs]</a><span class="k">class</span> <span class="nc">TestManager</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TestManager.setUp"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_engine.TestManager.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;setUp...&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="n">ManagerService</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="TestManager.tearDown"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_engine.TestManager.tearDown">[docs]</a>    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;tearDown...&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestManager.test_list_apps"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_engine.TestManager.test_list_apps">[docs]</a>    <span class="k">def</span> <span class="nf">test_list_apps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">list_apps</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">ret</span><span class="o">.</span><span class="n">json</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="TestManager.test_create"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_engine.TestManager.test_create">[docs]</a>    <span class="k">def</span> <span class="nf">test_create</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;lj66neeljn&#39;</span><span class="p">,</span> <span class="s1">&#39;twweste&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;4pdadmin&#39;</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestManager.test_offline"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_engine.TestManager.test_offline">[docs]</a>    <span class="k">def</span> <span class="nf">test_offline</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">offline</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestManager.test_online"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_engine.TestManager.test_online">[docs]</a>    <span class="k">def</span> <span class="nf">test_online</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">online</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestManager.test_delete"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_engine.TestManager.test_delete">[docs]</a>    <span class="k">def</span> <span class="nf">test_delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="s2">&quot;False&quot;</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestManager.test_get_engine_id_by_engine_key"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_engine.TestManager.test_get_engine_id_by_engine_key">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_engine_id_by_engine_key</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">engine_key</span> <span class="o">=</span> <span class="s1">&#39;zhaoqing-logic-key&#39;</span>
+        <span class="n">workspace_name</span> <span class="o">=</span> <span class="s1">&#39;FlowEngine&#39;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">get_engine_id_by_engine_key</span><span class="p">(</span><span class="n">workspace_name</span><span class="p">,</span> <span class="n">engine_key</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="TestKeystone"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_engine.TestKeystone">[docs]</a><span class="k">class</span> <span class="nc">TestKeystone</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TestKeystone.setUp"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_engine.TestKeystone.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;setUp...&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">keystone</span> <span class="o">=</span> <span class="n">KeystoneService</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="TestKeystone.tearDown"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_engine.TestKeystone.tearDown">[docs]</a>    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;tearDown...&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestKeystone.test_get_workspaces"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_engine.TestKeystone.test_get_workspaces">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_workspaces</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">keystone</span><span class="o">.</span><span class="n">get_workspaces</span><span class="p">()</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">ret</span><span class="o">.</span><span class="n">json</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestKeystone.test_get_users"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_engine.TestKeystone.test_get_users">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_users</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">keystone</span><span class="o">.</span><span class="n">get_users</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">ret</span><span class="o">.</span><span class="n">json</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestKeystone.test_get_workspace"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_engine.TestKeystone.test_get_workspace">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_workspace</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">keystone</span><span class="o">.</span><span class="n">get_workspace</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="TestMarket"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_engine.TestMarket">[docs]</a><span class="k">class</span> <span class="nc">TestMarket</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TestMarket.setUp"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_engine.TestMarket.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;setUp...&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="n">MarketService</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="TestMarket.tearDown"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_engine.TestMarket.tearDown">[docs]</a>    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;tearDown...&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestMarket.test_get_template_markets"><a class="viewcode-back" href="../../../flowengine.unit_tests.html#flowengine.unit_tests.test_engine.TestMarket.test_get_template_markets">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_template_markets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">get_template_markets</span><span class="p">()</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;ret.json&#39;</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, meteor
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

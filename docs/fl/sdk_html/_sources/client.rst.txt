@@ -1,0 +1,101 @@
+client package
+=========================
+
+
+
+automl\_client module
+---------------------------------------
+
+.. automodule:: flowengine.client.automl_client
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+base\_client module
+-------------------------------------
+
+.. automodule:: flowengine.client.base_client
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+batch\_predictor\_client module
+-------------------------------------------------
+
+.. automodule:: flowengine.client.batch_predictor_client
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+engine\_client module
+---------------------------------------
+
+.. automodule:: flowengine.client.engine_client
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+hdfs\_client module
+-------------------------------------
+
+.. automodule:: flowengine.client.hdfs_client
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+kubernetes\_client module
+-------------------------------------------
+
+.. automodule:: flowengine.client.kubernetes_client
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+market\_client module
+---------------------------------------
+
+.. automodule:: flowengine.client.market_client
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+self\_learner\_client module
+----------------------------------------------
+
+.. automodule:: flowengine.client.self_learner_client
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+shell\_client module
+--------------------------------------
+
+.. automodule:: flowengine.client.shell_client
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+telamon module
+--------------------------------
+
+.. automodule:: flowengine.client.telamon
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+workflow module
+---------------------------------
+
+.. automodule:: flowengine.client.workflow
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+yarn module
+-----------------------------
+
+.. automodule:: flowengine.client.yarn
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

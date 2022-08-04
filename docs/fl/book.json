@@ -1,0 +1,56 @@
+{
+    "title": "帮助文档",
+    "author": "Meteor@4paradigm.com",
+    "plugins": [
+        "page-footer-ex",
+        "toc",
+        "chapter-fold",
+        "copy-code-button",
+        "heading-anchors",
+        "back-to-top-button",
+        "theme-flowengine",
+        "edit-link",
+        "-sharing",
+        "-fontsettings",
+        "theme-fexa"
+    ],
+    "variables": {
+        "themeFexa":{
+            "nav":[
+                {
+                    "url":"./java_sdk_html/index.html",
+                    "target":"_blank",
+                    "name": "Java SDK"
+                },
+                {
+                    "url":"../sdk_html/index.html",
+                    "target":"_blank",
+                    "name": "Python SDK"
+                }
+            ]
+        }
+    },
+    "pluginsConfig": {
+        "theme-default": {
+            "showLevel": false
+        },
+        "page-footer-ex": {
+            "copyright": "Copyright ©2021 4Paradigm [meteor](https://gitlab.4pd.io/meteor)",
+            "markdown": true,
+            "update_label": "此页面修订于：",
+            "update_format": "YYYY-MM-DD HH:mm:ss"
+        },
+        "theme-fexa":{
+            "search-placeholder":"输入关键字搜索",
+            "logo":"./assets/fl_logo.png",
+            "favicon": "./favicon.ico"
+        },
+        "edit-link": {
+            "base": "https://gitlab.4pd.io/meteor/mlplat/flowengine-docs/tree/release/1.6.2",
+            "label": "编辑此页面"
+        }
+    },
+    "styles": {
+        "website": "styles/website.css"
+    }
+}
