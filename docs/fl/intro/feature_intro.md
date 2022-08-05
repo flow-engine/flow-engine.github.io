@@ -8,17 +8,15 @@ flowengine从功能上分为以下子功能板块。
 ## Flowengien Hub 
 
 管理Flowengine方案，组件，JOB，Function等资源的仓库，提供开发，部署，分发的功能。
+
 ![struction](../assets/intro-hub.png){:width="50%" }
 
-更多......
 
 ## Flowengine Data 
 
 数据及元数据管理服务，为Flowengine提供数据流能力。
+
 ![struction](../assets/intro-sds.png){:width="50%" }
-
-更多...
-
 
 ## Flowengine App
  
@@ -34,5 +32,3 @@ flowengine从功能上分为以下子功能板块。
 ![struction](../assets/intro-engine.png){:width="50%"}
 
 引擎是由引擎内核及若干组件服务构成，引擎内核可提供可视化的在线，离线，流式服务编排能力，可以通过这些功能轻松的完成决策类应用的开发和管理。
-
-更多...

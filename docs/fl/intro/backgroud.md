@@ -11,12 +11,17 @@ title: Intro
 
 * **离线编排**
   去中心弹性扩展，支持常见的离线数据任务计算，调度监控等需求
+
   ![platform_show](../assets/fl_offline_pipeline.png){:width="50%" }
+
 * **在线编排**
   支持灵活定义弹性的在线业务请求流程，低延迟，框架overhead忽略不计
+
   ![platform_show](../assets/fl_online_pipeline.png){:width="50%" }
+
 * **流式编排**
   可根据业务低成本，快速搭建流式数据处理管道（可由多个flink任务构成），满足多变的流式数据处理需要
+
   ![platform_show](../assets/fl_stream_pipeline.png){:width="50%" }
 
 **其包含以下核心特点：**

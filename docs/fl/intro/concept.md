@@ -14,7 +14,7 @@ AI应用场景通常高度与数据相关，这其中包含两个层面的问题
 
 ### 基本架构
 
-![struction](../assets/fl-arch.png)
+![struction](../assets/fl-arch.png){:width="50%" }
 
 * FlowEngine-Hub：用于存放方案，组件，FUNC/JOB等资源要素的仓库。
 * FlowEngine-App
