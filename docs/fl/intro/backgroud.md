@@ -9,28 +9,28 @@ title: Intro
 **FloweEngine 是一个覆盖离线，近线，在线场景的声明式云原生的流程编排框架，支撑方案开发，应用管理全过程，旨在帮助快速，正确的搭建数据驱动型应用。**
 
 <div align="left">
-  <img src="../assets/fl_intro.png" width=80% />
+  <img src="../assets/fl_intro.png" width=80% >
 </div>
 
 * **离线编排**
   去中心弹性扩展，支持常见的离线数据任务计算，调度监控等需求
 
 <div align="left">
-    <img src="../assets/fl_offline_pipeline.png" width=80% />
+    <img src="../assets/fl_offline_pipeline.png" width=80% >
 </div>
 
 * **在线编排**
   支持灵活定义弹性的在线业务请求流程，低延迟，框架overhead忽略不计
 
 <div align="left">
-  <img src="../assets/fl_online_pipeline.png" width=80% />
+  <img src="../assets/fl_online_pipeline.png" width=80% >
 </div>
 
 * **流式编排**
   可根据业务低成本，快速搭建流式数据处理管道（可由多个flink任务构成），满足多变的流式数据处理需要
 
 <div align="left">
-  <img src="../assets/fl_stream_pipeline.png" width=80% />
+  <img src="../assets/fl_stream_pipeline.png" width=80% >
 </div>
 
 **其包含以下核心特点：**
@@ -49,5 +49,5 @@ title: Intro
 然后，共享生态，自我成长也是保证它长青的关键，我们面向不同的角色提供不同的参与方式，并使得他们能够在统一的体系下协作，在用户自身也获得了便利的同时，在框架本身能力也获得了丰富和强化。
 
 <div align="left">
-  <img src="../assets/flowengine_struct.png" width=80% />
+  <img src="../assets/flowengine_struct.png" width=80% >
 </div>
