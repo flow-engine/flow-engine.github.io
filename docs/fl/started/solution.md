@@ -23,43 +23,57 @@ title: QuickStarted
 
 ### 新建Flowengine Data项目
 
-![project1](./images/sdsProject1.png)
+<div align="left">
+  <img src="./images/sdsProject1.png" width=80% />
+</div>
 
 ### 引入数据
 
 这里涉及的表，主要是member(用户), product(产品), store(店铺), request(请求)，order(订单), recommend_view（曝光） 6张表。如下图所示，新建原始数据表，并以本地csv的方式引入到系统中
 
-![productData1](./images/productData1.png)
+<div align="left">
+  <img src="./images/productData1.png" width=80% />
+</div>
 
+<div align="left">
+  <img src="./images/csvImport1.png" width=80% />
+</div>
 
-![import](./images/csvImport1.png)
+<div align="left">
+  <img src="./images/dataDetail1.png" width=80% />
+</div>
 
-
-![dataDetails](./images/dataDetail1.png)
-
-
-![sourceDataList](./images/sourceDataList1.png)
+<div align="left">
+  <img src="./images/sourceDataList1.png" width=80% />
+</div>
 
 
 ### 定义数据流
 
 当得到相关的原始数据之后，就可以对相应的数据进行加工处理。
 
-![dataStream1](./images/dataStream1.png)
+<div align="left">
+  <img src="./images/dataStream1.png" width=80% />
+</div>
 
 以处理离线的店铺画像/用户画像/产品画像为例，
 
-![offline_feature](./images/offline_feature1.png)
+<div align="left">
+  <img src="./images/offline_feature1.png" width=80% />
+</div>
 
-
-![dataPipeline2](./images/dataPipeline2.png)
+<div align="left">
+  <img src="./images/dataPipeline2.png" width=80% />
+</div>
 
 此数据流定义相关特征的处理过程。这里采用离线编排的方式来完成离线特征的处理。
 
 
 以准备在线模型的数据为例，
 
-![dataPipleline1](./images/dataStream-model.png)
+<div align="left">
+  <img src="./images/dataStream-model.png" width=80% />
+</div>
 
 此数据流定义相关的数据简单的处理以及映射，主要是通过raw规则来完成相应的数据映射，方便在后续通过Flowengine-Data的serving能力完成自动serving到其他存储介质，如rtidb中。
 
@@ -67,19 +81,26 @@ title: QuickStarted
 
 在绑定的数据引擎里，启动相对应的离线编排。
 
-![pipelineDetail](./images/pipeline1.png)
+<div align="left">
+  <img src="./images/pipeline1.png" width=80% />
+</div>
 
 
 ### 查看数据
 
 离线数据：
 
-![requestLabel](./images/requestLabel.png)
+<div align="left">
+  <img src="./images/requestLabel.png" width=80% />
+</div>
 
 
 rtidb数据：
 
-![storePortial](./images/rtidb-data1.png)
+<div align="left">
+  <img src="./images/rtidb-data1.png" width=80% />
+</div>
+
 
 ## 构建AI模型引擎
 
@@ -89,7 +110,9 @@ rtidb数据：
 
 通过一个示例方案，建立模型引擎
 
-![testTradeEngine](./images/tradeUpEngine1.png)
+<div align="left">
+  <img src="./images/tradeUpEngine1.png" width=80% />
+</div>
 
 这里的tradeup_v2方案是一个示例方案，里面包含了数据组件/自学习/批量预估/在线预估组件。用户也可以根据自己的实际需要去调整
 
@@ -97,16 +120,22 @@ rtidb数据：
 
 直接使用Flowengine Data已经处理好的数据，引擎内如果需要相关的数据的话，仅需绑定相应的数据组即可。
 
-![behaviour](./images/behaviourData1.png)
+<div align="left">
+  <img src="./images/behaviourData1.png" width=80% />
+</div>
 
 进行绑定数据组操作
 
-![bindGroup1](./images/bindGroup1.png)
+<div align="left">
+  <img src="./images/bindGroup1.png" width=80% />
+</div>
 
 
 绑定完成后，
 
-![behaviour2](./images/behaviour2.png)
+<div align="left">
+  <img src="./images/behaviour2.png" width=80% />
+</div>
 
 
 这里，采用绑定的方式来引入数据，主要是基于两点考虑：
@@ -121,29 +150,39 @@ rtidb数据：
 
 当数据准备好之后，便可以通过相应的数据进行自学习
 
-![selfLearner1](./images/selfLearner1.png)
+<div align="left">
+  <img src="./images/selfLearner1.png" width=80% />
+</div>
+
 
 确定相关自学习配置
 
-![selfLearner2](./images/selflearner2.png)
+<div align="left">
+  <img src="./images/selflearner2.png" width=80% />
+</div>
 
 
 进行自学习，得到相关模型
 
-![model1](./images/model1.png)
+<div align="left">
+  <img src="./images/model1.png" width=80% />
+</div>
 
 ### 在线预估
 
 得到模型之后，就可以选择它来进行在线预估
 
-![predictor1](./images/predictor1.png)
+<div align="left">
+  <img src="./images/predictor1.png" width=80% />
+</div>
 
+<div align="left">
+  <img src="./images/predictor2.png" width=80% />
+</div>
 
-![predictor2](./images/predictor2.png)
-
-
-![predictorResult1](./images/predictResult1.png)
-
+<div align="left">
+  <img src="./images/predictResult1.png" width=80% />
+</div>
 
 
 ## 构建场景引擎
@@ -160,7 +199,9 @@ rtidb数据：
 
 定义一个在线pipeline流程，包含召回，模型，规则等
 
-![onlinePipeline2](./images/onlinePipeline2.png)
+<div align="left">
+  <img src="./images/onlinePipeline2.png" width=80% />
+</div>
 
 ### 模型精排
 
@@ -296,12 +337,16 @@ public class DemoModelSortFunction extends FLFunction {
 
 在场景引擎里，构建仅包含精排流程的在线pipeline。
 
-![online-pipeline1](./images/online-pipeline1.png)
+<div align="left">
+  <img src="./images/online-pipeline1.png" width=80% />
+</div>
 
 
 在精排的function运行的时候，需要注入相应的predictUrl。需要在pipeline的job部分，进行初始化的配置
 
-![initConfig](./images/init-config.png)
+<div align="left">
+  <img src="./images/init-config.png" width=80% />
+</div>
 
 其中predictUrl填入上面推荐引擎的预估url
 
@@ -309,10 +354,13 @@ public class DemoModelSortFunction extends FLFunction {
 
 当完成相应的配置之后，我们就可以重新发布pipeline，对外进行调试以及提供服务
 
-![debugPipeline](./images/debugPipeline.png)
+<div align="left">
+  <img src="./images/debugPipeline.png" width=80% />
+</div>
 
-
-![sortDemo1](./images/sort-demo1.png)
+<div align="left">
+  <img src="./images/sort-demo1.png" width=80% />
+</div>
 
 ### 业务方使用
 

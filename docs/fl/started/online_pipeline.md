@@ -9,17 +9,23 @@ title: QuickStarted
 
 我们基于内置的在线编排示例方案，创建一个示例引擎。
 
-![](images/create-function-engine.png)
+<div align="left">
+  <img src="images/create-function-engine.png" width=80% />
+</div>
 
 示例中包含一个默认的在线编排：
 
-![](images/online-pipeline-demo.png)
+<div align="left">
+  <img src="images/online-pipeline-demo.png" width=80% />
+</div>
 
 其中只包含了一个生成随机数的函数，整个 pipeline 接收请求后，函数将会根据请求的范围限制，生成一个对应范围内的随机数，最终返回结果。
 
 接口调用示例（右边 data->data->result 字段）：
 
-![](images/test-pipeline.png)
+<div align="left">
+  <img src="images/test-pipeline.png" width=80% />
+</div>
 
 关于此 Function 的详细开发过程可以参考下文。
 
@@ -27,11 +33,15 @@ title: QuickStarted
 
 如果所示，我们额外添加 2 个“随机数生成”函数节点，再添加 1 个“求和”函数节点（选中函数后点击右侧“添加节点”可增加函数输入槽位），并将其连接起来。
 
-![](images/online-pipeline-sum.png)
+<div align="left">
+  <img src="images/online-pipeline-sum.png" width=80% />
+</div>
 
 保存、发布后，进行调试：
 
-![](images/online-pipeline-sum-debug.png)
+<div align="left">
+  <img src="images/online-pipeline-sum-debug.png" width=80% />
+</div>
 
 我们限制随机数范围 [1,2)，此时随机数必然为 1，可以发现最终求和结果为 3，复合预期。
 
@@ -127,11 +137,15 @@ classes                    maven-archiver             maven-status              
 
 在 flowengine hub 中创建“在线函数模板”：
 
-![](images/create-function-template.png)
+<div align="left">
+  <img src="images/create-function-template.png" width=80% />
+</div>
 
 创建完成后，点击进入，选择“历史版本”再进行“编辑”，填写必要的信息。
 
-![](images/update-function-template-1.png)
+<div align="left">
+  <img src="images/update-function-template-1.png" width=80% />
+</div>
 
 文件类型：目前只可选择 jar，更多模式陆续开放中；
 
@@ -144,11 +158,15 @@ Function 类名：Function 完整的类名；
 通过引擎的“高级配置”，
 点击『新增Pipeline』来创建 pipeline，必填全局唯一的『Pipeline Key』：
 
-![](images/create-pipeline.png)
+<div align="left">
+  <img src="images/create-pipeline.png" width=80% />
+</div>
 
 创建完成后，点击『编辑』进入编辑页面，修改 pipeline 拓扑结构与相关配置。
 
-![](images/update-pipeline.png)
+<div align="left">
+  <img src="images/update-pipeline.png" width=80% />
+</div>
 
 ## 发布 pipeline
 
@@ -156,12 +174,18 @@ Function 类名：Function 完整的类名；
 
 进入左侧“编排”中的“在线编排”，选择对应的 pipeline，即可进行发布操作。
 
-![](images/deploy-pipeline.png)
+<div align="left">
+  <img src="images/deploy-pipeline.png" width=80% />
+</div>
 
 发布完成后，可以点击『调试』进行调用测试，如图输入请求参数，返回中的 data 字段可以看到结果：
 
-![](images/test-pipeline.png)
+<div align="left">
+  <img src="images/test-pipeline.png" width=80% />
+</div>
 
 通过『查看历史版本』可以查看 pipeline 的历史版本，并进行下线或发布操作：
 
-![](images/pipeline-history.png)
+<div align="left">
+  <img src="images/pipeline-history.png" width=80% />
+</div>
