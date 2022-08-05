@@ -359,7 +359,7 @@ pre code {
 /* ======= Docs Section ======= */
 .docs {
   padding: 80px 0;
-  background: #f5f5f5;
+  /*background: #f5f5f5;*/
 }
 
 .docs a {
