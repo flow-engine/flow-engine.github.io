@@ -66,7 +66,7 @@ AI应用场景通常高度与数据相关，这其中包含两个层面的问题
 通过flowengine开发AI场景应用，关键是对场景的分析及映射。在flowengine里我们将一个AI应用映射成如下形态。
 以一个推荐场景为例：
 
-![struction](../assets/intro-bimapping.png)
+![struction](../assets/intro-bimapping.png){:width="50%" }
 
 如图，一个AI的过程就是一个引擎，引擎内部声明了这个过程的运行逻辑，对外暴露数据和服务接口。
 而flowengineData对接外部业务系统，并将数据加工完成，绑定到各个场景引擎上，不同引擎对外提供不同的服务，如模型推理服务或是推荐服务。
