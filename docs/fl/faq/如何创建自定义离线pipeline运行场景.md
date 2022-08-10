@@ -62,7 +62,7 @@ docker build -f Dockerfile -t flowengine/worker-test:v1.1 ./(构建镜像后存�
                     "spec": {
                         "containers": [
                             {
-                                "image": "docker.4pd.io/worker-test:v1.1", // worker镜像地址
+                                "image": "worker-test:v1.1", // worker镜像地址
                                 "resources": {
                                     "limits": {
                                         "memory": "1024M", // worker运行内存
