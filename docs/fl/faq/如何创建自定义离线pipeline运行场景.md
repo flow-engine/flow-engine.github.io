@@ -23,15 +23,13 @@ title: faq
 vim Dockerfile
 
 ```
-FROM docker.4pd.io/flowengine/worker-base-jdk8:1.6.1
+FROM flowengine/worker-base-jdk8:0.0.1
 
 #以下为自定义部分
 RUN yum install -y traceroute
 ```
 
-docker build -f Dockerfile -t docker.4pd.io/worker-test:v1.1 ./(构建镜像后存储的地址)  ####这一步操作前应该先新建一个文件夹，然后把dockerfile放到这个文件夹里，然后再build镜像
-
-base镜像见百度云盘（链接: [https://pan.baidu.com/s/1SdzWCIO37UKfqOHhcfP4yQ](https://pan.baidu.com/s/1SdzWCIO37UKfqOHhcfP4yQ) 提取码: v6ee）。
+docker build -f Dockerfile -t flowengine/worker-test:v1.1 ./(构建镜像后存储的地址)  ####这一步操作前应该先新建一个文件夹，然后把dockerfile放到这个文件夹里，然后再build镜像
 
 ## 构建Runtime(worker)模版
 
