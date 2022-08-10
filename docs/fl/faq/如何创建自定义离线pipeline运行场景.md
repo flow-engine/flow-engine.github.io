@@ -30,11 +30,8 @@ RUN yum install -y traceroute
 ```
 
 docker build -f Dockerfile -t docker.4pd.io/worker-test:v1.1 ./(构建镜像后存储的地址)  ####这一步操作前应该先新建一个文件夹，然后把dockerfile放到这个文件夹里，然后再build镜像
-#push镜像前必须先登录公司的镜像仓库
 
-docker log -n deploy -p GlW5SRo1TC3q docker.4pd.io
-
-docker push docker.4pd.io/worker-test:v1.1
+base镜像见百度云盘（链接: [https://pan.baidu.com/s/1SdzWCIO37UKfqOHhcfP4yQ](https://pan.baidu.com/s/1SdzWCIO37UKfqOHhcfP4yQ) 提取码: v6ee）。
 
 ## 构建Runtime(worker)模版
 
