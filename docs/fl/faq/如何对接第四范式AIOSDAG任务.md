@@ -1,5 +1,5 @@
 ---
-layout: default
+wlayout: default
 title: faq
 ---
 ## 目标
