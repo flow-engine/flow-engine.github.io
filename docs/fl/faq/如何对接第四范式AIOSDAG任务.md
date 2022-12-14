@@ -31,8 +31,11 @@ metadata:
 
 2. 绑定完成后，可以通过aios进行数据导入，并利用建模ide进行建模，调试开发完成后，可以到处为dag文件。
    ![abc](./images/studio.png){:width="50%" }
+
    ![abc](./images/dag.png){:width="50%" }
 3. 在flowengine hub中创建dag job，将dag文件导入，编排进pipeline中即可。
    ![abc](./images/dagjob.png){:width="50%" }
+
    ![abc](./images/testdag.png){:width="50%" }
+
    ![abc](./images/dagrun.png){:width="50%" }
