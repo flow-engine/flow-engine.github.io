@@ -10,7 +10,7 @@ title: faq
 
 1. 在开源版本的flowengine中，可以通过namespace上添加注解，绑定aios的工作区完成映射。
 
-```
+```yaml
 apiVersion: v1
 kind: Namespace
 metadata:
