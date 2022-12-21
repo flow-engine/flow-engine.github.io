@@ -71,15 +71,15 @@ title: faq
         localJarUrls: /Users/ully/githubprojects/examples/pipeline-local-test/target/pipeline-local-test-1.0-SNAPSHOT.jar
       ```
       其中：
-      datasource.url 为数据库地址，可以直接配置为云端刚才创建的引擎对应数据库，这里就是automl2。
-      datasource.username 为数据库账号
-      datasource.password 为数据库密码。
-      flow-engine-key: 引擎key
-      flow-engine-url： 云端flowengine hub的地址，默认为入口地址/template-market
-      flow-engine-data-url： 云端flowengine data的地址，默认为入口地址/sds-workbench
-      **localJarUrls: 该参数特为本地调试设置，为该function项目工程编译后jar输出全路径，多个jar用;分隔。**
 
-   然后编译该工程，注意工程jdk版本为11。
+      * datasource.url 为数据库地址，可以直接配置为云端刚才创建的引擎对应数据库，这里就是automl2。
+      * datasource.username 为数据库账号
+      * datasource.password 为数据库密码。
+      * flow-engine-key: 引擎key
+      * flow-engine-url： 云端flowengine hub的地址，默认为入口地址/template-market
+      * flow-engine-data-url： 云端flowengine data的地址，默认为入口地址/sds-workbench
+      * **localJarUrls: 该参数特为本地调试设置，为该function项目工程编译后jar输出全路径，多个jar用;分隔。**
+   3) 编译该工程，注意工程jdk版本为11。
 
    ```shell
     mvn clean package
@@ -87,15 +87,16 @@ title: faq
    根据地址，修改上面的localJarUrls（该地址随pom定义的变化变化）。
 
    如图：
-   ![abc](./images/pipeline-local-test-2.png){:width="50%" }
 
+   ![abc](./images/pipeline-local-test-2.png){:width="50%" }
 3. 配置springboot工程启动,注意将启动的配置文件设置为local。
 
    ![abc](./images/pipeline-local-test-3.png){:width="50%" }
-
 4. 启动该项目，pipelineruntime会自动从云端拉取pipeline定义，并加载本地工程的jar包工作。
-   调试接口地址为：http://localhost:8080/v1/engine/{engineKey}/pipeline/{pipelineKey}/execution,
-   请求参数为：
+
+   * 调试接口地址为：http://localhost:8080/v1/engine/{engineKey}/pipeline/{pipelineKey}/execution,
+   * 请求参数为：
+
    ```json
    {
        "request": {
@@ -106,6 +107,7 @@ title: faq
    }
    ```
    在需要调试的代码上打断点，然后利用postman即可调试开发。
+
    ![abc](./images/pipeline-local-test-4.png){:width="50%" }
 
    ![abc](./images/pipeline-local-test-5.png){:width="50%" }
