@@ -79,6 +79,7 @@ title: faq
       * flow-engine-url： 云端flowengine hub的地址，默认为入口地址/template-market
       * flow-engine-data-url： 云端flowengine data的地址，默认为入口地址/sds-workbench
       * **localJarUrls: 该参数特为本地调试设置，为该function项目工程编译后jar输出全路径，多个jar用;分隔。**
+
    3) 编译该工程，注意工程jdk版本为11。
 
    ```shell
