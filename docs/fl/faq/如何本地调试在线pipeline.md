@@ -110,6 +110,6 @@ title: faq
    在需要调试的代码上打断点，然后利用postman即可调试开发。
 
    ![abc](./images/pipeline-local-test-4.png){:width="50%" }
-   ![abc](/docs/fl/faq/images/pipeline-local-test-4.png){width=50%} 
+   ![abc](./images/pipeline-local-test-4.png?raw=true){width=50%} 
 
    ![abc](./images/pipeline-local-test-5.png){:width="50%" }
