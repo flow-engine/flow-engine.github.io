@@ -7,7 +7,7 @@ title: faq
 enginekernel为了避免镜像过大，因此不必要的程序包和依赖并未默认安装，但我们在实际的使用过程中，以下情况可能需要定制内核镜像。
 
 * 安装或者升级未预制软件
-* 安装python pip包
+* 安装或者升级python lib包
 * 内置文件或者数据
 
 ## 解决方案：
@@ -60,11 +60,11 @@ ENTRYPOINT ["/opt/work/bin/start.sh"]
 其他base镜像参考
 https://github.com/flow-engine/fl-commons/tree/master/base-images
 
-#### 简单增加
+#### 1）简单增加
 
 > 内核镜像默认是基于alpine制作，因此安装软件方式参考alpine写法。
 
-只需要extend现有enginekernel依赖，如下，即在0.0.2.1版本上安装numpy包的案例。
+只需要继承现有enginekernel镜像，添加自定义的内容即可，如下，即在0.0.2.1版本上安装numpy包的案例。
 
 1) 新建Dockerfile文件
 
@@ -96,7 +96,7 @@ Successfully built e7458033d9a3
 Successfully tagged engine-kernel:0.0.2.1-custom
 ```
 
-#### base镜像无法满足需要，需要完全定制
+#### 2）base镜像无法满足需要，需要完全定制
 
 可基于基础镜像，将默认镜像中enginekernel中的 /opt/work 及Shanghai复制出来，放置在新的待打包镜像目录中。
 基础镜像必须支持jdk 1.8 和python 3.7+
