@@ -60,7 +60,7 @@ ENTRYPOINT ["/opt/work/bin/start.sh"]
 其他base镜像参考
 https://github.com/flow-engine/fl-commons/tree/master/base-images
 
-* 简单增加
+#### 简单增加
 
 > 内核镜像默认是基于alpine制作，因此安装软件方式参考alpine写法。
 
@@ -96,7 +96,7 @@ Successfully built e7458033d9a3
 Successfully tagged engine-kernel:0.0.2.1-custom
 ```
 
-* base镜像无法满足需要，需要完全定制
+#### base镜像无法满足需要，需要完全定制
 
 可基于基础镜像，将默认镜像中enginekernel中的 /opt/work 及Shanghai复制出来，放置在新的待打包镜像目录中。
 基础镜像必须支持jdk 1.8 和python 3.7+
