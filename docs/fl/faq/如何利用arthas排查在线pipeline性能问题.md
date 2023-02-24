@@ -92,6 +92,7 @@ public class MockLogFunction extends FLFunction {
 ![](./images/arthas-4.png){:width="50%" }
 
 3.利用trace命令追踪想要排查的方法。首先全局检查一下pipeline耗时分布。
+
 1）开启trace com._4paradigm.flowengine.pipeline.runtime.core.PipelineExecutorV2 execute
 
 ![](./images/arthas-6.png){:width="50%" }
@@ -112,13 +113,17 @@ public class MockLogFunction extends FLFunction {
    trace com._4paradigm.flowengine.pipeline.mock.MockLogFunction run
 
    ![](./images/arthas-8.png){:width="50%" }
+
 2) 模拟了一个查询请求。
 
    ![](./images/arthas-7.png){:width="50%" }
+
 3) arthas跟踪到请求链路耗时结果
 
    ![](./images/arthas-7.png){:width="50%" }
+
 4) 从图上看出，最耗时的为： com._4paradigm.flowengine.pipeline.mock.MockLogFunction:longTimeMethod()
+
 5) 进一步分析该method，开启trace检查该方法的耗时分布
    trace com._4paradigm.flowengine.pipeline.mock.MockLogFunction longTimeMethod
 
