@@ -120,7 +120,7 @@ public class MockLogFunction extends FLFunction {
 
 3) arthas跟踪到请求链路耗时结果
 
-   ![](./images/arthas-7.png){:width="50%" }
+   ![](./images/arthas-9.png){:width="50%" }
 
 4) 从图上看出，最耗时的为： com._4paradigm.flowengine.pipeline.mock.MockLogFunction:longTimeMethod()
 
