@@ -26,7 +26,7 @@ title: faq
 
 ### 02、获取engineId接口
    1) URL
-    fl_url + engineUrl + "/automl/v1/system/getParam?engineKey=" + engineKey
+    fl_url + engineUrl + "/kernel/v1/system/getParam?engineKey=" + engineKey
 
    2) method: get
 
@@ -37,7 +37,7 @@ title: faq
 
 ### 03、添加pipeline
    1) URL
-   fl_url + engineUrl + "/automl/v1/pipeline/template/" + engineId + "/create?engineKey=" + engineKey
+   fl_url + engineUrl + "/kernel/v1/pipeline/template/" + engineId + "/create?engineKey=" + engineKey
 
    2) method: post
 
@@ -58,7 +58,7 @@ title: faq
 ```
 ### 04、文件上传（用于分布式运行）
 1) URL
-fl_url  + engineUrl + "/automl/v1/template/uploadJobFileParam/1"
+fl_url  + engineUrl + "/kernel/v1/template/uploadJobFileParam/1"
 
 2) method
 post
@@ -78,7 +78,7 @@ file，文件
 ```
 ### 05、pipeline列表
 1) URL
-   fl_url + engineUrl + "/automl/v1/pipeline/" + engineId + "/list?engineKey=" + engineKey
+   fl_url + engineUrl + "/kernel/v1/pipeline/" + engineId + "/list?engineKey=" + engineKey
 
 2) 方法
 get
@@ -92,7 +92,7 @@ get
 
 ### 06、某个pipeline的详情页
 1) URL
-   fl_url + engineUrl + "/automl/v1/pipeline/template/" + engineId + "/" + pipelineId + "/get?engineKey=" + engineKey
+   fl_url + engineUrl + "/kernel/v1/pipeline/template/" + engineId + "/" + pipelineId + "/get?engineKey=" + engineKey
 
 2) method
 get
@@ -106,7 +106,7 @@ get
 
 ### 07、修改pipeline
 1) URL
-fl_url + engineUrl + "/automl/v1/pipeline/template/" + engineId + "/update?engineKey=" + engineKey
+fl_url + engineUrl + "/kernel/v1/pipeline/template/" + engineId + "/update?engineKey=" + engineKey
 
 2) method
 put
@@ -126,9 +126,9 @@ put
 ```
 ### 08、开启或者关闭crontab按钮
 1) URL
-   fl_url + engineUrl + "/automl/v1/pipeline/" + engineId + "/" + pipelineId + "/start?once=false&engineKey=" + engineKey
+   fl_url + engineUrl + "/kernel/v1/pipeline/" + engineId + "/" + pipelineId + "/start?once=false&engineKey=" + engineKey
 
-   fl_url + engineUrl + "/automl/v1/pipeline/" + engineId + "/" + pipelineId + "/stop?engineKey=" + engineKey
+   fl_url + engineUrl + "/kernel/v1/pipeline/" + engineId + "/" + pipelineId + "/stop?engineKey=" + engineKey
 
 2) method
 post
@@ -150,7 +150,7 @@ post
 ### 09、启动pipeline
 1) URL
 
-fl_url + engineUrl + "/automl/v1/pipeline/" + engineId + "/" + pipelineId + "/start?engineKey=" + engineKey
+fl_url + engineUrl + "/kernel/v1/pipeline/" + engineId + "/" + pipelineId + "/start?engineKey=" + engineKey
 
 2) method
 post
@@ -181,7 +181,7 @@ nodeId01、nodeId02，在 “某个pipeline的详情页” 返回的json里获�
 
 ### 10、查询pipeline运行历史记录
 1) URL
-   fl_url + engineUrl + "/automl/v1/pipeline/" + pipelineId + "/historyList?page=" + page + "&size=" + size + "&engineId=" + engineId + "&engineKey=" + engineKey
+   fl_url + engineUrl + "/kernel/v1/pipeline/" + pipelineId + "/historyList?page=" + page + "&size=" + size + "&engineId=" + engineId + "&engineKey=" + engineKey
 
 2) method
 get
@@ -202,7 +202,7 @@ get
 
 ### 11、停止某个pipeline任务
 1) URL
-   fl_url + engineUrl + "/automl/v1/pipeline/" + pipelineRunId + "/stopHistory?engineId=" + engineId + "&engineKey=" + engineKey
+   fl_url + engineUrl + "/kernel/v1/pipeline/" + pipelineRunId + "/stopHistory?engineId=" + engineId + "&engineKey=" + engineKey
 pipelineRunId，pipeline某个任务的Id
 
 2) method
@@ -224,7 +224,7 @@ delete
 
 ### 12、重启某个pipeline
 1) URL
-   fl_url + engineUrl + "/automl/v1/pipeline/" + pipelineRunId + "/resumeHistory?engineId=" + engineId + "&engineKey=" + engineKey
+   fl_url + engineUrl + "/kernel/v1/pipeline/" + pipelineRunId + "/resumeHistory?engineId=" + engineId + "&engineKey=" + engineKey
 pipelineRunId，pipeline某个任务的Id
 
 2) method
