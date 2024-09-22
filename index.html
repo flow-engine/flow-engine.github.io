@@ -31,6 +31,14 @@
             s.parentNode.insertBefore(hm, s);
         })();
     </script>
+    <!--当URL为/?rediect={url}/-->
+    <script>
+        if (window.location.search.includes('redirect')) {
+            var url = window.location.search.split('=')[1];
+            window.location.href = url;
+        }
+    </script>
+
 </head>
 
 <body data-spy="scroll">
